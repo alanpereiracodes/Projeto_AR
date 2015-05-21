@@ -73,7 +73,7 @@ http://unity3d.com/
 
 3. Já com Unity 5 instalado, clique duas vezes no atalho gerado na Área de Trabalho.
 
-4. Na janela para abrir o projeto, clique em "Open other". Selecione a pasta ALGORHYTHM que você descompactou no passo 2.
+4. Na janela para abrir o projeto, clique em "Open other". Selecione a pasta "ALGORHYTHM" que você descompactou no passo 2.
 
 5. Pronto, clicando em "Selecionar pasta" o Unity 5 irá abrir o projeto. 
 
