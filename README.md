@@ -69,7 +69,7 @@ Ou acesse diretamente pelo site do Unity:
 
 http://unity3d.com/
 
-2. Descompacte o arquivo em extensão do WinRAR PROJETO_AR
+2. Descompacte o arquivo .ZIP que você baixou "PROJETO_AR-master.zip".
 
 3. Já com Unity 5 instalado, clique duas vezes no atalho gerado na Área de Trabalho.
 
