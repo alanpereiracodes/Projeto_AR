@@ -6,6 +6,7 @@ public class ControladorGeral : MonoBehaviour {
 	public static ControladorGeral referencia = null;
 
 	public GameObject myPlayer;
+	public CriaTabuleiro tabuleiroAtual;
 
 	// Use this for initialization
 	void Awake () {

@@ -20,6 +20,7 @@ public class CarregaJogo : MonoBehaviour {
 		tabuleiroScript.GeraMapa();
 
 		ControladorGeral.referencia.myPlayer = (GameObject)Instantiate(myPlayer, new Vector3 (-5.5f, 1.3f, 4.5f), Quaternion.identity);
+		ControladorGeral.referencia.tabuleiroAtual = tabuleiroScript;
 
 	}
 }

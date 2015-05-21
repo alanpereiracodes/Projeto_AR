@@ -44,7 +44,7 @@ public class CriaTabuleiro : MonoBehaviour {
 	public List<GameObject> tilesConjunto;
 	//Lista para armazenar a informaçao de cada tile gerado, exemplo:
 	//Suas coordenadas, se esta ocupado, se da para passar, se e interativo, etc
-	private List<List<Tile>> mapaGerado;
+	public List<List<Tile>> mapaGerado;
 	//Uma variavel para armazenar o nosso tabuleiro
 	private Transform meuTabuleiro;                                  
 	//O metodo Start eh chamado assim que o objeto a qual o Script esta vinculado eh inicializado.

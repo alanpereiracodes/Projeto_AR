@@ -1,0 +1,53 @@
+-------------
+|	    |
+| CHANGELOG |
+|           |
+-------------
+
+=============================================
+21-05-2015 00:57 - PROTOTIPO_AR_version0_1_0_date21-05-2015
+
+- Foi feita a Refatoração da parte de código do Jogo
+
+- Novos Scripts:
+
+	Carrega Jogo - Responsável pelas informações únicas de cada fase
+	
+	Cria Tabuleiro - Responsável pela geração do mapa
+	
+	Controlador Geral - Script que irá carregar e transportar todas as informações do jogo de cena em cena.
+	
+	Remove Botao Lista - Ao clicar em algum comando na Lista de Programa, o botao correspondente ao comando clicado é removido e a lista é reordenada.
+
+
+==============================================
+21-05-2015 18:50 - PROTOTIPO_AR_version0_1_1_date21-05-2015
+
+- Ao executar o comando andar na direção para frente, é feita a verificação do próximo tile, se existir e for andavel, ele executa o movimento, caso contrário não anda.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

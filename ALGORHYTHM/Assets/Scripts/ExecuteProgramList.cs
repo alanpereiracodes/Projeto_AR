@@ -35,9 +35,13 @@ public class ExecuteProgramList : MonoBehaviour {
 		{
 			case Player.Direction.Frente:
 				//verifica se o proximo bloco e andavel
-				newPos = new Vector3(myPlayer.transform.position.x,myPlayerStat.transform.position.y,myPlayer.transform.position.z-1);
-				StartCoroutine(MoverObjeto(myPlayer,myPlayer.transform.position, newPos, tempoMover));
+				if(VerificaBlocoQueVaiAndar(Player.Direction.Frente, myPlayerStat.posicaoTabuleiro))
+				{
+					newPos = new Vector3(myPlayer.transform.position.x,myPlayerStat.transform.position.y,myPlayer.transform.position.z-1);
+					StartCoroutine(MoverObjeto(myPlayer,myPlayer.transform.position, newPos, tempoMover));
+				}
 				break;
+
 			case Player.Direction.Tras:
 				newPos = new Vector3(myPlayer.transform.position.x,myPlayerStat.transform.position.y,myPlayer.transform.position.z+1);
 				StartCoroutine(MoverObjeto(myPlayer,myPlayer.transform.position, newPos, tempoMover));
@@ -45,6 +49,36 @@ public class ExecuteProgramList : MonoBehaviour {
 		}
 	}
 
+	bool VerificaBlocoQueVaiAndar (Player.Direction direcao, Vector2 coordenadas)
+	{
+		if(direcao == Player.Direction.Frente)
+		{
+			foreach(List<Tile> tileCol in ControladorGeral.referencia.tabuleiroAtual.mapaGerado)
+			{
+				foreach(Tile tile in tileCol)
+				{
+					if(tile.posicaoTabuleiro.y == myPlayerStat.posicaoTabuleiro.y+1 && tile.posicaoTabuleiro.x == myPlayerStat.posicaoTabuleiro.x)
+					{
+						if(tile.andavel && tile.objetoEmCima == null)
+						{
+							foreach(List<Tile> tileCol2 in ControladorGeral.referencia.tabuleiroAtual.mapaGerado)
+							{
+								foreach(Tile tile2 in tileCol2)
+								{
+									if(tile2.posicaoTabuleiro == myPlayerStat.posicaoTabuleiro)
+										tile2.objetoEmCima = null;
+								}
+							}
+							myPlayerStat.posicaoTabuleiro = tile.posicaoTabuleiro;
+							tile.objetoEmCima = myPlayer;
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
 
 	//Chamando uma Coroutine
 	//StartCoroutine(rotateObject (myCameraSuporte.transform.rotation, novaRotation, 1f));
@@ -58,6 +92,8 @@ public class ExecuteProgramList : MonoBehaviour {
 			player.transform.position = Vector3.Lerp(source, target, (Time.time - startTime)/overTime);
 			yield return null;
 		}
+		player.transform.position = target;
+
 	}
 
 	//Coroutine para Executar a Lista
