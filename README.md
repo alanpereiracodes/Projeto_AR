@@ -69,13 +69,13 @@ Ou acesse diretamente pelo site do Unity:
 
 http://unity3d.com/
 
-2. Descompacte o arquivo em extensão do WinRAR PROTOTIPO/DESENVOLVIMENTO_AR_versionX_X_X_dateDD-MM-YYYY.
+2. Descompacte o arquivo em extensão do WinRAR PROJETO_AR
 
 3. Já com Unity 5 instalado, clique duas vezes no atalho gerado na Área de Trabalho.
 
-4. Na janela para abrir o projeto, clique em "Open other". Selecione a pasta que você descompactou no passo 2.
+4. Na janela para abrir o projeto, clique em "Open other". Selecione a pasta ALGORHYTHM que você descompactou no passo 2.
 
-5. Pronto, clicando em "Selecionar pasta" o UNity 5 irá abrir o projeto. 
+5. Pronto, clicando em "Selecionar pasta" o Unity 5 irá abrir o projeto. 
 
 =========================================================================================
 
