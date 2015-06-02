@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\EventosTelaTitulo.cs" />
      <Compile Include="Assets\Scripts\ExecuteProgramList.cs" />
      <Compile Include="Assets\Scripts\LookToCamera.cs" />
+     <Compile Include="Assets\Scripts\NomeBotoes.cs" />
      <Compile Include="Assets\Scripts\Old\Controlador.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\RemoveBotaoLista.cs" />

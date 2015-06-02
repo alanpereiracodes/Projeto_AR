@@ -1,11 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EventosTelaTitulo.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CarregaJogo.cs">
     <Files>
-      <File FileName="..\SaveLoadTeste\Assets\SaveLoad\SaveLoad.cs" Line="16" Column="36" />
-      <File FileName="..\SaveLoadTeste\Assets\SaveLoad\Gameplay.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CriaTabuleiro.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\EventosTelaTitulo.cs" Line="47" Column="65" />
+      <File FileName="Assets\Scripts\CriaTabuleiro.cs" Line="29" Column="45" />
+      <File FileName="Assets\Scripts\CarregaJogo.cs" Line="11" Column="33" />
+      <File FileName="Assets\Scripts\ExecuteProgramList.cs" Line="237" Column="5" />
+      <File FileName="Assets\Scripts\NomeBotoes.cs" Line="11" Column="46" />
+      <File FileName="Assets\Scripts\CreateProgramList.cs" Line="49" Column="67" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

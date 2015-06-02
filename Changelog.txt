@@ -25,6 +25,22 @@
 
 - Ao executar o comando andar na direção para frente, é feita a verificação do próximo tile, se existir e for andavel, ele executa o movimento, caso contrário não anda.
 
+==============================================
+21-05-2015 18:50 - PROTOTIPO_AR_version0_1_3_date21-05-2015
+
+- Adicionado tela de Título
+
+==============================================
+21-05-2015 18:50 - PROTOTIPO_AR_version0_1_5_date21-05-2015
+
+- Anda para todas as direções e com as devidas verificações com o Comando Andar
+
+- Gira para Direita e Esquerda
+
+- Adicionado conceito de Objetivo para teste.
+
+*Próximo passos adicionar animações ao personagem e dinâmismo as fases: um Objetivo e Quebra-Cabeça decentes;
+
 
 
 

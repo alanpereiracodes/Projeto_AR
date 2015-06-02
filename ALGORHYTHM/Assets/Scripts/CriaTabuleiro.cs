@@ -33,10 +33,11 @@ public class CriaTabuleiro : MonoBehaviour {
 	{
 		public int[] Linha;
 	}
-	//Cada Coluna armazena uma lista de linha, logo criando uma lista de colunas temos um ambiente 2D
-	public Colunas[] terrenoMapa;
+
 	//Vetor 2D para armazenar o tamanho do mapa em coordenadas X e Y.
 	public Vector2 tamanhoMapa;
+	//Cada Coluna armazena uma lista de linha, logo criando uma lista de colunas temos um ambiente 2D
+	public Colunas[] terrenoMapa;
 	//Valores para centralizar os tiles na tela;
 	private float valorCorrecaoX = 0.5f;
 	private float valorCorrecaoY = -1.5f;
