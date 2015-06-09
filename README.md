@@ -36,13 +36,13 @@ Levando nosso personagem, o Algo, a alcançar seu objetivo dentro da história d
 
 Mais detalhado:
 
-* :video_game: O jogo é separado em quatro partes:
+:video_game: O jogo é separado em quatro partes:
 
-:stars: EVENTOS: Aonde acontecem diálogos e o jogador acompanha o desenrolar da história.
+* :stars: EVENTOS: Aonde acontecem diálogos e o jogador acompanha o desenrolar da história.
 
 * :scroll: MAPA-MUNDO: Aqui é onde o jogador irá ter uma visão do mundo e aonde ele está, sendo separadas em fases. Algo similar a tela do mundo de Super Mario World, Breath of Fire IV, Chain Chronicles e outros jogos.
 
-Escolhendo a fase, ela pode ser um QUEBRA-CABEÇA ou uma BATALHA.
+	Escolhendo a fase, ela pode ser um QUEBRA-CABEÇA ou uma BATALHA.
 
 * :game_die: QUEBRA-CABEÇA (Puzzle): Um dos pontos principais do jogo, aqui é onde o personagem irá ser introduzido em uma espécie de tabuleiro e terá que inserir um certo número de comandos através de botões para resolver o quebra-cabeça proposto.
 
