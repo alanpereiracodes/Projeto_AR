@@ -9,5 +9,6 @@ public class NomeBotoes : MonoBehaviour
 	public const string girarDireita = "Girar para Direita";
 	public const string girarEsquerda = "Girar para Esquerda";
 	public const string interagir = "Interagir";
+	public const string pular = "Pular";
 
 }

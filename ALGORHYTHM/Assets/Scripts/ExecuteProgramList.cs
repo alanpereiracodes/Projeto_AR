@@ -9,6 +9,7 @@ public class ExecuteProgramList : MonoBehaviour {
 
 	private GameObject myPlayer; //Variaveis para armazenar referencias ao Status do nosso Player
 	private Player myPlayerStat;
+	private Animator myPlayAnim;
 
 	//Notas:
 	//Awake acontece quando um GameObject e criado.
@@ -19,6 +20,7 @@ public class ExecuteProgramList : MonoBehaviour {
 	{
 		myPlayer = ControladorGeral.referencia.myPlayer;
 		myPlayerStat = myPlayer.GetComponent<Player> ();
+		myPlayAnim = myPlayer.GetComponentInChildren<Animator>();
 	}
 	
 	//Funçao para executar a Lista de Programa! Essa funçao e chamada pelo botao "Executar Programa" na UI do jogo.
@@ -88,106 +90,81 @@ public class ExecuteProgramList : MonoBehaviour {
 	//Separei as funçoes so para fornecer um entendimento por partes
 	bool VerificaBlocoQueVaiAndar (Player.Direction direcao, Vector2 coordenadas)
 	{
+		//Anotaçao das Direçoes:
+		/*
+		 * Frente	Y+1
+		 * Tras		Y-1
+		 * Esquerda	X+1
+		 * Direita	X-1
+		 */
 		if(direcao == Player.Direction.Frente)
 		{
-			foreach(List<Tile> tileCol in ControladorGeral.referencia.tabuleiroAtual.mapaGerado)
+			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y+1));
+			if(novoTile != null)
 			{
-				foreach(Tile tile in tileCol)
+				if(novoTile.andavel && novoTile.objetoEmCima == null)
 				{
-					if(tile.posicaoTabuleiro.y == myPlayerStat.posicaoTabuleiro.y+1 && tile.posicaoTabuleiro.x == myPlayerStat.posicaoTabuleiro.x)
+					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
+					if(velhoTile != null && velhoTile.altura == novoTile.altura)
 					{
-						if(tile.andavel && tile.objetoEmCima == null)
-						{
-							foreach(List<Tile> tileCol2 in ControladorGeral.referencia.tabuleiroAtual.mapaGerado)
-							{
-								foreach(Tile tile2 in tileCol2)
-								{
-									if(tile2.posicaoTabuleiro == myPlayerStat.posicaoTabuleiro)
-										tile2.objetoEmCima = null;
-								}
-							}
-							myPlayerStat.posicaoTabuleiro = tile.posicaoTabuleiro;
-							tile.objetoEmCima = myPlayer;
-							return true;
-						}
+						velhoTile.objetoEmCima = null;
+						myPlayerStat.posicaoTabuleiro = novoTile.posicaoTabuleiro;
+						novoTile.objetoEmCima = myPlayer;
+						return true;
 					}
 				}
 			}
 		}
 		if(direcao == Player.Direction.Tras)
 		{
-			foreach(List<Tile> tileCol in ControladorGeral.referencia.tabuleiroAtual.mapaGerado)
+			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y-1));
+			if(novoTile != null)
 			{
-				foreach(Tile tile in tileCol)
+				if(novoTile.andavel && novoTile.objetoEmCima == null)
 				{
-					if(tile.posicaoTabuleiro.y == myPlayerStat.posicaoTabuleiro.y-1 && tile.posicaoTabuleiro.x == myPlayerStat.posicaoTabuleiro.x)
+					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
+					if(velhoTile != null && velhoTile.altura == novoTile.altura)
 					{
-						if(tile.andavel && tile.objetoEmCima == null)
-						{
-							foreach(List<Tile> tileCol2 in ControladorGeral.referencia.tabuleiroAtual.mapaGerado)
-							{
-								foreach(Tile tile2 in tileCol2)
-								{
-									if(tile2.posicaoTabuleiro == myPlayerStat.posicaoTabuleiro)
-										tile2.objetoEmCima = null;
-								}
-							}
-							myPlayerStat.posicaoTabuleiro = tile.posicaoTabuleiro;
-							tile.objetoEmCima = myPlayer;
-							return true;
-						}
+						velhoTile.objetoEmCima = null;
+						myPlayerStat.posicaoTabuleiro = novoTile.posicaoTabuleiro;
+						novoTile.objetoEmCima = myPlayer;
+						return true;
 					}
 				}
 			}
 		}
 		if(direcao == Player.Direction.Direita)
 		{
-			foreach(List<Tile> tileCol in ControladorGeral.referencia.tabuleiroAtual.mapaGerado)
+			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x-1, myPlayerStat.posicaoTabuleiro.y));
+			if(novoTile != null)
 			{
-				foreach(Tile tile in tileCol)
+				if(novoTile.andavel && novoTile.objetoEmCima == null)
 				{
-					if(tile.posicaoTabuleiro.y == myPlayerStat.posicaoTabuleiro.y && tile.posicaoTabuleiro.x+1 == myPlayerStat.posicaoTabuleiro.x)
+					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
+					if(velhoTile != null && velhoTile.altura == novoTile.altura)
 					{
-						if(tile.andavel && tile.objetoEmCima == null)
-						{
-							foreach(List<Tile> tileCol2 in ControladorGeral.referencia.tabuleiroAtual.mapaGerado)
-							{
-								foreach(Tile tile2 in tileCol2)
-								{
-									if(tile2.posicaoTabuleiro == myPlayerStat.posicaoTabuleiro)
-										tile2.objetoEmCima = null;
-								}
-							}
-							myPlayerStat.posicaoTabuleiro = tile.posicaoTabuleiro;
-							tile.objetoEmCima = myPlayer;
-							return true;
-						}
+						velhoTile.objetoEmCima = null;
+						myPlayerStat.posicaoTabuleiro = novoTile.posicaoTabuleiro;
+						novoTile.objetoEmCima = myPlayer;
+						return true;
 					}
 				}
 			}
 		}
 		if(direcao == Player.Direction.Esquerda)
 		{
-			foreach(List<Tile> tileCol in ControladorGeral.referencia.tabuleiroAtual.mapaGerado)
+			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x+1, myPlayerStat.posicaoTabuleiro.y));
+			if(novoTile != null)
 			{
-				foreach(Tile tile in tileCol)
+				if(novoTile.andavel && novoTile.objetoEmCima == null)
 				{
-					if(tile.posicaoTabuleiro.y == myPlayerStat.posicaoTabuleiro.y && tile.posicaoTabuleiro.x-1 == myPlayerStat.posicaoTabuleiro.x)
+					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
+					if(velhoTile != null && velhoTile.altura == novoTile.altura)
 					{
-						if(tile.andavel && tile.objetoEmCima == null)
-						{
-							foreach(List<Tile> tileCol2 in ControladorGeral.referencia.tabuleiroAtual.mapaGerado)
-							{
-								foreach(Tile tile2 in tileCol2)
-								{
-									if(tile2.posicaoTabuleiro == myPlayerStat.posicaoTabuleiro)
-										tile2.objetoEmCima = null;
-								}
-							}
-							myPlayerStat.posicaoTabuleiro = tile.posicaoTabuleiro;
-							tile.objetoEmCima = myPlayer;
-							return true;
-						}
+						velhoTile.objetoEmCima = null;
+						myPlayerStat.posicaoTabuleiro = novoTile.posicaoTabuleiro;
+						novoTile.objetoEmCima = myPlayer;
+						return true;
 					}
 				}
 			}
@@ -238,6 +215,32 @@ public class ExecuteProgramList : MonoBehaviour {
 		}
 		//MudaSpriteDeAcordoComAPosicao
 		Debug.Log ("Girou para "+myPlayerStat.direcao.ToString());
+		//Muda Animaçao
+			switch(myPlayerStat.direcao)
+			{
+			case Player.Direction.Frente:
+				myPlayAnim.SetInteger("direcao",1);
+				break;
+			case Player.Direction.Esquerda:
+				myPlayAnim.SetInteger("direcao",2);
+				break;
+			case Player.Direction.Tras:
+				myPlayAnim.SetInteger("direcao",3);
+				break;
+			case Player.Direction.Direita:
+				myPlayAnim.SetInteger("direcao",4);
+				break;
+			}
+	}
+
+	public void PularPersonagem()
+	{
+		//verifica altura do tile que o jogar esta
+		//verifica verifica a direçao do jogador
+		// verifica altura do tile na frente do jogador
+		//verifica se o tile e andavel ou se esta ocupado
+		//move jogador e executa animaçao de pula
+		//diz que o jogador esta ocupando o novo tile em que ele se encontra
 	}
 
 	#endregion
@@ -267,9 +270,11 @@ public class ExecuteProgramList : MonoBehaviour {
 					break;
 				case NomeBotoes.girarDireita:
 					GirarPersonagem (Player.Direction.Direita);
+					yield return new WaitForSeconds (0.3f);
 					break;
 				case NomeBotoes.girarEsquerda:
 					GirarPersonagem (Player.Direction.Esquerda);
+					yield return new WaitForSeconds (0.3f);
 					break;
 				}
 			}
@@ -301,8 +306,8 @@ public class ExecuteProgramList : MonoBehaviour {
 	//StartCoroutine(rotateObject (myCameraSuporte.transform.rotation, novaRotation, 1f));
 
 	//Coroutine para esperar
-//	IEnumerator Wait(){
-//		yield return new WaitForSeconds (3.0f);
+//	IEnumerator EsperaTempo(float waitSecs){
+//		yield return new WaitForSeconds (waitSecs);
 //	}
 //
 	#endregion

@@ -27,20 +27,29 @@ public class CarregaJogo : MonoBehaviour {
 
 		Vector3 tempPosInicial = new Vector3 ();
 
-		foreach(List<Tile> tileCols in tabuleiroScript.mapaGerado)
+//		foreach(List<Tile> tileCols in tabuleiroScript.mapaGerado)
+//		{
+//			foreach(Tile tile in tileCols)
+//			{
+//				if(tile.posicaoTabuleiro == posicaoPlayer)
+//				{
+//					tempPosInicial = tile.transform.position;
+//					tempPosInicial.y = 1.3f;
+//				}
+//			}
+//		}
+
+		Tile oTile = tabuleiroScript.ProcuraTile(posicaoPlayer);
+		if(oTile != null)
 		{
-			foreach(Tile tile in tileCols)
-			{
-				if(tile.posicaoTabuleiro == posicaoPlayer)
-				{
-					tempPosInicial = tile.transform.position;
-					tempPosInicial.y = 1.3f;
-				}
-			}
+			tempPosInicial = oTile.transform.position;
+			tempPosInicial.y = 1.3f;
 		}
 
 		ControladorGeral.referencia.myPlayer = (GameObject)Instantiate(myPlayer, tempPosInicial/*new Vector3 (-5.5f, 1.3f, 4.5f)*/, Quaternion.identity);
 		ControladorGeral.referencia.myPlayer.GetComponent<Player>().posicaoTabuleiro = posicaoPlayer;
+		if(oTile != null)
+			oTile.objetoEmCima = ControladorGeral.referencia.myPlayer;
 		ControladorGeral.referencia.tabuleiroAtual = tabuleiroScript;
 
 	}

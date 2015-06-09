@@ -103,4 +103,18 @@ public class CriaTabuleiro : MonoBehaviour {
 		} //Mapa Gerado: OK!
 	} //fim GeraMapa
 
+	//Procura um Tile com a Posiçao fornecida e retorna o Tile da seguinte posiçao se existir!
+	public Tile ProcuraTile(Vector2 pos)
+	{
+				foreach(List<Tile> tileCol in mapaGerado)
+				{
+					foreach(Tile tile in tileCol)
+					{
+							if(tile.posicaoTabuleiro == pos)
+								return tile;
+					}
+				}
+		return null;
+	}
+
 } //fim CriaTabuleiro

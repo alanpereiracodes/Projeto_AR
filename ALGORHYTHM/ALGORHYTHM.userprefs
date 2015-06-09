@@ -1,12 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CarregaJogo.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ExecuteProgramList.cs">
     <Files>
-      <File FileName="Assets\Scripts\CriaTabuleiro.cs" Line="29" Column="45" />
-      <File FileName="Assets\Scripts\CarregaJogo.cs" Line="11" Column="33" />
-      <File FileName="Assets\Scripts\ExecuteProgramList.cs" Line="237" Column="5" />
-      <File FileName="Assets\Scripts\NomeBotoes.cs" Line="11" Column="46" />
-      <File FileName="Assets\Scripts\CreateProgramList.cs" Line="49" Column="67" />
+      <File FileName="Assets\Scripts\ExecuteProgramList.cs" Line="233" Column="5" />
+      <File FileName="Assets\Scripts\CameraBtnEvents.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CriaTabuleiro.cs" Line="106" Column="91" />
+      <File FileName="Assets\Scripts\CarregaJogo.cs" Line="37" Column="32" />
+      <File FileName="Assets\Scripts\NomeBotoes.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CreateProgramList.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player.cs" Line="13" Column="4" />
+      <File FileName="Assets\Scripts\Tile.cs" Line="10" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
