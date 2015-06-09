@@ -36,17 +36,17 @@ Levando nosso personagem, o Algo, a alcançar seu objetivo dentro da história d
 
 Mais detalhado:
 
-O jogo é separado em quatro partes:
+:video_game:O jogo é separado em quatro partes:
 
-EVENTOS: Aonde acontecem diálogos e o jogador acompanha o desenrolar da história.
+:stars:EVENTOS: Aonde acontecem diálogos e o jogador acompanha o desenrolar da história.
 
-MAPA MUNDO: Aqui é onde o jogador irá ter uma visão do mundo e aonde ele está, sendo separadas em fases. Algo similar a tela do mundo de Super Mario World, Breath of Fire IV, Chain Chronicles e outros jogos.
+:scroll:MAPA-MUNDO: Aqui é onde o jogador irá ter uma visão do mundo e aonde ele está, sendo separadas em fases. Algo similar a tela do mundo de Super Mario World, Breath of Fire IV, Chain Chronicles e outros jogos.
 
 Escolhendo a fase, ela pode ser um QUEBRA-CABEÇA ou uma BATALHA.
 
-QUEBRA-CABEÇA (Puzzle): Um dos pontos principais do jogo, aqui é onde o personagem irá ser introduzido em uma espécie de tabuleiro e terá que inserir um certo número de comandos através de botões para resolver o quebra-cabeça proposto.
+:game_die:QUEBRA-CABEÇA (Puzzle): Um dos pontos principais do jogo, aqui é onde o personagem irá ser introduzido em uma espécie de tabuleiro e terá que inserir um certo número de comandos através de botões para resolver o quebra-cabeça proposto.
 
-BATALHA: Assim como a parte de QUEBRA-CABEÇA descrita acima, nesta parte o jogador também é introduzido a uma espécie de tabuleiro. Porém neste o objetivo não é apenas solucionar um quebra-cabeça, mas também lutar pela sobrevivência do personagem e vencer os obstáculos que o impedem de continuar a fim de seguir para a próxima fase. 
+:vs:BATALHA: Assim como a parte de QUEBRA-CABEÇA descrita acima, nesta parte o jogador também é introduzido a uma espécie de tabuleiro. Porém neste o objetivo não é apenas solucionar um quebra-cabeça, mas também lutar pela sobrevivência do personagem e vencer os obstáculos que o impedem de continuar a fim de seguir para a próxima fase. 
 
 ==================================================================================
 
@@ -61,13 +61,7 @@ COMO ABRIR O PROJETO:
 	ABRINDO O PROJETO EM SEU COMPUTADOR - PASSO A PASSO
 
 
-1. Para abrir o projeto você precisa ter instalado em seu computador o Unity 5, para baixar use o link abaixo:
-
-http://unity3d.com/get-unity/download?thank-you=personal&download_nid=15587&os=Win
-
-Ou acesse diretamente pelo site do Unity: 
-
-http://unity3d.com/
+1. Para abrir o projeto você precisa ter instalado em seu computador o Unity 5, para baixar use o seguinte: [Link da página de Download do Unity 5](http://unity3d.com/get-unity/download?thank-you=personal&download_nid=15587&os=Win) ou acesse diretamente pelo site do Unity: [Unity - Game Engine](http://unity3d.com/)
 
 2. Descompacte o arquivo .ZIP que você baixou "PROJETO_AR-master.zip".
 
@@ -83,15 +77,15 @@ http://unity3d.com/
 
 Agora que você já tem o Unity 5 instalado, você tem que aprender a utiliza-lo. Para isso recomendo assistir tutoriais disponíveis no próprio site, no seguinte link:
 
-http://unity3d.com/learn/tutorials/modules
+[Módulos do Unity - Learn](http://unity3d.com/learn/tutorials/modules)
 
 O primeiro a assistir seria o módulo que introduz o Editor, suas janelas, abas e mais:
 
-http://unity3d.com/learn/tutorials/modules/beginner/editor/interface-overview
+[Unity - Visão Geral da Interface](http://unity3d.com/learn/tutorials/modules/beginner/editor/interface-overview)
 
 Deixo também o link para a API do Unity 5, que exemplifica cada classe, método e mais de forma simples e eficaz.
 
-http://docs.unity3d.com/ScriptReference/index.html
+[Unity - Scripting API](http://docs.unity3d.com/ScriptReference/index.html)
 
 =========================================================================================
 
