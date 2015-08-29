@@ -6,12 +6,14 @@ public class RemoveBotaoLista : MonoBehaviour {
 
 	GameObject esseBotao;
 	CreateProgramList programListScript;
-	CommandButton esseBotaoCMD;
+	//CommandButton esseBotaoCMD;
+	Comando esseCMD;
 
 	void Awake()
 	{
 		esseBotao = this.gameObject;
-		esseBotaoCMD = esseBotao.GetComponent<CommandButton> ();
+		//esseBotaoCMD = esseBotao.GetComponent<CommandButton> ();
+		esseCMD = esseBotao.GetComponent<Comando>();
 		buttonSetup(esseBotao.GetComponent<Button>());
 		programListScript = CreateProgramList.referencia;
 	}
@@ -23,16 +25,20 @@ public class RemoveBotaoLista : MonoBehaviour {
 	}
 	
 	void DestroiBotao(Button b) {
-		Debug.Log("O Comando '" + esseBotaoCMD.nameLabel.text + "' - #" + esseBotaoCMD.listNumber.ToString() + " foi removido da Program List!");
-		foreach (CommandButton btn in programListScript.programList) 
+		//Debug.Log("O Comando '" + esseBotaoCMD.nameLabel.text + "' - #" + esseBotaoCMD.listNumber.ToString() + " foi removido da Program List!");
+	//	foreach (CommandButton btn in programListScript.programList) 
+		foreach (Comando cmd in programListScript.listaPrograma)
 		{
-			if(btn.listNumber > esseBotaoCMD.listNumber)
+			//if(btn.listNumber > esseBotaoCMD.listNumber)
+			if(cmd.numeroLista > esseCMD.numeroLista)
 			{
-				btn.listNumber--;
-				btn.numberLabel.text = '#'+btn.listNumber.ToString();
+				//btn.listNumber--;
+				cmd.numeroLista--;
+				//btn.numberLabel.text = '#'+btn.listNumber.ToString();
 			}
 		}
-		programListScript.programList.Remove (esseBotaoCMD);
+		//programListScript.programList.Remove (esseBotaoCMD);
+		programListScript.listaPrograma.Remove(esseCMD);
 		Destroy (esseBotao);
 	}
 }

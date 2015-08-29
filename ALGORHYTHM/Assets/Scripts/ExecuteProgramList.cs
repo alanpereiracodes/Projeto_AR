@@ -5,11 +5,13 @@ using System.Collections.Generic;
 public class ExecuteProgramList : MonoBehaviour {
 	
 	public float tempoMover = 0.6f; //Tempo que o personagem leva para ir de um Tile ao outro.
-	public List<CommandButton> programList = new List<CommandButton>(); //Variavel para referenciar a Lista de Programa Gerada
+	//public List<CommandButton> programList = new List<CommandButton>(); //Variavel para referenciar a Lista de Programa Gerada
+	public List<Comando> listaPrograma = new List<Comando>();
 
 	private GameObject myPlayer; //Variaveis para armazenar referencias ao Status do nosso Player
 	private Player myPlayerStat;
 	private Animator myPlayAnim;
+	private float alturaPulo;
 
 	//Notas:
 	//Awake acontece quando um GameObject e criado.
@@ -27,10 +29,15 @@ public class ExecuteProgramList : MonoBehaviour {
 	public void ExecuteList(/*GameObject myPlayer, List<CommandButton> programList*/)
 	{
 		//Atualiza a Lista de Comandos gerada pelo Script CreateProgramList;
-		programList = new List<CommandButton> ();
-		programList = CreateProgramList.referencia.programList;
+		//programList = new List<CommandButton> ();
+		//programList = CreateProgramList.referencia.programList;
+
+		listaPrograma = new List<Comando>();
+		listaPrograma = CreateProgramList.referencia.listaPrograma;
+
 		//Inicia uma Corotina para executar os comandos na Lista!
-		StartCoroutine (ExecutarLista (programList));	
+		//StartCoroutine (ExecutarLista (programList));	
+		StartCoroutine (ExecutarLista (listaPrograma));	
 		//Debug.Log (myPlayerStat.direcao); //teste
 	}
 	
@@ -48,13 +55,14 @@ public class ExecuteProgramList : MonoBehaviour {
 		//Variavel para guarda a nova posicao do jogador em um espaco 3D (X, Y, Z)
 		Vector3 newPos;
 		//Switch para agir conforme a direcao do Personagem
-		switch(myPlayerStat.direcao)
+		switch(myPlayerStat.direcaoGlobal)
 		{
 			case Player.Direction.Frente:
 				//verifica se o proximo bloco a frente eh andavel
 				if(VerificaBlocoQueVaiAndar(Player.Direction.Frente, myPlayerStat.posicaoTabuleiro))
 				{
 					newPos = new Vector3(myPlayer.transform.position.x,myPlayerStat.transform.position.y,myPlayer.transform.position.z-1);
+					myPlayAnim.SetBool("andando",true);
 					StartCoroutine(MoverObjeto(myPlayer,myPlayer.transform.position, newPos, tempoMover));
 				}
 				break;
@@ -63,6 +71,7 @@ public class ExecuteProgramList : MonoBehaviour {
 			if(VerificaBlocoQueVaiAndar(Player.Direction.Tras, myPlayerStat.posicaoTabuleiro))
 			{
 				newPos = new Vector3(myPlayer.transform.position.x,myPlayerStat.transform.position.y,myPlayer.transform.position.z+1);
+				myPlayAnim.SetBool("andando",true);
 				StartCoroutine(MoverObjeto(myPlayer,myPlayer.transform.position, newPos, tempoMover));
 			}
 			break;
@@ -71,6 +80,7 @@ public class ExecuteProgramList : MonoBehaviour {
 			if(VerificaBlocoQueVaiAndar(Player.Direction.Direita, myPlayerStat.posicaoTabuleiro))
 			{
 				newPos = new Vector3(myPlayer.transform.position.x-1,myPlayerStat.transform.position.y,myPlayer.transform.position.z);
+				myPlayAnim.SetBool("andando",true);
 				StartCoroutine(MoverObjeto(myPlayer,myPlayer.transform.position, newPos, tempoMover));
 			}
 			break;
@@ -79,6 +89,7 @@ public class ExecuteProgramList : MonoBehaviour {
 			if(VerificaBlocoQueVaiAndar(Player.Direction.Esquerda, myPlayerStat.posicaoTabuleiro))
 			{
 				newPos = new Vector3(myPlayer.transform.position.x+1,myPlayerStat.transform.position.y,myPlayer.transform.position.z);
+				myPlayAnim.SetBool("andando",true);
 				StartCoroutine(MoverObjeto(myPlayer,myPlayer.transform.position, newPos, tempoMover));
 			}
 			break;
@@ -179,44 +190,75 @@ public class ExecuteProgramList : MonoBehaviour {
 	{
 		if (direcaoGiro == Player.Direction.Direita) 
 		{
-			switch(myPlayerStat.direcao)
+			switch(myPlayerStat.direcaoGlobal)
 			{
 			case Player.Direction.Frente:
-				myPlayerStat.direcao = Player.Direction.Direita;
+				myPlayerStat.direcaoGlobal = Player.Direction.Direita;
 				break;
 			case Player.Direction.Direita:
-				myPlayerStat.direcao = Player.Direction.Tras;
+				myPlayerStat.direcaoGlobal = Player.Direction.Tras;
 				break;
 			case Player.Direction.Tras:
-				myPlayerStat.direcao = Player.Direction.Esquerda;
+				myPlayerStat.direcaoGlobal = Player.Direction.Esquerda;
 				break;
 			case Player.Direction.Esquerda:
-				myPlayerStat.direcao = Player.Direction.Frente;
+				myPlayerStat.direcaoGlobal = Player.Direction.Frente;
+				break;
+			}
+			switch(myPlayerStat.direcaoCamera)
+			{
+			case Player.Direction.Frente:
+				myPlayerStat.direcaoCamera = Player.Direction.Direita;
+				break;
+			case Player.Direction.Direita:
+				myPlayerStat.direcaoCamera = Player.Direction.Tras;
+				break;
+			case Player.Direction.Tras:
+				myPlayerStat.direcaoCamera = Player.Direction.Esquerda;
+				break;
+			case Player.Direction.Esquerda:
+				myPlayerStat.direcaoCamera = Player.Direction.Frente;
 				break;
 			}
 		} 
 		if (direcaoGiro == Player.Direction.Esquerda) 
 		{
-			switch(myPlayerStat.direcao)
+			switch(myPlayerStat.direcaoGlobal)
 			{
 			case Player.Direction.Frente:
-				myPlayerStat.direcao = Player.Direction.Esquerda;
+				myPlayerStat.direcaoGlobal = Player.Direction.Esquerda;
 				break;
 			case Player.Direction.Esquerda:
-				myPlayerStat.direcao = Player.Direction.Tras;
+				myPlayerStat.direcaoGlobal = Player.Direction.Tras;
 				break;
 			case Player.Direction.Tras:
-				myPlayerStat.direcao = Player.Direction.Direita;
+				myPlayerStat.direcaoGlobal = Player.Direction.Direita;
 				break;
 			case Player.Direction.Direita:
-				myPlayerStat.direcao = Player.Direction.Frente;
+				myPlayerStat.direcaoGlobal = Player.Direction.Frente;
+				break;
+			}
+			switch(myPlayerStat.direcaoCamera)
+			{
+			case Player.Direction.Frente:
+				myPlayerStat.direcaoCamera = Player.Direction.Esquerda;
+				break;
+			case Player.Direction.Esquerda:
+				myPlayerStat.direcaoCamera = Player.Direction.Tras;
+				break;
+			case Player.Direction.Tras:
+				myPlayerStat.direcaoCamera = Player.Direction.Direita;
+				break;
+			case Player.Direction.Direita:
+				myPlayerStat.direcaoCamera = Player.Direction.Frente;
 				break;
 			}
 		}
 		//MudaSpriteDeAcordoComAPosicao
-		Debug.Log ("Girou para "+myPlayerStat.direcao.ToString());
+		Debug.Log ("Girou para "+myPlayerStat.direcaoGlobal.ToString());
 		//Muda Animaçao
-			switch(myPlayerStat.direcao)
+			//switch(myPlayerStat.direcaoGlobal)
+			switch(myPlayerStat.direcaoCamera)
 			{
 			case Player.Direction.Frente:
 				myPlayAnim.SetInteger("direcao",1);
@@ -233,14 +275,161 @@ public class ExecuteProgramList : MonoBehaviour {
 			}
 	}
 
+	bool VerificaBlocoQueVaiPular (Player.Direction direcao, Vector2 coordenadas)
+	{
+		//Anotaçao das Direçoes:
+		/*
+		 * Frente	Y+1
+		 * Tras		Y-1
+		 * Esquerda	X+1
+		 * Direita	X-1
+		 */
+		if(direcao == Player.Direction.Frente)
+		{
+			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y+1));
+			if(novoTile != null)
+			{
+				if(novoTile.andavel && novoTile.objetoEmCima == null)
+				{
+					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
+					if(velhoTile != null && (velhoTile.altura == novoTile.altura+1 || velhoTile.altura == novoTile.altura-1))
+					{
+						if(velhoTile.altura < novoTile.altura)
+							alturaPulo = 0.5f;
+						else
+							alturaPulo = -0.5f;
+						velhoTile.objetoEmCima = null;
+						myPlayerStat.posicaoTabuleiro = novoTile.posicaoTabuleiro;
+						novoTile.objetoEmCima = myPlayer;
+						return true;
+					}
+				}
+			}
+		}
+		if(direcao == Player.Direction.Tras)
+		{
+			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y-1));
+			if(novoTile != null)
+			{
+				if(novoTile.andavel && novoTile.objetoEmCima == null)
+				{
+					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
+					if(velhoTile != null && (velhoTile.altura == novoTile.altura+1 || velhoTile.altura == novoTile.altura-1))
+					{
+						if(velhoTile.altura < novoTile.altura)
+							alturaPulo = 0.5f;
+						else
+							alturaPulo = -0.5f;
+						velhoTile.objetoEmCima = null;
+						myPlayerStat.posicaoTabuleiro = novoTile.posicaoTabuleiro;
+						novoTile.objetoEmCima = myPlayer;
+						return true;
+					}
+				}
+			}
+		}
+		if(direcao == Player.Direction.Direita)
+		{
+			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x-1, myPlayerStat.posicaoTabuleiro.y));
+			if(novoTile != null)
+			{
+				if(novoTile.andavel && novoTile.objetoEmCima == null)
+				{
+					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
+					if(velhoTile != null && (velhoTile.altura == novoTile.altura+1 || velhoTile.altura == novoTile.altura-1))
+					{
+						if(velhoTile.altura < novoTile.altura)
+							alturaPulo = 0.5f;
+						else
+							alturaPulo = -0.5f;
+						velhoTile.objetoEmCima = null;
+						myPlayerStat.posicaoTabuleiro = novoTile.posicaoTabuleiro;
+						novoTile.objetoEmCima = myPlayer;
+						return true;
+					}
+				}
+			}
+		}
+		if(direcao == Player.Direction.Esquerda)
+		{
+			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x+1, myPlayerStat.posicaoTabuleiro.y));
+			if(novoTile != null)
+			{
+				if(novoTile.andavel && novoTile.objetoEmCima == null)
+				{
+					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
+					if(velhoTile != null && (velhoTile.altura == novoTile.altura+1 || velhoTile.altura == novoTile.altura-1))
+					{
+						if(velhoTile.altura < novoTile.altura)
+							alturaPulo = 0.5f;
+						else
+							alturaPulo = -0.5f;
+						velhoTile.objetoEmCima = null;
+						myPlayerStat.posicaoTabuleiro = novoTile.posicaoTabuleiro;
+						novoTile.objetoEmCima = myPlayer;
+						return true;
+					}
+				}
+			}
+		}
+		Debug.Log ("Nao Pulou!");
+		return false;
+	}
+
 	public void PularPersonagem()
 	{
 		//verifica altura do tile que o jogar esta
 		//verifica verifica a direçao do jogador
+		//Variavel para guarda a nova posicao do jogador em um espaco 3D (X, Y, Z)
 		// verifica altura do tile na frente do jogador
 		//verifica se o tile e andavel ou se esta ocupado
 		//move jogador e executa animaçao de pula
 		//diz que o jogador esta ocupando o novo tile em que ele se encontra
+
+		Vector3 newPos;
+		//Switch para agir conforme a direcao do Personagem
+
+		switch(myPlayerStat.direcaoGlobal)
+		{
+		case Player.Direction.Frente:
+			//verifica se o proximo bloco a frente eh andavel
+			if(VerificaBlocoQueVaiPular(Player.Direction.Frente, myPlayerStat.posicaoTabuleiro))
+			{
+				newPos = new Vector3(myPlayer.transform.position.x,myPlayerStat.transform.position.y+alturaPulo,myPlayer.transform.position.z-1);
+				myPlayAnim.SetBool("pulando",true);
+				StartCoroutine(MoverObjeto(myPlayer,myPlayer.transform.position, newPos, tempoMover));
+			}
+			break;
+		case Player.Direction.Tras:
+			//verifica se o proximo bloco atras eh andavel
+			if(VerificaBlocoQueVaiPular(Player.Direction.Tras, myPlayerStat.posicaoTabuleiro))
+			{
+				newPos = new Vector3(myPlayer.transform.position.x,myPlayerStat.transform.position.y+alturaPulo,myPlayer.transform.position.z+1);
+				myPlayAnim.SetBool("pulando",true);
+				StartCoroutine(MoverObjeto(myPlayer,myPlayer.transform.position, newPos, tempoMover));
+			}
+			break;
+		case Player.Direction.Direita:
+			//verifica se o proximo bloco a direita eh andavel
+			if(VerificaBlocoQueVaiPular(Player.Direction.Direita, myPlayerStat.posicaoTabuleiro))
+			{
+				newPos = new Vector3(myPlayer.transform.position.x-1,myPlayerStat.transform.position.y+alturaPulo,myPlayer.transform.position.z);
+				myPlayAnim.SetBool("pulando",true);
+				StartCoroutine(MoverObjeto(myPlayer,myPlayer.transform.position, newPos, tempoMover));
+			}
+			break;
+		case Player.Direction.Esquerda:
+			//verifica se o proximo bloco a direita eh andavel
+			if(VerificaBlocoQueVaiPular(Player.Direction.Esquerda, myPlayerStat.posicaoTabuleiro))
+			{
+				newPos = new Vector3(myPlayer.transform.position.x+1,myPlayerStat.transform.position.y+alturaPulo,myPlayer.transform.position.z);
+				myPlayAnim.SetBool("pulando",true);
+				StartCoroutine(MoverObjeto(myPlayer,myPlayer.transform.position, newPos, tempoMover));
+			}
+			break;
+			
+		}
+
 	}
 
 	#endregion
@@ -249,38 +438,56 @@ public class ExecuteProgramList : MonoBehaviour {
 
 	//Coroutine para Executar os comandos na Lista fornecida, neste caso de inicio e a "Programa".
 	//mas ao introduzir os comandos de funçao e loop ao jogador, esse codigo podera ser reaproveitado
-	IEnumerator ExecutarLista(List<CommandButton> lista)
+	//IEnumerator ExecutarLista(List<CommandButton> lista)
+	IEnumerator ExecutarLista(List<Comando> lista)
 	{
-		if (lista != null) {
-			foreach (CommandButton comando in lista) {
-				switch (comando.nameLabel.text) {
-				case NomeBotoes.andar:
-					//MoveGo(myPlayer, myPlayerStat);
-					MoverPersonagem ();
-					yield return new WaitForSeconds (0.8f);
-					break;
-				case NomeBotoes.falar:
-					//ActTalk(string comando.parametro1.text, myPlayer, myPlayerStat);
-					Debug.Log ("Falou " + comando.parametro1.text);
-					//Debug.Log ("Falou");
-					break;
-				case NomeBotoes.interagir:
-					//ActInteract(myPlayer, myPlayerStat);
-					Debug.Log ("Interagiu");
-					break;
-				case NomeBotoes.girarDireita:
-					GirarPersonagem (Player.Direction.Direita);
-					yield return new WaitForSeconds (0.3f);
-					break;
-				case NomeBotoes.girarEsquerda:
-					GirarPersonagem (Player.Direction.Esquerda);
-					yield return new WaitForSeconds (0.3f);
-					break;
+		if (!ControladorGeral.referencia.listaEmExecucao) {
+			ControladorGeral.referencia.listaEmExecucao = true;
+			if (lista != null) 
+			{
+				//foreach (CommandButton comando in lista) {
+				foreach (Comando comando in lista) 
+				{
+						switch (comando.nome) 
+						{
+							case Comando.botaoNome.Andar: //NomeBotoes.andar:
+							//MoveGo(myPlayer, myPlayerStat);
+								MoverPersonagem ();
+								yield return new WaitForSeconds (0.8f);
+								break;
+							case Comando.botaoNome.Falar://NomeBotoes.falar:
+							//ActTalk(string comando.parametro1.text, myPlayer, myPlayerStat);
+								//Debug.Log ("Falou " + comando.parametro1.text);
+							//Debug.Log ("Falou");
+								break;
+							case Comando.botaoNome.Interagir: //NomeBotoes.interagir:
+							//ActInteract(myPlayer, myPlayerStat);
+								Debug.Log ("Interagiu");
+								break;
+							case Comando.botaoNome.GirarDireita: //NomeBotoes.girarDireita:
+								GirarPersonagem (Player.Direction.Direita);
+								yield return new WaitForSeconds (0.3f);
+								break;
+							case Comando.botaoNome.GirarEsquerda: //NomeBotoes.girarEsquerda:
+								GirarPersonagem (Player.Direction.Esquerda);
+								yield return new WaitForSeconds (0.3f);
+								break;
+							case Comando.botaoNome.Pular: //NomeBotoes.pular:
+								PularPersonagem ();
+								yield return new WaitForSeconds (0.8f);
+								break;
+						}
 				}
-			}
-		} else
-			Debug.Log ("A Program Lista esta nula!");
-		yield return null;
+				ControladorGeral.referencia.listaEmExecucao = false;
+
+			} else
+				Debug.Log ("A Lista de Programa esta nula!");
+
+			ControladorGeral.referencia.listaEmExecucao = false;
+			yield return null;
+		}
+		else
+			Debug.Log ("A Lista de Programa ja esta em execuçao!!");
 	}
 
 	//Coroutine para dar a sensaçao de Movimento ao modificar a posiçao do Personagem, 
@@ -294,7 +501,22 @@ public class ExecuteProgramList : MonoBehaviour {
 			yield return null;
 		}
 		player.transform.position = target;
-		Debug.Log (player.name + " Andou!");
+
+		if(myPlayAnim.GetBool("andando"))
+		{
+			myPlayAnim.SetBool("andando",false);
+			Debug.Log (player.name + " Andou!");
+		}
+			
+
+		if(myPlayAnim.GetBool("pulando"))
+		{
+			myPlayAnim.SetBool("pulando",false);
+			Debug.Log (player.name + " Pulou!");
+		}
+			
+
+		
 
 	}
 

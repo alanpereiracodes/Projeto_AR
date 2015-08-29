@@ -7,6 +7,7 @@ public class ControladorGeral : MonoBehaviour {
 
 	public GameObject myPlayer;
 	public CriaTabuleiro tabuleiroAtual;
+	public bool listaEmExecucao = false;
 
 	// Use this for initialization
 	void Awake () {

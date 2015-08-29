@@ -12,8 +12,10 @@ public class Player : MonoBehaviour {
 		Direita
 	};
 
-	//Variavel para armazenar e direçao atual do personagem
-	public Direction direcao;
+	//Variavel para armazenar a direçao atual do personagemem relaçao ao mapa
+	public Direction direcaoGlobal;
+	//Variavel para armazenar a direçao do Sprite em relaçao a Camera
+	public Direction direcaoCamera;
 	//Armazena a posicao em que o jogador esta em um sistema de coordenadas 2D
 	public Vector2 posicaoTabuleiro;
 }

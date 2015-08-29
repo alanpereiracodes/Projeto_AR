@@ -27,7 +27,8 @@ public class CreateProgramList : MonoBehaviour {
 	//public ScrollRect scroller;
 
 	//public static GameObject stContentPanel;
-	public List<CommandButton> programList = new List<CommandButton>();
+	//public List<CommandButton> programList = new List<CommandButton>();
+	public List<Comando> listaPrograma = new List<Comando>();
 
 	void Awake() //for static use
 	{
@@ -45,20 +46,38 @@ public class CreateProgramList : MonoBehaviour {
 	
 	public void PopulateList(GameObject sampleButton)
 	{
-		if (programList.Count < limiteLista) {
-		GameObject newButton = Instantiate (sampleButton) as GameObject;
-		CommandButton button = newButton.GetComponent <CommandButton>();
-		if (contentPanel != null) 
-		{
-			newButton.transform.SetParent(contentPanel);
-		}
+		//if (programList.Count < limiteLista) 
+		if (listaPrograma.Count < limiteLista){
+			GameObject newButton = Instantiate (sampleButton) as GameObject;
+		//CommandButton button = newButton.GetComponent <CommandButton>();
+			Comando meuComando = newButton.GetComponent<Comando>();
+			if (contentPanel != null) 
+			{
+				newButton.transform.SetParent(contentPanel);
+			}
 
-			button.listNumber = programList.Count + 1;
-			button.numberLabel.text = '#'+button.listNumber.ToString();
-			programList.Add (button);
+			//button.listNumber = programList.Count + 1;
+			//button.numberLabel.text = '#'+button.listNumber.ToString();
+			meuComando.numeroLista = listaPrograma.Count + 1;
+			//programList.Add (button);
+			listaPrograma.Add (meuComando);
 
 		} else
 			Debug.Log ("A Lista esta cheia!");
 	}
-	
+
+	public void LimpaLista()
+	{
+		if(!ControladorGeral.referencia.listaEmExecucao)
+		{
+			foreach(GameObject objeto in GameObject.FindGameObjectsWithTag("Comando"))
+			{
+				Destroy(objeto);
+			}
+			listaPrograma.Clear();
+			Debug.Log ("Lista de Programa apagada!");
+		}
+		else
+			Debug.Log ("Lista de Programa esta em execuçao!");
+	}
 }

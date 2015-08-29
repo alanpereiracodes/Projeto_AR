@@ -43,7 +43,7 @@ public class CarregaJogo : MonoBehaviour {
 		if(oTile != null)
 		{
 			tempPosInicial = oTile.transform.position;
-			tempPosInicial.y = 1.3f;
+			tempPosInicial.y = 1.5f;
 		}
 
 		ControladorGeral.referencia.myPlayer = (GameObject)Instantiate(myPlayer, tempPosInicial/*new Vector3 (-5.5f, 1.3f, 4.5f)*/, Quaternion.identity);
@@ -59,7 +59,9 @@ public class CarregaJogo : MonoBehaviour {
 	{
 		if(ControladorGeral.referencia.myPlayer.GetComponent<Player>().posicaoTabuleiro == posicaoObjetivo && !passouFase)
 		{
-			score -= 15*CreateProgramList.referencia.programList.Count;
+			//score -= 15*CreateProgramList.referencia.programList.Count;
+			score -= 15*CreateProgramList.referencia.listaPrograma.Count;
+
 
 			Debug.Log ("VOCE PASSOU DE FASE!!!");
 			Debug.Log ("SEU SCORE FOI: " + score.ToString());

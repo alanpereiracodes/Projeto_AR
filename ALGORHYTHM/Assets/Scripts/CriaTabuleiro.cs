@@ -90,11 +90,11 @@ public class CriaTabuleiro : MonoBehaviour {
 				//Tile criado, hora de definir suas coordenadas e outros atributos
 				tile.posicaoTabuleiro = new Vector2(i,/*mapSizeY - */j);
 				//Se o tile que geramos for diferente do Tile Zero
-				if(terrenoMapa[j].Linha[i]!= 0) 
-				{
-					//Diz que o tile eh andavel
-					tile.andavel = true;
-				}				
+//				if(terrenoMapa[j].Linha[i]!= 0) 
+//				{
+//					//Diz que o tile eh andavel
+//					tile.andavel = true;
+//				}				
 				//Adiciona o tile gerado na linha temporaria
 				linhaTemp.Add(tile);
 			}

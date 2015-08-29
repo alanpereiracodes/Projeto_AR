@@ -1,51 +1,7 @@
 Base path: C:/Program Files/Unity/Editor/Data
-Pipe name: \\.\pipe\UnityShaderCompiler-32bit-1-2660
+Pipe name: \\.\pipe\UnityShaderCompiler-32bit-1-3260
 Cmd: getPlatforms
-Cmd: compileSnippet
-  api=4 type=0 insize=982 outsize=4622 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF _NORMALMAP ok=1
-Cmd: compileSnippet
-  api=4 type=1 insize=982 outsize=11276 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF _NORMALMAP ok=1
-Cmd: compileSnippet
-  api=4 type=0 insize=938 outsize=4020 kw=DIRECTIONAL SHADOWS_OFF _NORMALMAP ok=1
-Cmd: compileSnippet
-  api=4 type=1 insize=938 outsize=6141 kw=DIRECTIONAL SHADOWS_OFF _NORMALMAP ok=1
-Cmd: compileSnippet
-  api=4 type=0 insize=982 outsize=5499 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF _PARALLAXMAP _NORMALMAP ok=1
-Cmd: compileSnippet
-  api=4 type=1 insize=982 outsize=12040 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF _PARALLAXMAP _NORMALMAP ok=1
-Cmd: compileSnippet
-  api=4 type=0 insize=938 outsize=5093 kw=DIRECTIONAL SHADOWS_OFF _PARALLAXMAP _NORMALMAP ok=1
-Cmd: compileSnippet
-  api=4 type=1 insize=938 outsize=6897 kw=DIRECTIONAL SHADOWS_OFF _PARALLAXMAP _NORMALMAP ok=1
-Cmd: compileSnippet
-  api=4 type=0 insize=982 outsize=5499 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF _PARALLAXMAP _ALPHATEST_ON _NORMALMAP ok=1
-Cmd: compileSnippet
-  api=4 type=1 insize=982 outsize=12218 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF _PARALLAXMAP _ALPHATEST_ON _NORMALMAP ok=1
-Cmd: compileSnippet
-  api=4 type=0 insize=938 outsize=5093 kw=DIRECTIONAL SHADOWS_OFF _PARALLAXMAP _ALPHATEST_ON _NORMALMAP ok=1
-Cmd: compileSnippet
-  api=4 type=1 insize=938 outsize=7035 kw=DIRECTIONAL SHADOWS_OFF _PARALLAXMAP _ALPHATEST_ON _NORMALMAP ok=1
-Cmd: compileSnippet
-  api=4 type=0 insize=982 outsize=5499 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF _PARALLAXMAP _ALPHABLEND_ON _NORMALMAP ok=1
-Cmd: compileSnippet
-  api=4 type=1 insize=982 outsize=12064 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF _PARALLAXMAP _ALPHABLEND_ON _NORMALMAP ok=1
-Cmd: compileSnippet
-  api=4 type=0 insize=938 outsize=5093 kw=DIRECTIONAL SHADOWS_OFF _PARALLAXMAP _ALPHABLEND_ON _NORMALMAP ok=1
-Cmd: compileSnippet
-  api=4 type=1 insize=938 outsize=6880 kw=DIRECTIONAL SHADOWS_OFF _PARALLAXMAP _ALPHABLEND_ON _NORMALMAP ok=1
-Cmd: compileSnippet
-  api=4 type=0 insize=982 outsize=5499 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF _ALPHAPREMULTIPLY_ON _PARALLAXMAP _NORMALMAP ok=1
-Cmd: compileSnippet
-  api=4 type=1 insize=982 outsize=12129 kw=DIRECTIONAL SHADOWS_OFF LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF _ALPHAPREMULTIPLY_ON _PARALLAXMAP _NORMALMAP ok=1
-Cmd: compileSnippet
-  api=4 type=0 insize=938 outsize=5093 kw=DIRECTIONAL SHADOWS_OFF _ALPHAPREMULTIPLY_ON _PARALLAXMAP _NORMALMAP ok=1
-Cmd: compileSnippet
-  api=4 type=1 insize=938 outsize=7010 kw=DIRECTIONAL SHADOWS_OFF _ALPHAPREMULTIPLY_ON _PARALLAXMAP _NORMALMAP ok=1
-Cmd: compileSnippet
-  api=4 type=0 insize=6731 outsize=3647 kw=DIRECTIONAL LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF ok=1
-Cmd: compileSnippet
-  api=4 type=1 insize=6731 outsize=1298 kw=DIRECTIONAL LIGHTMAP_OFF DIRLIGHTMAP_OFF DYNAMICLIGHTMAP_OFF ok=1
-Cmd: compileSnippet
-  api=4 type=0 insize=3569 outsize=2737 kw=DIRECTIONAL ok=1
-Cmd: compileSnippet
-  api=4 type=1 insize=3569 outsize=1152 kw=DIRECTIONAL ok=1
+Unhandled exception: Readfile from pipe failed. GLE=O pipe foi finalizado.
+
+
+Quitting shader compiler process

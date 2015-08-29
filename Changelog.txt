@@ -61,28 +61,37 @@
 - Agora quando o jogo inicia o jogador além de ser colocado em sua posição pré-determinada diz também que está ocupando o Tile de mesma posição.
 
 >> Próximo passo: Implementar Pulo e animação de Andar para todas direções.
+==============================================
 
+28-08-2015 21: - PROTOTIPO_AR_version0_2_0_date28-08-2015 - Alan Pereira & Wilson Oliveira
 
+- Implementação da Tela de Seleção de fase.
 
+- Criação das Fases de Quebra Cabeça(Cápitulo 1 - Lógica), 10 fases criadas.
 
+- Implementação do comando de Pulo.
 
+- Implementação do novo personagem(ALGO) e suas animações:
+	*Parado todas as direções
+	*Andando todas as direções
+	*Pulando todas as direções
 
+- Implementação do Drag&Drop na lista de comandos.
 
+- Implementação do sistema de reordenação da lista de comandos que será executada.
 
+- Implementação de Botão para limpar lista de comandos.
 
+- Não é mais possivel executar a lista de comandos quando está ja estiver em execução.
 
+- Não é mais possivel reordenar a lista de comandos quando está já estiver em execução.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+---------------------------------------------------------------------------------------------------
+Proximos passos:
+- Criar classe da fase:
+	*numero fase;
+	*pontuação;
+	*estrelas;
+	*habilitada;
+- Implementação do comando Interagir e objetos interativos.
 

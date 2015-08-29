@@ -108,7 +108,7 @@ public class EventosTelaTitulo : MonoBehaviour {
 
 	void chamaNovoJogo ()
 	{
-		Application.LoadLevel (1);
+		Application.LoadLevel (12);
 	}
 
 	void chamaTelaContinue ()
