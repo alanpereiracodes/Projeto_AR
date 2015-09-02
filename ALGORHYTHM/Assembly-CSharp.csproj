@@ -49,8 +49,6 @@
      <Compile Include="Assets\Scripts\CameraBtnEvents.cs" />
      <Compile Include="Assets\Scripts\CarregaJogo.cs" />
      <Compile Include="Assets\Scripts\Comando.cs" />
-     <Compile Include="Assets\Scripts\CommandButton.cs" />
-     <Compile Include="Assets\Scripts\Controlador.cs" />
      <Compile Include="Assets\Scripts\ControladorGeral.cs" />
      <Compile Include="Assets\Scripts\ControladorSelecaoFase.cs" />
      <Compile Include="Assets\Scripts\CreateProgramList.cs" />
@@ -61,7 +59,6 @@
      <Compile Include="Assets\Scripts\ExecuteProgramList.cs" />
      <Compile Include="Assets\Scripts\Fase.cs" />
      <Compile Include="Assets\Scripts\LookToCamera.cs" />
-     <Compile Include="Assets\Scripts\NomeBotoes.cs" />
      <Compile Include="Assets\Scripts\Objeto.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\RemoveBotaoLista.cs" />
