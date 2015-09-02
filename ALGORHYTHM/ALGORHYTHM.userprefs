@@ -1,14 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Draggable.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CriaTabuleiro.cs">
     <Files>
-      <File FileName="Assets\Scripts\Tile.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CriaTabuleiro.cs" Line="139" Column="70" />
       <File FileName="Assets\Scripts\CarregaJogo.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Draggable.cs" Line="94" Column="3" />
-      <File FileName="Assets\Scripts\ExecuteProgramList.cs" Line="482" Column="5" />
-      <File FileName="Assets\Scripts\SelecaodeFase.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\EventosTelaTitulo.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ControladorGeral.cs" Line="10" Column="38" />
+      <File FileName="Assets\Scripts\ExecuteProgramList.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

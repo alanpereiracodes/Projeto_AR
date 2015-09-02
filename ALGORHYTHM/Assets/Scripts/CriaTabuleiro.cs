@@ -38,16 +38,23 @@ public class CriaTabuleiro : MonoBehaviour {
 	public Vector2 tamanhoMapa;
 	//Cada Coluna armazena uma lista de linha, logo criando uma lista de colunas temos um ambiente 2D
 	public Colunas[] terrenoMapa;
+	//Deposita os objetos de acordo com os numeros nas linhas de cada coluna.
+	public Colunas[] objetosMapa;
 	//Valores para centralizar os tiles na tela;
 	private float valorCorrecaoX = 0.5f;
 	private float valorCorrecaoY = -1.5f;
 	//Lista para armazenar todos os tiles que iremos utilizar na criaçao do Mapa
 	public List<GameObject> tilesConjunto;
+	//Lista para armazenar os Objetos que serao colocados na fase
+	public List<GameObject> objetosConjunto;
 	//Lista para armazenar a informaçao de cada tile gerado, exemplo:
-	//Suas coordenadas, se esta ocupado, se da para passar, se e interativo, etc
+	//Suas coordenadas, se esta ocupado, se da para passar, etc
 	public List<List<Tile>> mapaGerado;
+	//Lista para armazenar a informaçao de cada objeto gerado, exemplo:
+	//Suas coordenadas, seu tipo, se e interativo, etc
+	public List<List<Objeto>> mapaObjetosGerado;
 	//Uma variavel para armazenar o nosso tabuleiro
-	private Transform meuTabuleiro;                                  
+	private Transform meuTabuleiro;                      
 	//O metodo Start eh chamado assim que o objeto a qual o Script esta vinculado eh inicializado.
 	void Start () {	
 		//Gera o Mapa
@@ -100,6 +107,66 @@ public class CriaTabuleiro : MonoBehaviour {
 			}
 			//Adiciona a linha com todos os tiles gerados ao mapa Final
 			mapaGerado.Add(linhaTemp);
+		} //Mapa Gerado: OK!
+	} //fim GeraMapa
+
+	public void ColocaObjetos()
+	{
+		//cria o objeto para receber o Transform que servira de referencia para os Tiles e o nomeia Tabuleiro, para assim jogar os Tiles como "Child" dele.
+		meuTabuleiro = new GameObject ("Objetos").transform;
+		//inicializa a lista
+		mapaObjetosGerado = new List<List<Objeto>>();
+		//Para cada Coluna do Mapa
+		for(int j = 0; j < objetosMapa.Length; j++) 
+		{
+			//Cria uma lista para armazenar os Objetos que serao gerados correspondentes a Coluna que esta no "for".
+			List<Objeto> linhaTemp = new List<Objeto>();
+			//Para cada Item na Linha que esta no "for".
+			for(int i = 0; i < objetosMapa[j].Linha.Length; i++)
+			{
+				if(objetosMapa[j].Linha[i] != 0)
+				{
+					//Gera um novo Objeto baseado na informaçao lida do Mapa
+					GameObject novoObj = (GameObject)Instantiate //Instantiate e o metodo que gera um novo objeto no jogo
+						(
+							//O primeiro parametro que ele pede eh qual objeto vai ser gerado
+							objetosConjunto[objetosMapa[j].Linha[i]], //Em nosso caso eh o tile na lista ObjetoConjunto que corresponde ao valor recebido no terrenoMapa
+							//O segundo parametro eh a posicao no espaco 3D em que iremos criar esse Objeto, entao inserimos as coordenadas X,Y,Z
+							new Vector3
+							(
+							i - Mathf.Floor(tamanhoMapa.x/2)+valorCorrecaoX , 
+							//objetosConjunto[terrenoMapa[j].Linha[i]].transform.position.y , 
+							objetosConjunto[objetosMapa[j].Linha[i]].transform.position.y,
+							-j + Mathf.Floor(tamanhoMapa.y/2)+valorCorrecaoY  
+							), 
+							//O terceiro e ultimo parametro que ele pede eh sua rotacao, no caso o Quaternion.identity nos traz uma rotacao de zero graus em todos os eixos 3D (0º,0º,0º).
+							Quaternion.identity
+							);
+					//Joga o novo tile gerado como filho do meuTabuleiro
+					novoObj.transform.SetParent(meuTabuleiro);
+					//Recebe a classe Tile do novo objeto criado
+					Objeto obj = novoObj.GetComponent<Objeto>();
+					//Tile criado, hora de definir suas coordenadas e outros atributos
+					obj.posicaoTabuleiro = new Vector2(i,/*mapSizeY - */j);
+					//Se o tile que geramos for diferente do Tile Zero
+					//				if(terrenoMapa[j].Linha[i]!= 0) 
+					//				{
+					//					//Diz que o tile eh andavel
+					//					tile.andavel = true;
+					//				}				
+					//Adiciona o tile gerado na linha temporaria
+					linhaTemp.Add(obj);
+					Tile meuTempTile = ProcuraTile(obj.posicaoTabuleiro);
+					if(meuTempTile != null)
+					{
+						meuTempTile.objetoEmCima = novoObj;
+						novoObj.transform.position = new Vector3(novoObj.transform.position.x, /*meuTempTile.gameObject.transform.position.y*/meuTempTile.altura*0.5f + novoObj.transform.position.y, novoObj.transform.position.z);
+					}
+				}
+
+			}
+			//Adiciona a linha com todos os objetos gerados ao mapa Final
+			mapaObjetosGerado.Add(linhaTemp);
 		} //Mapa Gerado: OK!
 	} //fim GeraMapa
 

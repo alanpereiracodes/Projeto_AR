@@ -24,6 +24,7 @@ public class CarregaJogo : MonoBehaviour {
 		//Get a component reference to the attached BoardManager script
 		tabuleiroScript = GetComponent<CriaTabuleiro>();
 		tabuleiroScript.GeraMapa();
+		tabuleiroScript.ColocaObjetos();
 
 		Vector3 tempPosInicial = new Vector3 ();
 
