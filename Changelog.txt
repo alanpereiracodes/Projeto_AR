@@ -108,3 +108,18 @@ Próximos Passos:
 -> Aplicar eventos relacionado ao comando interagir frente a um Objeto Interativo.
 -> Aplicar mais objetos para melhorar deixar o cenário com mais harmonia e mais interessante.
 
+==============================================
+10-09-2015 22:42 - PROTOTIPO_AR_version0_2_2_date10-09-2015 - Alan Pereira & Wilson Oliveira
+
+- Nova interface implementada
+- Corrigido bug onde era possivel inserir comandos na lista de programa com o programa em execução
+- Implementada nas fases a imagem de Fundo
+
+Próximos Passos:
+-> Criar fase que desfrute do sistea de interação
+-> Implementar sistema de pontuação coerente
+-> Mostrar pontuação obtida no final de cada fase em uma janela
+-> Atualizar pontuação de cubinhos digitais na tela de seleção de fase
+-> Implementar sistema de mensagem no log do sistema
+
+

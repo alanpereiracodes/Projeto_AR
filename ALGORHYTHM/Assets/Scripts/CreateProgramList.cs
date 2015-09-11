@@ -46,24 +46,32 @@ public class CreateProgramList : MonoBehaviour {
 	
 	public void PopulateList(GameObject sampleButton)
 	{
-		//if (programList.Count < limiteLista) 
-		if (listaPrograma.Count < limiteLista){
-			GameObject newButton = Instantiate (sampleButton) as GameObject;
-		//CommandButton button = newButton.GetComponent <CommandButton>();
-			Comando meuComando = newButton.GetComponent<Comando>();
-			if (contentPanel != null) 
+		if (!ControladorGeral.referencia.listaEmExecucao) 
+		{
+			//if (programList.Count < limiteLista) 
+			if (listaPrograma.Count < limiteLista) 
 			{
-				newButton.transform.SetParent(contentPanel);
-			}
+				GameObject newButton = Instantiate (sampleButton) as GameObject;
+				//CommandButton button = newButton.GetComponent <CommandButton>();
+				Comando meuComando = newButton.GetComponent<Comando> ();
+				if (contentPanel != null) 
+				{
+					newButton.transform.SetParent (contentPanel);
+				}
 
-			//button.listNumber = programList.Count + 1;
-			//button.numberLabel.text = '#'+button.listNumber.ToString();
-			meuComando.numeroLista = listaPrograma.Count + 1;
-			//programList.Add (button);
-			listaPrograma.Add (meuComando);
+				//button.listNumber = programList.Count + 1;
+				//button.numberLabel.text = '#'+button.listNumber.ToString();
+				meuComando.numeroLista = listaPrograma.Count + 1;
+				//programList.Add (button);
+				listaPrograma.Add (meuComando);
 
-		} else
-			Debug.Log ("A Lista esta cheia!");
+			} else
+				Debug.Log ("A Lista esta cheia!");
+		} 
+		else 
+		{
+			Debug.Log ("A Lista de Programa ja esta em execuçao!!");
+		}
 	}
 
 	public void LimpaLista()
