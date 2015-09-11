@@ -159,7 +159,7 @@ public class CriaTabuleiro : MonoBehaviour {
 					Tile meuTempTile = ProcuraTile(obj.posicaoTabuleiro);
 					if(meuTempTile != null)
 					{
-						meuTempTile.objetoEmCima = novoObj;
+						meuTempTile.objetosEmCima.Add(novoObj);
 						novoObj.transform.position = new Vector3(novoObj.transform.position.x, /*meuTempTile.gameObject.transform.position.y*/meuTempTile.altura*0.5f + novoObj.transform.position.y, novoObj.transform.position.z);
 					}
 				}

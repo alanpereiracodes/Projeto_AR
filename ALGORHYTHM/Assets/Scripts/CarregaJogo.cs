@@ -50,7 +50,7 @@ public class CarregaJogo : MonoBehaviour {
 		ControladorGeral.referencia.myPlayer = (GameObject)Instantiate(myPlayer, tempPosInicial/*new Vector3 (-5.5f, 1.3f, 4.5f)*/, Quaternion.identity);
 		ControladorGeral.referencia.myPlayer.GetComponent<Player>().posicaoTabuleiro = posicaoPlayer;
 		if(oTile != null)
-			oTile.objetoEmCima = ControladorGeral.referencia.myPlayer;
+			oTile.objetosEmCima.Add(ControladorGeral.referencia.myPlayer);
 		ControladorGeral.referencia.tabuleiroAtual = tabuleiroScript;
 
 	}

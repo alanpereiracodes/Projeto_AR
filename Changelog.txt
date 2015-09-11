@@ -122,4 +122,14 @@ Próximos Passos:
 -> Atualizar pontuação de cubinhos digitais na tela de seleção de fase
 -> Implementar sistema de mensagem no log do sistema
 
+==============================================
+11-09-2015 16:30 - PROTOTIPO_AR_version0_2_3_date11-09-2015 - Alan Pereira & Wilson Oliveira
 
+- Implementado sistema onde cada Tile pode conter mais do que um Objeto em Cima
+- Objetos agora podem bloquear o caminho ou não. (Antes todos bloqueavam).
+- Implementado o Cubo Digital, objeto que será utilizado para futuros Puzzles.
+- Novo ícone para o Comando de Pulo.
+
+Próximos Passos:
+
+- Fazer o funcionamento do comando Interagir e aplicar em uma fase de teste para Apresentação.

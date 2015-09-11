@@ -108,19 +108,41 @@ public class ExecuteProgramList : MonoBehaviour {
 		 * Esquerda	X+1
 		 * Direita	X-1
 		 */
+
+		bool passavel = true;
+
 		if(direcao == Player.Direction.Frente)
 		{
 			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y+1));
 			if(novoTile != null)
 			{
-				if(novoTile.andavel && novoTile.objetoEmCima == null)
+				List<Objeto> novosObjetos = new List<Objeto>();
+				if(novoTile.objetosEmCima.Count > 0)
+				{
+					foreach(GameObject objEmCima in novoTile.objetosEmCima)
+					{
+						if(objEmCima.GetComponent<Objeto>() != null)
+							novosObjetos.Add(objEmCima.GetComponent<Objeto>());
+					}
+				}
+				
+				if(novosObjetos.Count > 0)
+				{
+					foreach(Objeto obj in novosObjetos)
+					{
+						if(obj.bloqueiaCaminho)
+							passavel = false;
+						break;
+					}
+				}
+				if(novoTile.andavel && passavel)
 				{
 					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
 					if(velhoTile != null && velhoTile.altura == novoTile.altura)
 					{
-						velhoTile.objetoEmCima = null;
+						velhoTile.objetosEmCima.Remove(myPlayer);
 						myPlayerStat.posicaoTabuleiro = novoTile.posicaoTabuleiro;
-						novoTile.objetoEmCima = myPlayer;
+						novoTile.objetosEmCima.Add(myPlayer);
 						return true;
 					}
 				}
@@ -131,14 +153,33 @@ public class ExecuteProgramList : MonoBehaviour {
 			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y-1));
 			if(novoTile != null)
 			{
-				if(novoTile.andavel && novoTile.objetoEmCima == null)
+				List<Objeto> novosObjetos = new List<Objeto>();
+				if(novoTile.objetosEmCima.Count > 0)
+				{
+					foreach(GameObject objEmCima in novoTile.objetosEmCima)
+					{
+						if(objEmCima.GetComponent<Objeto>() != null)
+							novosObjetos.Add(objEmCima.GetComponent<Objeto>());
+					}
+				}
+				
+				if(novosObjetos.Count > 0)
+				{
+					foreach(Objeto obj in novosObjetos)
+					{
+						if(obj.bloqueiaCaminho)
+							passavel = false;
+						break;
+					}
+				}
+				if(novoTile.andavel && passavel)
 				{
 					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
 					if(velhoTile != null && velhoTile.altura == novoTile.altura)
 					{
-						velhoTile.objetoEmCima = null;
+						velhoTile.objetosEmCima.Remove(myPlayer);
 						myPlayerStat.posicaoTabuleiro = novoTile.posicaoTabuleiro;
-						novoTile.objetoEmCima = myPlayer;
+						novoTile.objetosEmCima.Add(myPlayer);
 						return true;
 					}
 				}
@@ -149,14 +190,34 @@ public class ExecuteProgramList : MonoBehaviour {
 			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x-1, myPlayerStat.posicaoTabuleiro.y));
 			if(novoTile != null)
 			{
-				if(novoTile.andavel && novoTile.objetoEmCima == null)
+				List<Objeto> novosObjetos = new List<Objeto>();
+				if(novoTile.objetosEmCima.Count > 0)
+				{
+					foreach(GameObject objEmCima in novoTile.objetosEmCima)
+					{
+						if(objEmCima.GetComponent<Objeto>() != null)
+							novosObjetos.Add(objEmCima.GetComponent<Objeto>());
+					}
+				}
+
+				if(novosObjetos.Count > 0)
+				{
+					foreach(Objeto obj in novosObjetos)
+					{
+						if(obj.bloqueiaCaminho)
+							passavel = false;
+						break;
+					}
+				}
+
+				if(novoTile.andavel && passavel)
 				{
 					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
 					if(velhoTile != null && velhoTile.altura == novoTile.altura)
 					{
-						velhoTile.objetoEmCima = null;
+						velhoTile.objetosEmCima.Remove(myPlayer);
 						myPlayerStat.posicaoTabuleiro = novoTile.posicaoTabuleiro;
-						novoTile.objetoEmCima = myPlayer;
+						novoTile.objetosEmCima.Add(myPlayer);
 						return true;
 					}
 				}
@@ -167,14 +228,33 @@ public class ExecuteProgramList : MonoBehaviour {
 			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x+1, myPlayerStat.posicaoTabuleiro.y));
 			if(novoTile != null)
 			{
-				if(novoTile.andavel && novoTile.objetoEmCima == null)
+				List<Objeto> novosObjetos = new List<Objeto>();
+				if(novoTile.objetosEmCima.Count > 0)
+				{
+					foreach(GameObject objEmCima in novoTile.objetosEmCima)
+					{
+						if(objEmCima.GetComponent<Objeto>() != null)
+							novosObjetos.Add(objEmCima.GetComponent<Objeto>());
+					}
+				}
+				
+				if(novosObjetos.Count > 0)
+				{
+					foreach(Objeto obj in novosObjetos)
+					{
+						if(obj.bloqueiaCaminho)
+							passavel = false;
+						break;
+					}
+				}
+				if(novoTile.andavel && passavel)
 				{
 					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
 					if(velhoTile != null && velhoTile.altura == novoTile.altura)
 					{
-						velhoTile.objetoEmCima = null;
+						velhoTile.objetosEmCima.Remove(myPlayer);
 						myPlayerStat.posicaoTabuleiro = novoTile.posicaoTabuleiro;
-						novoTile.objetoEmCima = myPlayer;
+						novoTile.objetosEmCima.Add(myPlayer);
 						return true;
 					}
 				}
@@ -284,12 +364,36 @@ public class ExecuteProgramList : MonoBehaviour {
 		 * Esquerda	X+1
 		 * Direita	X-1
 		 */
+
+		bool passavel = true;
+
 		if(direcao == Player.Direction.Frente)
 		{
 			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y+1));
 			if(novoTile != null)
 			{
-				if(novoTile.andavel && novoTile.objetoEmCima == null)
+
+				List<Objeto> novosObjetos = new List<Objeto>();
+				if(novoTile.objetosEmCima.Count > 0)
+				{
+					foreach(GameObject objEmCima in novoTile.objetosEmCima)
+					{
+						if(objEmCima.GetComponent<Objeto>() != null)
+							novosObjetos.Add(objEmCima.GetComponent<Objeto>());
+					}
+				}
+				
+				if(novosObjetos.Count > 0)
+				{
+					foreach(Objeto obj in novosObjetos)
+					{
+						if(obj.bloqueiaCaminho)
+							passavel = false;
+						break;
+					}
+				}
+
+				if(novoTile.andavel && passavel)
 				{
 					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
 					if(velhoTile != null && (velhoTile.altura == novoTile.altura+1 || velhoTile.altura == novoTile.altura-1))
@@ -298,9 +402,9 @@ public class ExecuteProgramList : MonoBehaviour {
 							alturaPulo = 0.5f;
 						else
 							alturaPulo = -0.5f;
-						velhoTile.objetoEmCima = null;
+						velhoTile.objetosEmCima.Remove(myPlayer);
 						myPlayerStat.posicaoTabuleiro = novoTile.posicaoTabuleiro;
-						novoTile.objetoEmCima = myPlayer;
+						novoTile.objetosEmCima.Add(myPlayer);
 						return true;
 					}
 				}
@@ -311,7 +415,28 @@ public class ExecuteProgramList : MonoBehaviour {
 			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y-1));
 			if(novoTile != null)
 			{
-				if(novoTile.andavel && novoTile.objetoEmCima == null)
+				
+				List<Objeto> novosObjetos = new List<Objeto>();
+				if(novoTile.objetosEmCima.Count > 0)
+				{
+					foreach(GameObject objEmCima in novoTile.objetosEmCima)
+					{
+						if(objEmCima.GetComponent<Objeto>() != null)
+							novosObjetos.Add(objEmCima.GetComponent<Objeto>());
+					}
+				}
+				
+				if(novosObjetos.Count > 0)
+				{
+					foreach(Objeto obj in novosObjetos)
+					{
+						if(obj.bloqueiaCaminho)
+							passavel = false;
+						break;
+					}
+				}
+				
+				if(novoTile.andavel && passavel)
 				{
 					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
 					if(velhoTile != null && (velhoTile.altura == novoTile.altura+1 || velhoTile.altura == novoTile.altura-1))
@@ -320,9 +445,9 @@ public class ExecuteProgramList : MonoBehaviour {
 							alturaPulo = 0.5f;
 						else
 							alturaPulo = -0.5f;
-						velhoTile.objetoEmCima = null;
+						velhoTile.objetosEmCima.Remove(myPlayer);
 						myPlayerStat.posicaoTabuleiro = novoTile.posicaoTabuleiro;
-						novoTile.objetoEmCima = myPlayer;
+						novoTile.objetosEmCima.Add(myPlayer);
 						return true;
 					}
 				}
@@ -333,7 +458,28 @@ public class ExecuteProgramList : MonoBehaviour {
 			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x-1, myPlayerStat.posicaoTabuleiro.y));
 			if(novoTile != null)
 			{
-				if(novoTile.andavel && novoTile.objetoEmCima == null)
+				
+				List<Objeto> novosObjetos = new List<Objeto>();
+				if(novoTile.objetosEmCima.Count > 0)
+				{
+					foreach(GameObject objEmCima in novoTile.objetosEmCima)
+					{
+						if(objEmCima.GetComponent<Objeto>() != null)
+							novosObjetos.Add(objEmCima.GetComponent<Objeto>());
+					}
+				}
+				
+				if(novosObjetos.Count > 0)
+				{
+					foreach(Objeto obj in novosObjetos)
+					{
+						if(obj.bloqueiaCaminho)
+							passavel = false;
+						break;
+					}
+				}
+				
+				if(novoTile.andavel && passavel)
 				{
 					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
 					if(velhoTile != null && (velhoTile.altura == novoTile.altura+1 || velhoTile.altura == novoTile.altura-1))
@@ -342,9 +488,9 @@ public class ExecuteProgramList : MonoBehaviour {
 							alturaPulo = 0.5f;
 						else
 							alturaPulo = -0.5f;
-						velhoTile.objetoEmCima = null;
+						velhoTile.objetosEmCima.Remove(myPlayer);
 						myPlayerStat.posicaoTabuleiro = novoTile.posicaoTabuleiro;
-						novoTile.objetoEmCima = myPlayer;
+						novoTile.objetosEmCima.Add(myPlayer);
 						return true;
 					}
 				}
@@ -355,7 +501,28 @@ public class ExecuteProgramList : MonoBehaviour {
 			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x+1, myPlayerStat.posicaoTabuleiro.y));
 			if(novoTile != null)
 			{
-				if(novoTile.andavel && novoTile.objetoEmCima == null)
+				
+				List<Objeto> novosObjetos = new List<Objeto>();
+				if(novoTile.objetosEmCima.Count > 0)
+				{
+					foreach(GameObject objEmCima in novoTile.objetosEmCima)
+					{
+						if(objEmCima.GetComponent<Objeto>() != null)
+							novosObjetos.Add(objEmCima.GetComponent<Objeto>());
+					}
+				}
+				
+				if(novosObjetos.Count > 0)
+				{
+					foreach(Objeto obj in novosObjetos)
+					{
+						if(obj.bloqueiaCaminho)
+							passavel = false;
+						break;
+					}
+				}
+				
+				if(novoTile.andavel && passavel)
 				{
 					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
 					if(velhoTile != null && (velhoTile.altura == novoTile.altura+1 || velhoTile.altura == novoTile.altura-1))
@@ -364,9 +531,9 @@ public class ExecuteProgramList : MonoBehaviour {
 							alturaPulo = 0.5f;
 						else
 							alturaPulo = -0.5f;
-						velhoTile.objetoEmCima = null;
+						velhoTile.objetosEmCima.Remove(myPlayer);
 						myPlayerStat.posicaoTabuleiro = novoTile.posicaoTabuleiro;
-						novoTile.objetoEmCima = myPlayer;
+						novoTile.objetosEmCima.Add(myPlayer);
 						return true;
 					}
 				}

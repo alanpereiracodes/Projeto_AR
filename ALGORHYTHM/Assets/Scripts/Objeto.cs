@@ -5,6 +5,7 @@ public enum Nome
 {
 	Portal,
 	Alavanca,
+	Cubo,
 	Cristal
 };
 
@@ -20,6 +21,7 @@ public enum Tipo
 public class Objeto : MonoBehaviour {
 	
 	public bool ativado;
+	public bool bloqueiaCaminho;
 	public Vector2 posicaoTabuleiro;
 
 }
