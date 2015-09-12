@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ControladorGeral : MonoBehaviour {
@@ -8,6 +9,8 @@ public class ControladorGeral : MonoBehaviour {
 	public GameObject myPlayer;
 	public CriaTabuleiro tabuleiroAtual;
 	public bool listaEmExecucao = false;
+	public Text myLog;
+	public int faseAtual;
 
 	// Use this for initialization
 	void Awake () {
@@ -24,6 +27,12 @@ public class ControladorGeral : MonoBehaviour {
 		DontDestroyOnLoad(gameObject);
 		//Call the InitGame function to initialize the first level 
 		IniciaJogo();
+	}
+
+	public void PassouFase()
+	{
+		myLog.text +="\n<b>VOCE PASSOU DE FASE!!!</b>";
+		//Aqui que ia aparecer a janela de pontuaçao!
 	}
 
 	void IniciaJogo ()

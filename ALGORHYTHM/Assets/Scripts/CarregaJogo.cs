@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -6,9 +7,11 @@ public class CarregaJogo : MonoBehaviour {
 
 	
 	public GameObject gameManager;          //GameManager prefab to instantiate.
+	public Text log;
 	public GameObject myPlayer;
 	public Vector2 posicaoPlayer;
 	public Vector2 posicaoObjetivo;
+	public int numeroFase;
 
 	private CriaTabuleiro tabuleiroScript;
 	private bool passouFase = false;
@@ -52,6 +55,9 @@ public class CarregaJogo : MonoBehaviour {
 		if(oTile != null)
 			oTile.objetosEmCima.Add(ControladorGeral.referencia.myPlayer);
 		ControladorGeral.referencia.tabuleiroAtual = tabuleiroScript;
+		ControladorGeral.referencia.myLog = log;
+		ControladorGeral.referencia.faseAtual = numeroFase;
+		ControladorGeral.referencia.listaEmExecucao = false;
 
 	}
 
@@ -61,12 +67,17 @@ public class CarregaJogo : MonoBehaviour {
 		if(ControladorGeral.referencia.myPlayer.GetComponent<Player>().posicaoTabuleiro == posicaoObjetivo && !passouFase)
 		{
 			//score -= 15*CreateProgramList.referencia.programList.Count;
-			score -= 15*CreateProgramList.referencia.listaPrograma.Count;
+			//score -= 15*CreateProgramList.referencia.listaPrograma.Count;
 
+			//ControladorGeral.referencia.myLog.text += "<b>\nVOCE PASSOU DE FASE!!!</b>";
 
 			Debug.Log ("VOCE PASSOU DE FASE!!!");
-			Debug.Log ("SEU SCORE FOI: " + score.ToString());
+			//ControladorGeral.referencia.listaEmExecucao = false;
+
 			passouFase = true;
+			this.gameObject.GetComponent<SelecaodeFase>().CarregarFase(ControladorGeral.referencia.faseAtual+1);
+			//Debug.Log ("SEU SCORE FOI: " + score.ToString());
+
 		}
 	}
 

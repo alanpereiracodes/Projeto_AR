@@ -18,4 +18,6 @@ public class Player : MonoBehaviour {
 	public Direction direcaoCamera;
 	//Armazena a posicao em que o jogador esta em um sistema de coordenadas 2D
 	public Vector2 posicaoTabuleiro;
+	//Variavel destinada para armazenar o item em que o personagem pegou
+	public GameObject objetoEmMaos;
 }

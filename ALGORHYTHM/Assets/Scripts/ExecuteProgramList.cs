@@ -260,6 +260,7 @@ public class ExecuteProgramList : MonoBehaviour {
 				}
 			}
 		}
+		ControladorGeral.referencia.myLog.text += "\n<b>Algo</b> nao andou!";
 		Debug.Log ("Nao andou!");
 		return false;
 	}
@@ -335,6 +336,7 @@ public class ExecuteProgramList : MonoBehaviour {
 			}
 		}
 		//MudaSpriteDeAcordoComAPosicao
+		ControladorGeral.referencia.myLog.text += "\n<b>Algo</b> girou para " + myPlayerStat.direcaoGlobal.ToString ();
 		Debug.Log ("Girou para "+myPlayerStat.direcaoGlobal.ToString());
 		//Muda Animaçao
 			//switch(myPlayerStat.direcaoGlobal)
@@ -539,6 +541,7 @@ public class ExecuteProgramList : MonoBehaviour {
 				}
 			}
 		}
+		ControladorGeral.referencia.myLog.text += "\n<b>Algo</b> nao Pulo!";
 		Debug.Log ("Nao Pulou!");
 		return false;
 	}
@@ -599,6 +602,174 @@ public class ExecuteProgramList : MonoBehaviour {
 
 	}
 
+	void Interagir ()
+	{
+		Objeto objetoFrente = null;
+		objetoFrente = VerificaBlocoQueVaiInteragir(myPlayerStat.direcaoGlobal, myPlayerStat.posicaoTabuleiro);
+
+		if (objetoFrente != null) 
+		{
+			switch (objetoFrente.tipo) 
+			{
+			case Objeto.Tipo.ItemPegavel:
+				myPlayerStat.objetoEmMaos = objetoFrente.gameObject;
+				ControladorGeral.referencia.myLog.text += "\n<b>Algo</b>, interagiu com um " + objetoFrente.nome.ToString();
+				Debug.Log ("Algo, interagiu com um " + objetoFrente.nome.ToString());
+				Tile tempTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(objetoFrente.posicaoTabuleiro);
+				tempTile.objetosEmCima.Remove(objetoFrente.gameObject);
+				objetoFrente.gameObject.SetActive (false);
+				//Destroy (objetoFrente.gameObject);
+				break;
+			case Objeto.Tipo.Altar:
+				//executafunçaoaltar
+				if(myPlayerStat.objetoEmMaos != null)
+				{
+					ControladorGeral.referencia.myLog.text += "\n<b>Algo</b>, interagiu com um " + objetoFrente.nome.ToString() + " possuindo um " + myPlayerStat.objetoEmMaos.GetComponent<Objeto>().nome.ToString();
+					Debug.Log ("Algo, interagiu com um " + objetoFrente.nome.ToString() + " possuindo um " + myPlayerStat.objetoEmMaos.GetComponent<Objeto>().nome.ToString());
+					if(myPlayerStat.objetoEmMaos.GetComponent<Objeto>().tipo == Objeto.Tipo.ItemPegavel)
+					{
+						objetoFrente.ativado = true;
+						ControladorGeral.referencia.myLog.text += "\nO " + objetoFrente.nome.ToString() + " foi ativado!";
+						Debug.Log ("O " + objetoFrente.nome.ToString() + " foi ativado!");
+						myPlayerStat.objetoEmMaos.transform.SetParent(objetoFrente.gameObject.transform);
+						myPlayerStat.objetoEmMaos.transform.localPosition = new Vector3(0,0,0);
+
+						myPlayerStat.objetoEmMaos.SetActive(true);
+						myPlayerStat.objetoEmMaos = null;
+						ControladorGeral.referencia.PassouFase();
+					}
+				}
+				else
+				{
+					ControladorGeral.referencia.myLog.text += "\n<b>Algo</b>, interagiu com um " + objetoFrente.nome.ToString();
+					Debug.Log ("Algo, interagiu com um " + objetoFrente.nome.ToString());
+				}
+				break;
+			}
+		} 
+		else 
+		{
+			ControladorGeral.referencia.myLog.text += "\n<b>Algo</b> nao encontrou um objeto para interagir";
+			Debug.Log ("Algo nao encontrou um objeto para interagir.");
+		}
+	}
+
+	
+	#region Verifica Bloco que vai Interagir
+
+	Objeto VerificaBlocoQueVaiInteragir (Player.Direction direcao, Vector2 coordenadas)
+	{
+		//Anotaçao das Direçoes:
+		/*
+		 * Frente	Y+1
+		 * Tras		Y-1
+		 * Esquerda	X+1
+		 * Direita	X-1
+		 */
+
+		if(direcao == Player.Direction.Frente)
+		{
+			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y+1));
+			if(novoTile != null)
+			{
+				List<Objeto> novosObjetos = new List<Objeto>();
+				if(novoTile.objetosEmCima.Count > 0)
+				{
+					foreach(GameObject objEmCima in novoTile.objetosEmCima)
+					{
+						if(objEmCima.GetComponent<Objeto>() != null)
+							novosObjetos.Add(objEmCima.GetComponent<Objeto>());
+					}
+				}
+				
+				if(novosObjetos.Count > 0)
+				{
+					foreach(Objeto obj in novosObjetos)
+					{
+						return obj; //retorna o primeiro
+					}
+				}
+			}
+		}
+		if(direcao == Player.Direction.Tras)
+		{
+			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y-1));
+			if(novoTile != null)
+			{
+				List<Objeto> novosObjetos = new List<Objeto>();
+				if(novoTile.objetosEmCima.Count > 0)
+				{
+					foreach(GameObject objEmCima in novoTile.objetosEmCima)
+					{
+						if(objEmCima.GetComponent<Objeto>() != null)
+							novosObjetos.Add(objEmCima.GetComponent<Objeto>());
+					}
+				}
+				
+				if(novosObjetos.Count > 0)
+				{
+					foreach(Objeto obj in novosObjetos)
+					{
+						return obj; //retorna o primeiro
+					}
+				}
+			}
+		}
+		if(direcao == Player.Direction.Direita)
+		{
+			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x-1, myPlayerStat.posicaoTabuleiro.y));
+			if(novoTile != null)
+			{
+				List<Objeto> novosObjetos = new List<Objeto>();
+				if(novoTile.objetosEmCima.Count > 0)
+				{
+					foreach(GameObject objEmCima in novoTile.objetosEmCima)
+					{
+						if(objEmCima.GetComponent<Objeto>() != null)
+							novosObjetos.Add(objEmCima.GetComponent<Objeto>());
+					}
+				}
+				
+				if(novosObjetos.Count > 0)
+				{
+					foreach(Objeto obj in novosObjetos)
+					{
+						return obj; //retorna o primeiro
+					}
+				}
+			}
+		}
+		if(direcao == Player.Direction.Esquerda)
+		{
+			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x+1, myPlayerStat.posicaoTabuleiro.y));
+			if(novoTile != null)
+			{
+				List<Objeto> novosObjetos = new List<Objeto>();
+				if(novoTile.objetosEmCima.Count > 0)
+				{
+					foreach(GameObject objEmCima in novoTile.objetosEmCima)
+					{
+						if(objEmCima.GetComponent<Objeto>() != null)
+							novosObjetos.Add(objEmCima.GetComponent<Objeto>());
+					}
+				}
+				
+				if(novosObjetos.Count > 0)
+				{
+					foreach(Objeto obj in novosObjetos)
+					{
+						return obj; //retorna o primeiro
+					}
+				}
+			}
+		}
+		ControladorGeral.referencia.myLog.text += "\n<b>Algo</b> nao andou!";
+		Debug.Log ("Nao andou!");
+		return null;
+	}
+
+	#endregion
+
 	#endregion
 	
 	#region Corotinas
@@ -629,7 +800,9 @@ public class ExecuteProgramList : MonoBehaviour {
 								break;
 							case Comando.botaoNome.Interagir: //NomeBotoes.interagir:
 							//ActInteract(myPlayer, myPlayerStat);
-								Debug.Log ("Interagiu");
+						Interagir();
+								yield return new WaitForSeconds (0.3f);
+								//Debug.Log ("Interagiu");
 								break;
 							case Comando.botaoNome.GirarDireita: //NomeBotoes.girarDireita:
 								GirarPersonagem (Player.Direction.Direita);
@@ -647,14 +820,23 @@ public class ExecuteProgramList : MonoBehaviour {
 				}
 				ControladorGeral.referencia.listaEmExecucao = false;
 
-			} else
+			} else{
+				ControladorGeral.referencia.myLog.text += "\nA lista de programa esta vazia.";
 				Debug.Log ("A Lista de Programa esta nula!");
+				}
 
 			ControladorGeral.referencia.listaEmExecucao = false;
+			//GAMBIARRAA RESET DA FASE
+			//if(myPlayerStat.posicaoTabuleiro != "Objetivo"
+			if(ControladorGeral.referencia.faseAtual != 10)
+				Application.LoadLevel (ControladorGeral.referencia.faseAtual);
 			yield return null;
 		}
 		else
+		{
+			ControladorGeral.referencia.myLog.text += "\nA lista de programa ja esta em execuçao!";
 			Debug.Log ("A Lista de Programa ja esta em execuçao!!");
+		}
 	}
 
 	//Coroutine para dar a sensaçao de Movimento ao modificar a posiçao do Personagem, 
@@ -672,6 +854,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		if(myPlayAnim.GetBool("andando"))
 		{
 			myPlayAnim.SetBool("andando",false);
+			ControladorGeral.referencia.myLog.text += "\n<b>Algo</b> Andou!";
 			Debug.Log (player.name + " Andou!");
 		}
 			
@@ -679,6 +862,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		if(myPlayAnim.GetBool("pulando"))
 		{
 			myPlayAnim.SetBool("pulando",false);
+			ControladorGeral.referencia.myLog.text += "\n<b>Algo</b> Andou!";
 			Debug.Log (player.name + " Pulou!");
 		}
 			
