@@ -108,7 +108,7 @@ public class EventosTelaTitulo : MonoBehaviour {
 
 	void chamaNovoJogo ()
 	{
-		Application.LoadLevel (12);
+		Application.LoadLevel (2); //Chama tela de Criar Perfil
 	}
 
 	void chamaTelaContinue ()

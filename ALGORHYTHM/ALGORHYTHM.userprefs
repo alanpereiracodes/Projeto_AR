@@ -1,14 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ExecuteProgramList.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ControladorGeral.cs">
     <Files>
-      <File FileName="Assets\Scripts\ExecuteProgramList.cs" Line="829" Column="11" />
-      <File FileName="Assets\Scripts\Objeto.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CriaTabuleiro.cs" Line="47" Column="40" />
-      <File FileName="Assets\Scripts\ControladorGeral.cs" Line="1" Column="1" />
+      <File FileName="..\..\..\..\..\Public\Documents\Unity Projects\zOld\SaveLoadTeste\Assets\Novo Teste\GameManager.cs" Line="155" Column="37" />
+      <File FileName="Assets\Scripts\ConexaoBanco.cs" Line="170" Column="30" />
+      <File FileName="Assets\Scripts\ControladorGeral.cs" Line="211" Column="18" />
+      <File FileName="Assets\Scripts\CarregaFases.cs" Line="12" Column="2" />
+      <File FileName="Assets\ControladoraCadastroPerfil.cs" Line="27" Column="36" />
       <File FileName="Assets\Scripts\CarregaJogo.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SelecaodeFase.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -15,7 +15,7 @@ public class CarregaJogo : MonoBehaviour {
 
 	private CriaTabuleiro tabuleiroScript;
 	private bool passouFase = false;
-	private int score = 150;
+	//private int score = 150;
 
 	void Awake ()
 	{

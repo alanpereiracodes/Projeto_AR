@@ -46,11 +46,14 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\ControladoraCadastroPerfil.cs" />
+     <Compile Include="Assets\Scripts\BotaoFase.cs" />
      <Compile Include="Assets\Scripts\CameraBtnEvents.cs" />
+     <Compile Include="Assets\Scripts\CarregaFases.cs" />
      <Compile Include="Assets\Scripts\CarregaJogo.cs" />
      <Compile Include="Assets\Scripts\Comando.cs" />
+     <Compile Include="Assets\Scripts\ConexaoBanco.cs" />
      <Compile Include="Assets\Scripts\ControladorGeral.cs" />
-     <Compile Include="Assets\Scripts\ControladorSelecaoFase.cs" />
      <Compile Include="Assets\Scripts\CreateProgramList.cs" />
      <Compile Include="Assets\Scripts\CriaTabuleiro.cs" />
      <Compile Include="Assets\Scripts\Draggable.cs" />
@@ -58,8 +61,10 @@
      <Compile Include="Assets\Scripts\EventosTelaTitulo.cs" />
      <Compile Include="Assets\Scripts\ExecuteProgramList.cs" />
      <Compile Include="Assets\Scripts\Fase.cs" />
+     <Compile Include="Assets\Scripts\Jogo.cs" />
      <Compile Include="Assets\Scripts\LookToCamera.cs" />
      <Compile Include="Assets\Scripts\Objeto.cs" />
+     <Compile Include="Assets\Scripts\Perfil.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\RemoveBotaoLista.cs" />
      <Compile Include="Assets\Scripts\SelecaodeFase.cs" />
@@ -72,6 +77,12 @@
  </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="Mono.Data.SqliteClient">
+ <HintPath>C:/Users/Asura/Documents/GitHub/Projeto_AR/ALGORHYTHM/Assets/Plugins/Mono.Data.SqliteClient.dll</HintPath>
+ </Reference>
+ <Reference Include="System.Data">
+ <HintPath>C:/Users/Asura/Documents/GitHub/Projeto_AR/ALGORHYTHM/Assets/Plugins/System.Data.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
