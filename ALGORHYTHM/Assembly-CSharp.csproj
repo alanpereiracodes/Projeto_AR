@@ -46,14 +46,15 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\ControladoraCadastroPerfil.cs" />
      <Compile Include="Assets\Scripts\BotaoFase.cs" />
+     <Compile Include="Assets\Scripts\BotaoJogoSalvo.cs" />
      <Compile Include="Assets\Scripts\CameraBtnEvents.cs" />
      <Compile Include="Assets\Scripts\CarregaFases.cs" />
      <Compile Include="Assets\Scripts\CarregaJogo.cs" />
      <Compile Include="Assets\Scripts\Comando.cs" />
      <Compile Include="Assets\Scripts\ConexaoBanco.cs" />
      <Compile Include="Assets\Scripts\ControladorGeral.cs" />
+     <Compile Include="Assets\Scripts\ControladoraCadastroPerfil.cs" />
      <Compile Include="Assets\Scripts\CreateProgramList.cs" />
      <Compile Include="Assets\Scripts\CriaTabuleiro.cs" />
      <Compile Include="Assets\Scripts\Draggable.cs" />
