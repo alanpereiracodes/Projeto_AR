@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
+
 
 public class BotaoJogoSalvo : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	public Text txtIdJogo;
+	public Text txtNomeJogador;
+	public Text txtNumeroFase;
+	public Text txtPontuacao;
+	public Text txtDataSalvo;
+
 }

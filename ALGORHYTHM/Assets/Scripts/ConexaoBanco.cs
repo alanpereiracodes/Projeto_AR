@@ -197,7 +197,7 @@ public class ConexaoBanco {
 	//whereColuna e a Coluna, whereOperador e o operdor de comparaçao que quer usar
 	//e o whereValor e o valor a se comparar.
 	//Seleciona um unico registro;
-	public List<string> SelecionaUnicoWhere(string nomeTabela, string itemToSelect, string whereColuna, string whereOperador, string whereValor)
+	public ArrayList SelecionaUnicoWhere(string nomeTabela, string itemToSelect, string whereColuna, string whereOperador, string whereValor)
 	{
 		string query;
 		query = "SELECT " + itemToSelect + " FROM " + nomeTabela + " WHERE " + whereColuna + whereOperador + whereValor; 
@@ -205,15 +205,21 @@ public class ConexaoBanco {
 		dbcmd.CommandText = query; 
 		reader = dbcmd.ExecuteReader();
 		//var readArray = new Array();
-		List<string> readArray = new List<string>();
-		while(reader.Read()) { 
-			//readArray.Push(reader.GetString(0)); // Fill array with all matches
-			string japanese = reader.GetString(0);
-			//Debug.Log(japanese);
-			readArray.Add(japanese); // Fill array with all matches
-			string url = reader.GetString(1);
-			//Debug.Log(url);
-			readArray.Add(url); // Fill array with all matches
+		ArrayList readArray = new ArrayList();
+		//while(reader.Read()) { 
+//			//readArray.Push(reader.GetString(0)); // Fill array with all matches
+//			string japanese = reader.GetString(0);
+//			Debug.Log(japanese);
+//			readArray.Add(japanese); // Fill array with all matches
+//			string url = reader.GetString(1);
+//			Debug.Log(url);
+//			readArray.Add(url); // Fill array with all matches
+		//}
+		while(reader.Read())
+		{
+			ArrayList lineLista = new ArrayList();
+			for(int i = 0; i < reader.FieldCount; i++)
+				lineLista.Add (reader.GetValue(i)); //Le os dados em uma linha
 		}
 		return readArray; // return matches
 	}

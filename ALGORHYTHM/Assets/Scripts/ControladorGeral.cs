@@ -43,6 +43,10 @@ public class ControladorGeral : MonoBehaviour {
 
 	//Variavel para ter acesso ao banco
 	private ConexaoBanco banco;
+	//Variaveis para manipulaçao das tabelas
+	private string tableName;
+	private ArrayList columnNames;
+	private ArrayList columnValues;
 	
 	//===================== INICIO ===============================
 
@@ -68,52 +72,31 @@ public class ControladorGeral : MonoBehaviour {
         banco = null;
     }
 
-	//Temporario
-	public void PassouFase()
+	public void CriarTabelas ()
 	{
-		myLog.text +="\n<b>VOCE PASSOU DE FASE!!!</b>";
-		//Aqui que ia aparecer a janela de pontuaçao!
-	}
-
-	//=========================================
-	//Funçoes do Banco
-	public void CriarJogoNovo(Perfil perfilJogador)
-	{
-		Jogo novoJogo = new Jogo();
-		novoJogo.dataJogoCriado = DateTime.Now.ToString();
-		novoJogo.dataJogoSalvo = DateTime.Now.ToString();
-		//novoJogo.idPerfilJogador = perfilJogador.idPerfil;
-		novoJogo.pontuacaoTotal = 0;
-		novoJogo.capituloAtual = 0; //Capitulo 0 e o Capitulo Tutorial, composto de 4 fases.
-		novoJogo.numeroFaseLiberada = 1; //Fase 1 e a primeira fase;
-
-		//Inicia a COnexao com o Banco
-		banco = new ConexaoBanco();
-		banco.AbrirBanco("URI=file:" + Application.dataPath + "/MeuJogoSalvo.sqdb");
-
 		//Criar/Verifica Existencia da tabela Perfil
-		string tableName = "Perfil";
-		ArrayList columnNames = new ArrayList();
+		tableName = "Perfil";
+		columnNames = new ArrayList();
 		columnNames.Add("idPerfil");
 		columnNames.Add("nomeAluno");
 		columnNames.Add("idadeAluno");
 		columnNames.Add("serieAluno");
 		columnNames.Add("generoAluno");
-
-		ArrayList columnValues = new ArrayList();
+		
+		columnValues = new ArrayList();
 		columnValues.Add("INTEGER DEFAULT 1 PRIMARY KEY AUTOINCREMENT NOT NULL");
 		columnValues.Add("TEXT NOT NULL");
 		columnValues.Add("INTEGER NOT NULL");
 		columnValues.Add("TEXT NOT NULL");
 		columnValues.Add("TEXT NOT NULL");
-
+		
 		try {
 			Debug.Log(banco.CriarTabelaRetornaQuery(tableName, columnNames, columnValues));
 		}
 		catch(UnityException e){
 			Debug.Log ("Nao foi possivel criar a tabela "+tableName+", devido a: "+e.ToString());
 		}
-
+		
 		//Criar/Verifica Existencia da tabela Jogo
 		tableName = "Jogo";
 		columnNames = null;
@@ -125,7 +108,7 @@ public class ControladorGeral : MonoBehaviour {
 		columnNames.Add("numeroFaseLiberada");
 		columnNames.Add("capituloAtual");
 		columnNames.Add("idPerfilJogador");
-
+		
 		columnValues = null;
 		columnValues = new ArrayList();
 		columnValues.Add("INTEGER DEFAULT 1 PRIMARY KEY AUTOINCREMENT NOT NULL");
@@ -142,7 +125,7 @@ public class ControladorGeral : MonoBehaviour {
 		catch(UnityException e){
 			Debug.Log ("Nao foi possivel criar a tabela "+tableName+", devido a: "+e.ToString());
 		}
-
+		
 		//Criar/Verifica Existencia da tabela Fase
 		tableName = "Fase";
 		columnNames = null;
@@ -158,13 +141,40 @@ public class ControladorGeral : MonoBehaviour {
 		columnValues.Add("INTEGER NOT NULL");
 		columnValues.Add("INTEGER NOT NULL");
 		columnValues.Add("INTEGER NOT NULL, FOREIGN KEY(`idJogo`) REFERENCES Jogo");
-
+		
 		try {
 			banco.CriarTabela(tableName, columnNames, columnValues);
 		}
 		catch(UnityException e){
 			Debug.Log ("Nao foi possivel criar a tabela "+tableName+", devido a: "+e.ToString());
 		}
+	}
+
+	//Temporario
+	public void PassouFase()
+	{
+		myLog.text +="\n<b>VOCE PASSOU DE FASE!!!</b>";
+		//Aqui que ia aparecer a janela de pontuaçao!
+	}
+
+	//=========================================
+	//Funçoes do Banco
+	public void CriarJogoNovo(Perfil perfilJogador)
+	{
+		Jogo novoJogo = new Jogo();
+		novoJogo.dataJogoCriado = DateTime.Now.ToString("dd/MM/yyyy");
+		novoJogo.dataJogoSalvo = DateTime.Now.ToString("dd/MM/yyyy");
+		//novoJogo.idPerfilJogador = perfilJogador.idPerfil;
+		novoJogo.pontuacaoTotal = 0;
+		novoJogo.capituloAtual = 0; //Capitulo 0 e o Capitulo Tutorial, composto de 4 fases.
+		novoJogo.numeroFaseLiberada = 1; //Fase 1 e a primeira fase;
+
+		//Inicia a COnexao com o Banco
+		banco = new ConexaoBanco();
+		banco.AbrirBanco("URI=file:" + Application.dataPath + "/MeuJogoSalvo.sqdb");
+
+		CriarTabelas();
+
 		//TUDO CRIADO!!
 
 		//Incluir Perfil e Jogo

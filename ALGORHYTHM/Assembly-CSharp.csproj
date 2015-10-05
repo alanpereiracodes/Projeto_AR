@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\ConexaoBanco.cs" />
      <Compile Include="Assets\Scripts\ControladorGeral.cs" />
      <Compile Include="Assets\Scripts\ControladoraCadastroPerfil.cs" />
+     <Compile Include="Assets\Scripts\ControladoraCarregarJogo.cs" />
      <Compile Include="Assets\Scripts\CreateProgramList.cs" />
      <Compile Include="Assets\Scripts\CriaTabuleiro.cs" />
      <Compile Include="Assets\Scripts\Draggable.cs" />
