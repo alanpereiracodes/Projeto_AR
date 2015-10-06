@@ -90,6 +90,7 @@ public class ControladoraCarregarJogo : MonoBehaviour
 			btnJg.txtNumeroFase.text = jg.numeroFaseLiberada.ToString();
 			btnJg.txtPontuacao.text = jg.pontuacaoTotal.ToString ();
 			btnJg.txtDataSalvo.text = jg.dataJogoSalvo;
+			Debug.Log ("Capitulo: "+jg.capituloAtual);
 
 			foreach(Perfil oPe in listaPerfis)
 			{
@@ -112,7 +113,10 @@ public class ControladoraCarregarJogo : MonoBehaviour
 
 	public void Carregar(Jogo jg, Perfil perf)
 	{
-		Debug.Log ("tata"+jg.idJogo.ToString()+perf.nomeAluno);
+		ControladorGeral.referencia.jogoAtual = jg;
+		ControladorGeral.referencia.perfilAtual = perf;
+		Debug.Log ("Capitulo Carregado: "+jg.capituloAtual);
+		Application.LoadLevel (1);
 	}
 
 }

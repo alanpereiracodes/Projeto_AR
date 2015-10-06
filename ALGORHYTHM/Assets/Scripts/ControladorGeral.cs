@@ -66,6 +66,7 @@ public class ControladorGeral : MonoBehaviour {
 		//Call the InitGame function to initialize the first level 
 		//IniciaJogo();
         jogoAtual = null;
+		perfilAtual = null;
 		listaJogosSalvos = new List<Jogo>(); //Lista para armazenar todos os jogos salvos de um dado perfil;
         
 		//Inicializa o banco como null;

@@ -5,17 +5,41 @@ using System.Collections.Generic;
 
 public class CarregaFases : MonoBehaviour {
 
-	public GameObject gameManager;          //GameManager prefab to instantiate.
-	public int capitulo;
+	public GameObject gameManager;
+	public Text capituloTitulo;
+	//public int capitulo;
 
-	// Use this for initialization
+	public List<GameObject> listaBotoesFases;
+
 	void Awake () 
 	{
-			//Check if a GameManager has already been assigned to static variable GameManager.instance or if it's still null
-			if (ControladorGeral.referencia == null)			
-				//Instantiate gameManager prefab
-				Instantiate(gameManager);
-
-		ControladorGeral.referencia.jogoAtual.capituloAtual = capitulo;
+		if (ControladorGeral.referencia == null)			
+			Instantiate(gameManager);
 	}
+
+	void Start()
+	{
+		CarregarFases ();
+	}
+
+	public void CarregarFases()
+	{
+		capituloTitulo.text = "Capítulo " + ControladorGeral.referencia.jogoAtual.capituloAtual;
+
+		int numeroFase = ControladorGeral.referencia.jogoAtual.numeroFaseLiberada;
+		numeroFase = numeroFase - (ControladorGeral.referencia.jogoAtual.capituloAtual-1) * 10;
+
+		foreach (GameObject obj in listaBotoesFases) 
+		{
+			if(obj.GetComponent<BotaoFase>().numero > numeroFase)
+			{
+				obj.SetActive(false);
+			}
+		}
+
+		//Debug.Log ("O Capitulo e: " + ControladorGeral.referencia.jogoAtual.capituloAtual + " e a Fase e: " + numeroFase);
+	}
+
+
+
 }
