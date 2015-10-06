@@ -1,13 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ControladoraCarregarJogo.cs">
     <Files>
-      <File FileName="Assets\Scripts\ControladoraCarregarJogo.cs" Line="31" Column="36" />
-      <File FileName="Assets\Scripts\ControladorGeral.cs" Line="38" Column="37" />
-      <File FileName="Assets\Scripts\CreateProgramList.cs" Line="79" Column="51" />
-      <File FileName="Assets\Scripts\BotaoJogoSalvo.cs" Line="13" Column="2" />
-      <File FileName="Assets\Scripts\ConexaoBanco.cs" Line="218" Column="23" />
-      <File FileName="..\..\..\..\..\Public\Documents\Unity Projects\zOld\SaveLoadTeste\Assets\Novo Teste\GameManager.cs" Line="213" Column="31" />
+      <File FileName="Assets\Scripts\ConexaoBanco.cs" Line="94" Column="39" />
+      <File FileName="Assets\Scripts\ControladoraCarregarJogo.cs" Line="103" Column="15" />
+      <File FileName="Assets\Scripts\CreateProgramList.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\BotaoJogoSalvo.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ControladoraCadastroPerfil.cs" Line="40" Column="33" />
+      <File FileName="Assets\Scripts\RemoveBotaoLista.cs" Line="21" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

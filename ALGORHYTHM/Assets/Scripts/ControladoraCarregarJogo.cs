@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -82,18 +83,36 @@ public class ControladoraCarregarJogo : MonoBehaviour
 			novoBotao.transform.SetParent(scrollConteudo, false);
 			BotaoJogoSalvo btnJg = novoBotao.GetComponent<BotaoJogoSalvo>();
 
+			Perfil oPerf = new Perfil();
+			Jogo oJogo = new Jogo();
+
 			btnJg.txtIdJogo.text = jg.idJogo.ToString();
-			foreach(Perfil oPe in listaPerfis)
-			{
-				if(oPe.idPerfil == jg.idPerfilJogador)
-					btnJg.txtNomeJogador.text = oPe.nomeAluno;
-			}
 			btnJg.txtNumeroFase.text = jg.numeroFaseLiberada.ToString();
 			btnJg.txtPontuacao.text = jg.pontuacaoTotal.ToString ();
 			btnJg.txtDataSalvo.text = jg.dataJogoSalvo;
+
+			foreach(Perfil oPe in listaPerfis)
+			{
+				if(oPe.idPerfil == jg.idPerfilJogador)
+				{
+					btnJg.txtNomeJogador.text = oPe.nomeAluno;
+					oPerf = oPe;
+				}
+			}
+
+			oJogo = jg;
+
+			Button oButton = btnJg.gameObject.GetComponent<Button>();
+			oButton.onClick.RemoveAllListeners();
+			oButton.onClick.AddListener(() => Carregar(oJogo, oPerf));
 		}
 
 		banco.FecharBanco();
+	}
+
+	public void Carregar(Jogo jg, Perfil perf)
+	{
+		Debug.Log ("tata"+jg.idJogo.ToString()+perf.nomeAluno);
 	}
 
 }
