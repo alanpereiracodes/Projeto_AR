@@ -260,8 +260,13 @@ public class ExecuteProgramList : MonoBehaviour {
 				}
 			}
 		}
-		ControladorGeral.referencia.myLog.text += "\n<b>Algo</b> nao andou!";
-		Debug.Log ("Nao andou!");
+		EnviaMensagem("\n<b>Algo</b> não andou!");
+		if (ControladorGeral.referencia.myScroll != null)
+		{
+			//Debug.Log (ControladorGeral.referencia.myScroll.value.ToString ());
+			ControladorGeral.referencia.myScroll.value = 0;
+		}
+		Debug.Log ("Não andou!");
 		return false;
 	}
 	#endregion
@@ -336,7 +341,7 @@ public class ExecuteProgramList : MonoBehaviour {
 			}
 		}
 		//MudaSpriteDeAcordoComAPosicao
-		ControladorGeral.referencia.myLog.text += "\n<b>Algo</b> girou para " + myPlayerStat.direcaoGlobal.ToString ();
+		EnviaMensagem("\n<b>Algo</b> girou para " + myPlayerStat.direcaoGlobal.ToString ());
 		Debug.Log ("Girou para "+myPlayerStat.direcaoGlobal.ToString());
 		//Muda Animaçao
 			//switch(myPlayerStat.direcaoGlobal)
@@ -541,8 +546,8 @@ public class ExecuteProgramList : MonoBehaviour {
 				}
 			}
 		}
-		ControladorGeral.referencia.myLog.text += "\n<b>Algo</b> nao Pulo!";
-		Debug.Log ("Nao Pulou!");
+		EnviaMensagem("\n<b>Algo</b> não Pulou!");
+		Debug.Log ("não Pulou!");
 		return false;
 	}
 
@@ -613,7 +618,7 @@ public class ExecuteProgramList : MonoBehaviour {
 			{
 			case Objeto.Tipo.ItemPegavel:
 				myPlayerStat.objetoEmMaos = objetoFrente.gameObject;
-				ControladorGeral.referencia.myLog.text += "\n<b>Algo</b>, interagiu com um " + objetoFrente.nome.ToString();
+				EnviaMensagem("\n<b>Algo</b>, interagiu com um " + objetoFrente.nome.ToString());
 				Debug.Log ("Algo, interagiu com um " + objetoFrente.nome.ToString());
 				Tile tempTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(objetoFrente.posicaoTabuleiro);
 				tempTile.objetosEmCima.Remove(objetoFrente.gameObject);
@@ -624,12 +629,12 @@ public class ExecuteProgramList : MonoBehaviour {
 				//executafunçaoaltar
 				if(myPlayerStat.objetoEmMaos != null)
 				{
-					ControladorGeral.referencia.myLog.text += "\n<b>Algo</b>, interagiu com um " + objetoFrente.nome.ToString() + " possuindo um " + myPlayerStat.objetoEmMaos.GetComponent<Objeto>().nome.ToString();
+					EnviaMensagem("\n<b>Algo</b>, interagiu com um " + objetoFrente.nome.ToString() + " possuindo um " + myPlayerStat.objetoEmMaos.GetComponent<Objeto>().nome.ToString());
 					Debug.Log ("Algo, interagiu com um " + objetoFrente.nome.ToString() + " possuindo um " + myPlayerStat.objetoEmMaos.GetComponent<Objeto>().nome.ToString());
 					if(myPlayerStat.objetoEmMaos.GetComponent<Objeto>().tipo == Objeto.Tipo.ItemPegavel)
 					{
 						objetoFrente.ativado = true;
-						ControladorGeral.referencia.myLog.text += "\nO " + objetoFrente.nome.ToString() + " foi ativado!";
+						EnviaMensagem("\nO " + objetoFrente.nome.ToString() + " foi ativado!");
 						Debug.Log ("O " + objetoFrente.nome.ToString() + " foi ativado!");
 						myPlayerStat.objetoEmMaos.transform.SetParent(objetoFrente.gameObject.transform);
 						myPlayerStat.objetoEmMaos.transform.localPosition = new Vector3(0,0,0);
@@ -641,7 +646,7 @@ public class ExecuteProgramList : MonoBehaviour {
 				}
 				else
 				{
-					ControladorGeral.referencia.myLog.text += "\n<b>Algo</b>, interagiu com um " + objetoFrente.nome.ToString();
+					EnviaMensagem("\n<b>Algo</b>, interagiu com um " + objetoFrente.nome.ToString());
 					Debug.Log ("Algo, interagiu com um " + objetoFrente.nome.ToString());
 				}
 				break;
@@ -649,8 +654,8 @@ public class ExecuteProgramList : MonoBehaviour {
 		} 
 		else 
 		{
-			ControladorGeral.referencia.myLog.text += "\n<b>Algo</b> nao encontrou um objeto para interagir";
-			Debug.Log ("Algo nao encontrou um objeto para interagir.");
+			EnviaMensagem("\n<b>Algo</b> não encontrou um objeto para interagir");
+			Debug.Log ("Algo não encontrou um objeto para interagir.");
 		}
 	}
 
@@ -763,15 +768,26 @@ public class ExecuteProgramList : MonoBehaviour {
 				}
 			}
 		}
-		ControladorGeral.referencia.myLog.text += "\n<b>Algo</b> nao andou!";
-		Debug.Log ("Nao andou!");
+		//EnviaMensagem("\n<b>Algo</b> não existe um obj!");
+		//Debug.Log ("não andou!");
 		return null;
 	}
 
 	#endregion
 
 	#endregion
-	
+
+
+	public void EnviaMensagem(string mensagem)
+	{
+		ControladorGeral.referencia.myLog.text += mensagem;
+		if (ControladorGeral.referencia.myScroll != null)
+		{
+			//Debug.Log (ControladorGeral.referencia.myScroll.value.ToString ());
+			ControladorGeral.referencia.myScroll.value = 0;
+		}
+	}
+
 	#region Corotinas
 
 	//Coroutine para Executar os comandos na Lista fornecida, neste caso de inicio e a "Programa".

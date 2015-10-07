@@ -17,6 +17,7 @@ public class ControladorGeral : MonoBehaviour {
 	public CriaTabuleiro tabuleiroAtual;
 	public bool listaEmExecucao = false;
 	public Text myLog;
+	public Scrollbar myScroll;
 	public int faseAtual;
 
 	//Referencias aos objetos da Selecao de fases--------------------------

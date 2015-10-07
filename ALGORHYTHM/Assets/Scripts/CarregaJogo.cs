@@ -8,6 +8,7 @@ public class CarregaJogo : MonoBehaviour {
 	
 	public GameObject gameManager;          //GameManager prefab to instantiate.
 	public Text log;
+	public Scrollbar scroll;
 	public GameObject myPlayer;
 	public Vector2 posicaoPlayer;
 	public Vector2 posicaoObjetivo;
@@ -56,6 +57,7 @@ public class CarregaJogo : MonoBehaviour {
 			oTile.objetosEmCima.Add(ControladorGeral.referencia.myPlayer);
 		ControladorGeral.referencia.tabuleiroAtual = tabuleiroScript;
 		ControladorGeral.referencia.myLog = log;
+		ControladorGeral.referencia.myScroll = scroll;
 		ControladorGeral.referencia.faseAtual = numeroFase;
 		ControladorGeral.referencia.listaEmExecucao = false;
 
