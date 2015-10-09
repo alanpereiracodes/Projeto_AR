@@ -26,19 +26,40 @@ public class RemoveBotaoLista : MonoBehaviour {
 	
 	void DestroiBotao(Button b) {
 		//Debug.Log("O Comando '" + esseBotaoCMD.nameLabel.text + "' - #" + esseBotaoCMD.listNumber.ToString() + " foi removido da Program List!");
-	//	foreach (CommandButton btn in programListScript.programList) 
-		foreach (Comando cmd in programListScript.listaPrograma)
+		//	foreach (CommandButton btn in programListScript.programList) 
+		if (!ControladorGeral.referencia.retry) 
 		{
-			//if(btn.listNumber > esseBotaoCMD.listNumber)
-			if(cmd.numeroLista > esseCMD.numeroLista)
+			if (!ControladorGeral.referencia.listaEmExecucao) {
+				foreach (Comando cmd in programListScript.listaPrograma) {
+					//if(btn.listNumber > esseBotaoCMD.listNumber)
+					if (cmd.numeroLista > esseCMD.numeroLista) {
+						//btn.listNumber--;
+						cmd.numeroLista--;
+						//btn.numberLabel.text = '#'+btn.listNumber.ToString();
+					}
+				}
+				//programListScript.programList.Remove (esseBotaoCMD);
+				programListScript.listaPrograma.Remove (esseCMD);
+				Destroy (esseBotao);
+			} 
+			else 
 			{
-				//btn.listNumber--;
-				cmd.numeroLista--;
-				//btn.numberLabel.text = '#'+btn.listNumber.ToString();
+				EnviaMensagem ("\nNão foi possível remover o Comando porque a lista esta em execução.");
 			}
 		}
-		//programListScript.programList.Remove (esseBotaoCMD);
-		programListScript.listaPrograma.Remove(esseCMD);
-		Destroy (esseBotao);
+		else 
+		{
+			EnviaMensagem ("\nReinicie a Fase antes de remover o Comando.");
+		}
+	}
+
+	public void EnviaMensagem(string mensagem)
+	{
+		ControladorGeral.referencia.myLog.text += mensagem;
+		if (ControladorGeral.referencia.myScroll != null)
+		{
+			//Debug.Log (ControladorGeral.referencia.myScroll.value.ToString ());
+			ControladorGeral.referencia.myScroll.value = 0;
+		}
 	}
 }

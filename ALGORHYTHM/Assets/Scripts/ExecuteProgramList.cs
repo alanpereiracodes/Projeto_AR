@@ -7,6 +7,7 @@ public class ExecuteProgramList : MonoBehaviour {
 	public float tempoMover = 0.6f; //Tempo que o personagem leva para ir de um Tile ao outro.
 	//public List<CommandButton> programList = new List<CommandButton>(); //Variavel para referenciar a Lista de Programa Gerada
 	public List<Comando> listaPrograma = new List<Comando>();
+	public GameObject playerPrefab;
 
 	private GameObject myPlayer; //Variaveis para armazenar referencias ao Status do nosso Player
 	private Player myPlayerStat;
@@ -795,15 +796,18 @@ public class ExecuteProgramList : MonoBehaviour {
 	//IEnumerator ExecutarLista(List<CommandButton> lista)
 	IEnumerator ExecutarLista(List<Comando> lista)
 	{
-		if (!ControladorGeral.referencia.listaEmExecucao) {
-			ControladorGeral.referencia.listaEmExecucao = true;
-			if (lista != null) 
+		if (CreateProgramList.referencia.listaPrograma != null && CreateProgramList.referencia.listaPrograma.Count > 0) 
+		{
+			if (!ControladorGeral.referencia.retry) 
 			{
-				//foreach (CommandButton comando in lista) {
-				foreach (Comando comando in lista) 
+				if (!ControladorGeral.referencia.listaEmExecucao) 
 				{
-						switch (comando.nome) 
+					ControladorGeral.referencia.listaEmExecucao = true;
+						//foreach (CommandButton comando in lista) {
+						foreach (Comando comando in lista)
 						{
+							switch (comando.nome) 
+							{
 							case Comando.botaoNome.Andar: //NomeBotoes.andar:
 							//MoveGo(myPlayer, myPlayerStat);
 								MoverPersonagem ();
@@ -811,14 +815,14 @@ public class ExecuteProgramList : MonoBehaviour {
 								break;
 							case Comando.botaoNome.Falar://NomeBotoes.falar:
 							//ActTalk(string comando.parametro1.text, myPlayer, myPlayerStat);
-								//Debug.Log ("Falou " + comando.parametro1.text);
+							//Debug.Log ("Falou " + comando.parametro1.text);
 							//Debug.Log ("Falou");
 								break;
 							case Comando.botaoNome.Interagir: //NomeBotoes.interagir:
 							//ActInteract(myPlayer, myPlayerStat);
-						Interagir();
+								Interagir ();
 								yield return new WaitForSeconds (0.3f);
-								//Debug.Log ("Interagiu");
+							//Debug.Log ("Interagiu");
 								break;
 							case Comando.botaoNome.GirarDireita: //NomeBotoes.girarDireita:
 								GirarPersonagem (Player.Direction.Direita);
@@ -832,27 +836,50 @@ public class ExecuteProgramList : MonoBehaviour {
 								PularPersonagem ();
 								yield return new WaitForSeconds (0.8f);
 								break;
+							}
 						}
+						ControladorGeral.referencia.retry = true;
+						ControladorGeral.referencia.myBtnExecutarImage.sprite = ControladorGeral.referencia.myBtnRetry;
+						ControladorGeral.referencia.listaEmExecucao = false;
+					yield return null;
 				}
-				ControladorGeral.referencia.listaEmExecucao = false;
-
-			} else{
-				ControladorGeral.referencia.myLog.text += "\nA lista de programa esta vazia.";
-				Debug.Log ("A Lista de Programa esta nula!");
+				else {
+					EnviaMensagem ("\nA lista de programa ja esta em execuçao!");
+					Debug.Log ("A Lista de Programa ja esta em execuçao!!");
 				}
+			}
+			else 
+			{
+				//Reposicionar Jogador
+				ControladorGeral.referencia.tabuleiroAtual.ProcuraTile (myPlayerStat.posicaoTabuleiro).objetosEmCima.Clear ();
+				;
+				Destroy (ControladorGeral.referencia.myPlayer);
+				Vector3 tempPosInicial = new Vector3 ();
+				Tile oTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile (ControladorGeral.referencia.posicaoInicial);
+				if (oTile != null) {
+					tempPosInicial = oTile.transform.position;
+					tempPosInicial.y = 1.5f + oTile.altura * 0.5f;
+				}
+				ControladorGeral.referencia.myPlayer = (GameObject)Instantiate (playerPrefab, tempPosInicial/*new Vector3 (-5.5f, 1.3f, 4.5f)*/, Quaternion.identity);
+				ControladorGeral.referencia.myPlayer.GetComponent<Player> ().posicaoTabuleiro = ControladorGeral.referencia.posicaoInicial;
+				if (oTile != null)
+					oTile.objetosEmCima.Add (ControladorGeral.referencia.myPlayer);
+				ControladorGeral.referencia.retry = false;
+				ControladorGeral.referencia.myBtnExecutarImage.sprite = ControladorGeral.referencia.myBtnPlay;
 
-			ControladorGeral.referencia.listaEmExecucao = false;
-			//GAMBIARRAA RESET DA FASE
-			//if(myPlayerStat.posicaoTabuleiro != "Objetivo"
-			if(ControladorGeral.referencia.faseAtual != 10)
-				Application.LoadLevel (ControladorGeral.referencia.faseAtual);
-			yield return null;
+				myPlayer = ControladorGeral.referencia.myPlayer;
+				myPlayerStat = myPlayer.GetComponent<Player> ();
+				myPlayAnim = myPlayer.GetComponentInChildren<Animator> ();
+
+				//Zerar Contagem Pontuaçao da Fase
+			}
 		}
-		else
+		else 
 		{
-			ControladorGeral.referencia.myLog.text += "\nA lista de programa ja esta em execuçao!";
-			Debug.Log ("A Lista de Programa ja esta em execuçao!!");
+			EnviaMensagem ("\nA lista de programa esta vazia.");
+			Debug.Log ("A Lista de Programa esta nula!");
 		}
+
 	}
 
 	//Coroutine para dar a sensaçao de Movimento ao modificar a posiçao do Personagem, 
@@ -870,7 +897,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		if(myPlayAnim.GetBool("andando"))
 		{
 			myPlayAnim.SetBool("andando",false);
-			ControladorGeral.referencia.myLog.text += "\n<b>Algo</b> Andou!";
+			EnviaMensagem("\n<b>Algo</b> Andou!");
 			Debug.Log (player.name + " Andou!");
 		}
 			
@@ -878,7 +905,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		if(myPlayAnim.GetBool("pulando"))
 		{
 			myPlayAnim.SetBool("pulando",false);
-			ControladorGeral.referencia.myLog.text += "\n<b>Algo</b> Andou!";
+			EnviaMensagem("\n<b>Algo</b> Pulou!");
 			Debug.Log (player.name + " Pulou!");
 		}
 			
@@ -895,9 +922,9 @@ public class ExecuteProgramList : MonoBehaviour {
 	//StartCoroutine(rotateObject (myCameraSuporte.transform.rotation, novaRotation, 1f));
 
 	//Coroutine para esperar
-//	IEnumerator EsperaTempo(float waitSecs){
-//		yield return new WaitForSeconds (waitSecs);
-//	}
+	IEnumerator EsperaTempo(float waitSecs){
+		yield return new WaitForSeconds (waitSecs);
+	}
 //
 	#endregion
 

@@ -5,17 +5,18 @@ using System.Collections.Generic;
 
 public class CarregaJogo : MonoBehaviour {
 
-	
+	public string tituloFase;
 	public GameObject gameManager;          //GameManager prefab to instantiate.
-	public Text log;
-	public Scrollbar scroll;
+	//public Text log;
+	//public Scrollbar scroll;
 	public GameObject myPlayer;
 	public Vector2 posicaoPlayer;
 	public Vector2 posicaoObjetivo;
+	
 	public int numeroFase;
 
 	private CriaTabuleiro tabuleiroScript;
-	private bool passouFase = false;
+	//private bool passouFase = false;
 	//private int score = 150;
 
 	void Awake ()
@@ -48,39 +49,26 @@ public class CarregaJogo : MonoBehaviour {
 		if(oTile != null)
 		{
 			tempPosInicial = oTile.transform.position;
-			tempPosInicial.y = 1.5f;
+			tempPosInicial.y = 1.5f+oTile.altura*0.5f;
 		}
 
+		ControladorGeral.referencia.posicaoInicial = posicaoPlayer;
+		ControladorGeral.referencia.posicaoObjetivo = posicaoObjetivo;
 		ControladorGeral.referencia.myPlayer = (GameObject)Instantiate(myPlayer, tempPosInicial/*new Vector3 (-5.5f, 1.3f, 4.5f)*/, Quaternion.identity);
 		ControladorGeral.referencia.myPlayer.GetComponent<Player>().posicaoTabuleiro = posicaoPlayer;
 		if(oTile != null)
 			oTile.objetosEmCima.Add(ControladorGeral.referencia.myPlayer);
 		ControladorGeral.referencia.tabuleiroAtual = tabuleiroScript;
-		ControladorGeral.referencia.myLog = log;
-		ControladorGeral.referencia.myScroll = scroll;
-		ControladorGeral.referencia.faseAtual = numeroFase;
+		//ControladorGeral.referencia.myLog = log;
+		//ControladorGeral.referencia.myScroll = scroll;
+		//ControladorGeral.referencia.faseAtual = numeroFase;
 		ControladorGeral.referencia.listaEmExecucao = false;
 
 	}
 
-	//Verifica Objetivo
-	void Update()
+	void Start()
 	{
-		if(ControladorGeral.referencia.myPlayer.GetComponent<Player>().posicaoTabuleiro == posicaoObjetivo && !passouFase)
-		{
-			//score -= 15*CreateProgramList.referencia.programList.Count;
-			//score -= 15*CreateProgramList.referencia.listaPrograma.Count;
-
-			//ControladorGeral.referencia.myLog.text += "<b>\nVOCE PASSOU DE FASE!!!</b>";
-
-			Debug.Log ("VOCE PASSOU DE FASE!!!");
-			//ControladorGeral.referencia.listaEmExecucao = false;
-
-			passouFase = true;
-			this.gameObject.GetComponent<SelecaodeFase>().CarregarFase(ControladorGeral.referencia.faseAtual+1);
-			//Debug.Log ("SEU SCORE FOI: " + score.ToString());
-
-		}
+		ControladorGeral.referencia.myTituloFase.text = tituloFase;
 	}
 
 }

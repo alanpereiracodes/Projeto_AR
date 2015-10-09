@@ -1,8 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ExecuteProgramList.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\RemoveBotaoLista.cs">
     <Files>
-      <File FileName="Assets\Scripts\ExecuteProgramList.cs" Line="788" Column="4" />
+      <File FileName="Assets\Scripts\ExecuteProgramList.cs" Line="782" Column="1" />
+      <File FileName="Assets\Scripts\ControladorGeral.cs" Line="29" Column="22" />
+      <File FileName="Assets\Scripts\CarregaJogo.cs" Line="61" Column="64" />
+      <File FileName="Assets\Scripts\CreateProgramList.cs" Line="114" Column="16" />
+      <File FileName="Assets\Scripts\RemoveBotaoLista.cs" Line="52" Column="64" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

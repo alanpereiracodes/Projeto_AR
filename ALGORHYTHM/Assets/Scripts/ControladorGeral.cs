@@ -18,7 +18,16 @@ public class ControladorGeral : MonoBehaviour {
 	public bool listaEmExecucao = false;
 	public Text myLog;
 	public Scrollbar myScroll;
+	public Text myTituloFase;
 	public int faseAtual;
+	public bool retry = false;
+	public Image myBtnExecutarImage;
+	public Sprite myBtnPlay;
+	public Sprite myBtnRetry;
+
+	//Fase Atual
+	public Vector2 posicaoInicial;
+	public Vector2 posicaoObjetivo;
 
 	//Referencias aos objetos da Selecao de fases--------------------------
 	//Esses atributos podem ser encontrados na variavel Jogo Atual!! 

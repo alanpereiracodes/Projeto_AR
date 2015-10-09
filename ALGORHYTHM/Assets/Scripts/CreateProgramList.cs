@@ -24,6 +24,14 @@ public class CreateProgramList : MonoBehaviour {
 	public Transform contentPanel;
 	public int limiteLista;
 
+	//UI Fase
+	public Text refLog;
+	public Scrollbar refScroll;
+	public Text tituloFase;
+	public Image btnExecutarImage;
+	public Sprite btnPlay;
+	public Sprite btnRetry;
+
 	//public ScrollRect scroller;
 
 	//public static GameObject stContentPanel;
@@ -40,6 +48,16 @@ public class CreateProgramList : MonoBehaviour {
 		else if (referencia != this)
 			//Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
 			Destroy(gameObject);  
+	}
+
+	void Start()
+	{
+		ControladorGeral.referencia.myLog = refLog;
+		ControladorGeral.referencia.myScroll = refScroll;
+		ControladorGeral.referencia.myTituloFase = tituloFase;
+		ControladorGeral.referencia.myBtnExecutarImage = btnExecutarImage;
+		ControladorGeral.referencia.myBtnPlay = btnPlay;
+		ControladorGeral.referencia.myBtnRetry = btnRetry;
 	}
 
 
@@ -76,16 +94,31 @@ public class CreateProgramList : MonoBehaviour {
 
 	public void LimpaLista()
 	{
-		if(!ControladorGeral.referencia.listaEmExecucao)
+		if (!ControladorGeral.referencia.retry) {
+			if (!ControladorGeral.referencia.listaEmExecucao) {
+				foreach (GameObject objeto in GameObject.FindGameObjectsWithTag("Comando")) {
+					Destroy (objeto);
+				}
+				listaPrograma.Clear ();
+				Debug.Log ("Lista de Programa apagada!");
+			} 
+			else
+				Debug.Log ("Lista de Programa esta em execuçao!");
+		} 
+		else 
 		{
-			foreach(GameObject objeto in GameObject.FindGameObjectsWithTag("Comando"))
-			{
-				Destroy(objeto);
-			}
-			listaPrograma.Clear();
-			Debug.Log ("Lista de Programa apagada!");
+			EnviaMensagem("\nReinicie a Fase antes de Limpar a Lista!");
 		}
-		else
-			Debug.Log ("Lista de Programa esta em execuçao!");
 	}
+
+	public void EnviaMensagem(string mensagem)
+	{
+		ControladorGeral.referencia.myLog.text += mensagem;
+		if (ControladorGeral.referencia.myScroll != null)
+		{
+			//Debug.Log (ControladorGeral.referencia.myScroll.value.ToString ());
+			ControladorGeral.referencia.myScroll.value = 0;
+		}
+	}
+
 }
