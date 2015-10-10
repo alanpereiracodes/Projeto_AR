@@ -71,7 +71,6 @@
      <Compile Include="Assets\Scripts\RemoveBotaoLista.cs" />
      <Compile Include="Assets\Scripts\SelecaodeFase.cs" />
      <Compile Include="Assets\Scripts\Tile.cs" />
-     <None Include="Assets\Plugins\Renomeie a dll de sua arquitetura para sqlite3.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
