@@ -42,8 +42,8 @@ public class ControladorGeral : MonoBehaviour {
 	
 	//UI
 	public Text capituloTexto;
-	public Image cubinhoVazio;
-	public Image cubinhoPreenchido;
+	public Sprite cubinhoVazio;
+	public Sprite cubinhoPreenchido;
 
 	//Referencia para Tela de Carregar jogo
 	public List<Jogo> listaJogosSalvos;

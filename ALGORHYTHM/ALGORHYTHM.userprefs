@@ -1,13 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CameraBtnEvents.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CreateProgramList.cs">
     <Files>
-      <File FileName="Assets\Scripts\ExecuteProgramList.cs" Line="878" Column="62" />
-      <File FileName="Assets\Scripts\CarregaFases.cs" Line="17" Column="29" />
-      <File FileName="Assets\Scripts\ControladorGeral.cs" Line="261" Column="1" />
-      <File FileName="Assets\Scripts\CriaTabuleiro.cs" Line="186" Column="3" />
-      <File FileName="Assets\Scripts\Player.cs" Line="18" Column="33" />
-      <File FileName="Assets\Scripts\CameraBtnEvents.cs" Line="32" Column="34" />
+      <File FileName="Assets\Scripts\CarregaJogo.cs" Line="69" Column="41" />
+      <File FileName="Assets\Scripts\ControladorGeral.cs" Line="45" Column="2" />
+      <File FileName="Assets\Scripts\CreateProgramList.cs" Line="25" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

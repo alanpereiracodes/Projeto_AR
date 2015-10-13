@@ -12,6 +12,7 @@ public class CarregaJogo : MonoBehaviour {
 	public Vector2 posicaoObjetivo;
 	
 	public int numeroFase;
+	//public int tipoObjetivo;
 
 	private CriaTabuleiro tabuleiroScript;
 	//private bool passouFase = false;
@@ -54,4 +55,33 @@ public class CarregaJogo : MonoBehaviour {
     {
         ControladorGeral.referencia.myTituloFase.text = tituloFase;
     }
+
+	void Update()
+	{
+		//switch (tipo Objetivo)
+		ChecarObjetivo();
+	}
+
+	void ChecarObjetivo() //Consiste no Jogador apenas chegar ao local do objetivo.
+	{
+		if (ControladorGeral.referencia.myPlayer.GetComponent<Player> ().posicaoTabuleiro == posicaoObjetivo) 
+		{
+			//Ativa Janela de que passou de fase.
+		}
+	}
+
+//	void ChecaObjetivo2() //Consiste no Jogador colocar os Cubos em todos os Altares e ai sim ir para um lugar.
+//	{
+//
+//	}
+
 }
+
+
+
+
+
+
+
+
+

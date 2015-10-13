@@ -31,6 +31,8 @@ public class CreateProgramList : MonoBehaviour {
 	public Image btnExecutarImage;
 	public Sprite btnPlay;
 	public Sprite btnRetry;
+	public Sprite cubinhoVazio;
+	public Sprite cubinhoPreenchido;
 
 	//public ScrollRect scroller;
 
@@ -58,6 +60,8 @@ public class CreateProgramList : MonoBehaviour {
 		ControladorGeral.referencia.myBtnExecutarImage = btnExecutarImage;
 		ControladorGeral.referencia.myBtnPlay = btnPlay;
 		ControladorGeral.referencia.myBtnRetry = btnRetry;
+		ControladorGeral.referencia.cubinhoVazio = cubinhoVazio;
+		ControladorGeral.referencia.cubinhoPreenchido = cubinhoPreenchido;
 	}
 
 

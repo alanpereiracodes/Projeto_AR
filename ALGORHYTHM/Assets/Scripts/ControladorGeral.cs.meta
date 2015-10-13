@@ -1,10 +1,22 @@
 fileFormatVersion: 2
 guid: 9f3b4a6cce6aa80488f8509b95031e74
-timeCreated: 1432176304
+timeCreated: 1444779161
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - myPlayer: {instanceID: 0}
+  - tabuleiroAtual: {instanceID: 0}
+  - cameraEventos: {instanceID: 0}
+  - myLog: {instanceID: 0}
+  - myScroll: {instanceID: 0}
+  - myTituloFase: {instanceID: 0}
+  - myBtnExecutarImage: {instanceID: 0}
+  - myBtnPlay: {instanceID: 0}
+  - myBtnRetry: {instanceID: 0}
+  - capituloTexto: {instanceID: 0}
+  - cubinhoVazio: {instanceID: 0}
+  - cubinhoPreenchido: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
