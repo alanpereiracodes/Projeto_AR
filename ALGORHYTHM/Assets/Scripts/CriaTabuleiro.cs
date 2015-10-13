@@ -167,8 +167,24 @@ public class CriaTabuleiro : MonoBehaviour {
 			}
 			//Adiciona a linha com todos os objetos gerados ao mapa Final
 			mapaObjetosGerado.Add(linhaTemp);
-		} //Mapa Gerado: OK!
-	} //fim GeraMapa
+		}
+	} //fim ColocaObjetos
+
+	public void RecolocaObjetos()
+	{
+		//Limpa a lista de "Objetos em Cima" de cada Tile. Isso inclui o Jogador, entao o Jogador tem de ser realocado posteiormente a esse codigo.
+		foreach(List<Tile> listTile in mapaGerado)
+		{
+			foreach(Tile tile in listTile)
+			{
+				tile.objetosEmCima.Clear ();
+			}
+		}
+		Destroy(GameObject.Find("Objetos")); //Destroi todos os objetos.
+
+		ColocaObjetos();
+
+	}//Fim RecolocaObjetos
 
 	//Procura um Tile com a Posiçao fornecida e retorna o Tile da seguinte posiçao se existir!
 	public Tile ProcuraTile(Vector2 pos)

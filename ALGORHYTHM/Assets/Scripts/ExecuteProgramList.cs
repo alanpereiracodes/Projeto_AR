@@ -850,13 +850,16 @@ public class ExecuteProgramList : MonoBehaviour {
 			}
 			else 
 			{
+                //Recoloca Os Objetos
+                ControladorGeral.referencia.tabuleiroAtual.RecolocaObjetos();
+
 				//Reposicionar Jogador
-				ControladorGeral.referencia.tabuleiroAtual.ProcuraTile (myPlayerStat.posicaoTabuleiro).objetosEmCima.Clear ();
-				;
+				//ControladorGeral.referencia.tabuleiroAtual.ProcuraTile (myPlayerStat.posicaoTabuleiro).objetosEmCima.Clear ();
 				Destroy (ControladorGeral.referencia.myPlayer);
 				Vector3 tempPosInicial = new Vector3 ();
 				Tile oTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile (ControladorGeral.referencia.posicaoInicial);
-				if (oTile != null) {
+				if (oTile != null) 
+				{
 					tempPosInicial = oTile.transform.position;
 					tempPosInicial.y = 1.5f + oTile.altura * 0.5f;
 				}
@@ -870,6 +873,9 @@ public class ExecuteProgramList : MonoBehaviour {
 				myPlayer = ControladorGeral.referencia.myPlayer;
 				myPlayerStat = myPlayer.GetComponent<Player> ();
 				myPlayAnim = myPlayer.GetComponentInChildren<Animator> ();
+
+				//Reinicia a Camera
+				ControladorGeral.referencia.cameraEventos.SetCameraToDefault();
 
 				//Zerar Contagem Pontuaçao da Fase
 			}

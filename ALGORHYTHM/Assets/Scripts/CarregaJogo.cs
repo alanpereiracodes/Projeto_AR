@@ -7,8 +7,6 @@ public class CarregaJogo : MonoBehaviour {
 
 	public string tituloFase;
 	public GameObject gameManager;          //GameManager prefab to instantiate.
-	//public Text log;
-	//public Scrollbar scroll;
 	public GameObject myPlayer;
 	public Vector2 posicaoPlayer;
 	public Vector2 posicaoObjetivo;
@@ -32,19 +30,6 @@ public class CarregaJogo : MonoBehaviour {
 		tabuleiroScript.ColocaObjetos();
 
 		Vector3 tempPosInicial = new Vector3 ();
-
-//		foreach(List<Tile> tileCols in tabuleiroScript.mapaGerado)
-//		{
-//			foreach(Tile tile in tileCols)
-//			{
-//				if(tile.posicaoTabuleiro == posicaoPlayer)
-//				{
-//					tempPosInicial = tile.transform.position;
-//					tempPosInicial.y = 1.3f;
-//				}
-//			}
-//		}
-
 		Tile oTile = tabuleiroScript.ProcuraTile(posicaoPlayer);
 		if(oTile != null)
 		{
@@ -63,12 +48,10 @@ public class CarregaJogo : MonoBehaviour {
 		//ControladorGeral.referencia.myScroll = scroll;
 		//ControladorGeral.referencia.faseAtual = numeroFase;
 		ControladorGeral.referencia.listaEmExecucao = false;
-
 	}
 
-	void Start()
-	{
-		ControladorGeral.referencia.myTituloFase.text = tituloFase;
-	}
-
+    void Start()
+    {
+        ControladorGeral.referencia.myTituloFase.text = tituloFase;
+    }
 }

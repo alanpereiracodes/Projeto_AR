@@ -15,6 +15,7 @@ public class ControladorGeral : MonoBehaviour {
 	//Referencias aos objetosna excuçao das Fases.-----------------------------------
 	public GameObject myPlayer;
 	public CriaTabuleiro tabuleiroAtual;
+	public CameraBtnEvents cameraEventos;
 	public bool listaEmExecucao = false;
 	public Text myLog;
 	public Scrollbar myScroll;

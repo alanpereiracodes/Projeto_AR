@@ -21,6 +21,14 @@ public class CameraBtnEvents : MonoBehaviour {
 		cameraYAxisRotation = 0;
 	}
 
+	void Start()
+	{
+		if(ControladorGeral.referencia != null)
+		{
+			ControladorGeral.referencia.cameraEventos = this;
+		}
+	}
+
 	public void SetCameraToDefault()
 	{
 		if (myCameraSuporte != null) 
@@ -33,6 +41,8 @@ public class CameraBtnEvents : MonoBehaviour {
 
 			myCameraSuporte.transform.position = Vector3.zero;
 			myCameraSuporte.transform.rotation = Quaternion.identity;
+			ControladorGeral.referencia.myPlayer.GetComponent<Player>().direcaoCamera = Player.Direction.Frente;
+			ControladorGeral.referencia.myPlayer.GetComponentInChildren<Animator>().SetInteger("direcao",1);
 
 		}
 	}
@@ -65,7 +75,6 @@ public class CameraBtnEvents : MonoBehaviour {
 		}
 
 		cameraYAxisRotation = temp;
-
 		Quaternion novaRotation = Quaternion.Euler (0, cameraYAxisRotation, 0);
 
 		//myCameraSuporte.transform.rotation = novaRotation;
@@ -137,7 +146,6 @@ public class CameraBtnEvents : MonoBehaviour {
 		StartCoroutine(rotateObject (myCameraSuporte.transform.rotation, novaRotation, rotationTime));
 		//myCameraSuporte.transform.rotation = novaRotation;
 		//myCameraSuporte.transform.rotation = Quaternion.Lerp (myCameraSuporte.transform.rotation, novaRotation, Time.deltaTime);
-
 		//toRight
 		switch(jogador.direcaoCamera)
 		{
