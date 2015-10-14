@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{F8CEDB64-61DE-F51C-A2FC-31299AC6CA1F}") = "ALGORHYTHM", "Assembly-CSharp.csproj", "{1AD5EE6C-1BCC-2237-64C8-14FCF3120022}"
 EndProject
+Project("{F8CEDB64-61DE-F51C-A2FC-31299AC6CA1F}") = "ALGORHYTHM", "Assembly-CSharp-Editor.csproj", "{5DB4FF65-05D1-FBCB-F85A-2545E8860A9D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,11 +15,15 @@ Global
 		{1AD5EE6C-1BCC-2237-64C8-14FCF3120022}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AD5EE6C-1BCC-2237-64C8-14FCF3120022}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AD5EE6C-1BCC-2237-64C8-14FCF3120022}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DB4FF65-05D1-FBCB-F85A-2545E8860A9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DB4FF65-05D1-FBCB-F85A-2545E8860A9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DB4FF65-05D1-FBCB-F85A-2545E8860A9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DB4FF65-05D1-FBCB-F85A-2545E8860A9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																																																																																					GlobalSection(MonoDevelopProperties) = preSolution
+																																																																																																																								GlobalSection(MonoDevelopProperties) = preSolution
 =======
 																																																																			GlobalSection(MonoDevelopProperties) = preSolution
 >>>>>>> origin/master

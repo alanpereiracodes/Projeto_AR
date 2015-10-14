@@ -71,6 +71,12 @@
      <Compile Include="Assets\Scripts\RemoveBotaoLista.cs" />
      <Compile Include="Assets\Scripts\SelecaodeFase.cs" />
      <Compile Include="Assets\Scripts\Tile.cs" />
+     <Compile Include="Assets\Scripts\UI\ComboBox\ComboBoxItemList.cs" />
+     <Compile Include="Assets\Scripts\UI\ComboBox\StyledComboBox.cs" />
+     <Compile Include="Assets\Scripts\UI\ComboBox\StyledComboBoxPrefab.cs" />
+     <Compile Include="Assets\Scripts\UI\ComboBox\StyledItem.cs" />
+     <Compile Include="Assets\Scripts\UI\ComboBox\StyledItemButtonImageText.cs" />
+     <Compile Include="Assets\Scripts\UI\ComboBox\TestStyledComboBox.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -81,10 +87,10 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Data.SqliteClient">
- <HintPath>C:/Users/Wilson Oliveira/Documents/GitHub/Projeto_AR/ALGORHYTHM/Assets/Plugins/Mono.Data.SqliteClient.dll</HintPath>
+ <HintPath>C:/Users/Wilson Oliveira/Desktop/ALGORHYTHM/Assets/Plugins/Mono.Data.SqliteClient.dll</HintPath>
  </Reference>
  <Reference Include="System.Data">
- <HintPath>C:/Users/Wilson Oliveira/Documents/GitHub/Projeto_AR/ALGORHYTHM/Assets/Plugins/System.Data.dll</HintPath>
+ <HintPath>C:/Users/Wilson Oliveira/Desktop/ALGORHYTHM/Assets/Plugins/System.Data.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
