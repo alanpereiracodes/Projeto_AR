@@ -54,6 +54,8 @@ public class StyledComboBox : StyledItem
 			if (value >= 0 && value <= items.Count)
 			{
 				selectedIndex = value;
+				//nomebutton = items[value].GetText().ToString();
+				nomebutton = items[value].gameObject.GetComponentInChildren<Text>().text;
 				CreateMenuButton(items[selectedIndex]);
 			}
 
