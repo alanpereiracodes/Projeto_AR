@@ -12,6 +12,9 @@ public class ControladoraCadastroPerfil : MonoBehaviour {
 	public StyledComboBox inputSerieAluno;
 	public Toggle toggleMasc;
 	public Toggle toggleFemi;
+	public GameObject janelaMensagem;
+
+	private string mensagem;
 
 	// Use this for initialization
 	void Awake () 
@@ -25,9 +28,7 @@ public class ControladoraCadastroPerfil : MonoBehaviour {
 	public void SalvarJogar_OnClick()
 	{
 		Perfil novoPerfil = new Perfil();
-		
-		string mensagem = validardados ();
-		if(mensagem == "Validado com Sucesso")
+		if(ValidarCampos ())
 		{
 			if (toggleMasc.isOn)
 				novoPerfil.generoAluno = "Masculino";
@@ -41,38 +42,79 @@ public class ControladoraCadastroPerfil : MonoBehaviour {
 			novoPerfil.serieAluno = inputSerieAluno.nomebutton;
 
 			ControladorGeral.referencia.CriarJogoNovo (novoPerfil);
+			//Chama janela com a Mensagem de que foi cadastrado e redireciona para a tela da primeira Fase
+			janelaMensagem.GetComponent<JanelaDeMensagem>().mensagem.text = mensagem;
+			janelaMensagem.GetComponent<JanelaDeMensagem>().btnOk.onClick.RemoveAllListeners();
+			janelaMensagem.GetComponent<JanelaDeMensagem>().btnOk.onClick.AddListener(() => btnEntendiPassaFase_OnClick());
+			janelaMensagem.SetActive(true);
 			Debug.Log ("Jogo Criado e Salvo com Sucesso!");
 		}
 		else
 		{
+			//Chama Janela com o Erro na mensagem
+			janelaMensagem.GetComponent<JanelaDeMensagem>().mensagem.text = "Todos os campos são obrigatórios, ocorreu o seguinte problema:\n" + mensagem;
+			janelaMensagem.SetActive(true);
 			Debug.Log ("Todos os campos sao obrigatorios! " + mensagem);
 		}
 
 	}
 
-	public string validardados()
+	public bool ValidarCampos()
 	{
-		string mensagem;
+		mensagem = "";
 
-		try {
-			if (inputNomeAluno.text == "") {  
-				return mensagem = "Digite o Nome!";
+		try 
+		{
+			if (inputNomeAluno.text == "" || inputNomeAluno.text.StartsWith(" "))
+			{  
+				mensagem = "O campo nome precisa ser preenchido e deve começar com alguma letra!";
+				return false;
 			}
-			if (inputIdadeAluno.text != "") {
-				if (int.Parse (inputIdadeAluno.text) <= 7) {
-					return mensagem = "Idade Impropria!";
+			foreach(char c in inputNomeAluno.text)
+			{
+				if(!char.IsLetter(c) && c != ' ')
+				{
+					mensagem = "Nome só pode conter letras ou espaço!";
+					return false;
 				}
-			} else {	return mensagem = "Digite a Idade!";	}
-			if (toggleFemi.isOn == false && toggleMasc.isOn == false) {
-				return mensagem = "Selecione o Genero!";
-			} 
-			if (inputSerieAluno.nomebutton == "") {
-				return mensagem = "Selecione a Serie!";
 			}
-		} catch (System.Exception ex) {
-			return mensagem = "Idade permite apenas numeros!";
+			if (inputIdadeAluno.text != "") 
+			{
+				if (int.Parse (inputIdadeAluno.text) <= 7) 
+				{
+					mensagem = "Idade Imprópria!";
+					return false;
+				}
+			} 
+			else 
+			{	
+				mensagem = "Digite a Idade!";
+				return false;
+			}
+			if (toggleFemi.isOn == false && toggleMasc.isOn == false)
+			{
+				mensagem = "Selecione o Gênero!";
+				return false;
+			} 
+			if (inputSerieAluno.nomebutton == "") 
+			{
+				mensagem = "Selecione a Série!";
+				return false;
+			}
+		} 
+		catch
+		{
+			mensagem = "Idade permite apenas números!";
+			return false;
 		}
 
-		return mensagem = "Validado com Sucesso";
+		mensagem = "Cadastro efetuado com Sucesso!";
+		return true;
 	}
+
+	public void btnEntendiPassaFase_OnClick()
+	{
+		Application.LoadLevel("Fase 1");
+	}
+
 }

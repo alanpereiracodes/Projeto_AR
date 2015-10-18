@@ -18,6 +18,9 @@ public class EventosTelaTitulo : MonoBehaviour {
 	public GameObject aperteStart;
 	public GameObject botaoTelaToda;
 
+	//BGM
+	//public GameObject bgmTitulo;
+
 	public enum OpcoesTitulo
 	{
 		Novojogo,
@@ -33,6 +36,7 @@ public class EventosTelaTitulo : MonoBehaviour {
 
 	void Awake()
 	{
+		//DontDestroyOnLoad(bgmTitulo);
 		tempo = Time.time;
 	}
 
