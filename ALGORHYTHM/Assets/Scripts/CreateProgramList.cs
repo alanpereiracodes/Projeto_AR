@@ -33,9 +33,9 @@ public class CreateProgramList : MonoBehaviour {
 	public Sprite btnRetry;
 	public Sprite cubinhoVazio;
 	public Sprite cubinhoPreenchido;
+	public GameObject janelaPontuacao;
 
 	//public ScrollRect scroller;
-
 	//public static GameObject stContentPanel;
 	//public List<CommandButton> programList = new List<CommandButton>();
 	public List<Comando> listaPrograma = new List<Comando>();
@@ -43,14 +43,13 @@ public class CreateProgramList : MonoBehaviour {
 	void Awake() //for static use
 	{
 		//stContentPanel = contentPanel;
-		if (referencia == null)		
+		if (referencia == null)
 			//if not, set instance to this
-			referencia = this;		
+			referencia = this;	
 		//If instance already exists and it's not this:
 		else if (referencia != this)
 			//Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
-			Destroy(gameObject);  
-
+			Destroy(gameObject);
 	}
 
 	void Start()
@@ -63,13 +62,14 @@ public class CreateProgramList : MonoBehaviour {
 		ControladorGeral.referencia.myBtnRetry = btnRetry;
 		ControladorGeral.referencia.cubinhoVazio = cubinhoVazio;
 		ControladorGeral.referencia.cubinhoPreenchido = cubinhoPreenchido;
+		ControladorGeral.referencia.janelaFaseConcluida = janelaPontuacao;
 	}
 
 
 	
 	public void PopulateList(GameObject sampleButton)
 	{
-		if (!ControladorGeral.referencia.listaEmExecucao) 
+		if (!ControladorGeral.referencia.listaEmExecucao)
 		{
 		//	if (listaPrograma.Count < limiteLista) 
 		//	{
@@ -80,7 +80,6 @@ public class CreateProgramList : MonoBehaviour {
 				{
 					newButton.transform.SetParent (contentPanel);
 				}
-
 				//button.listNumber = programList.Count + 1;
 				//button.numberLabel.text = '#'+button.listNumber.ToString();
 				meuComando.numeroLista = listaPrograma.Count + 1;

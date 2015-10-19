@@ -1,0 +1,187 @@
+fileFormatVersion: 2
+guid: 2a012f93be9a1d842a0bc57cb41ed6f0
+timeCreated: 1445280694
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: ALGO-Stand-breathing-1px menor_0
+    21300002: ALGO-Stand-breathing-1px menor_1
+    21300004: ALGO-Stand-breathing-1px menor_2
+    21300006: ALGO-Stand-breathing-1px menor_3
+    21300008: ALGO-Stand-breathing-1px menor_4
+    21300010: ALGO-Stand-breathing-1px menor_5
+    21300012: ALGO-Stand-breathing-1px menor_6
+    21300014: ALGO-Stand-breathing-1px menor_7
+    21300016: ALGO-Stand-breathing-1px menor_8
+    21300018: ALGO-Stand-breathing-1px menor_9
+    21300020: ALGO-Stand-breathing-1px menor_10
+    21300022: ALGO-Stand-breathing-1px menor_11
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 60
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: ALGO-Stand-breathing-1px menor_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 344
+        width: 102
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ALGO-Stand-breathing-1px menor_1
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 344
+        width: 102
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ALGO-Stand-breathing-1px menor_2
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 344
+        width: 102
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ALGO-Stand-breathing-1px menor_3
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 344
+        width: 102
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ALGO-Stand-breathing-1px menor_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 172
+        width: 102
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ALGO-Stand-breathing-1px menor_5
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 172
+        width: 102
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ALGO-Stand-breathing-1px menor_6
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 172
+        width: 102
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ALGO-Stand-breathing-1px menor_7
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 172
+        width: 102
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ALGO-Stand-breathing-1px menor_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 102
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ALGO-Stand-breathing-1px menor_9
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 0
+        width: 102
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ALGO-Stand-breathing-1px menor_10
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 0
+        width: 102
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ALGO-Stand-breathing-1px menor_11
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 0
+        width: 102
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

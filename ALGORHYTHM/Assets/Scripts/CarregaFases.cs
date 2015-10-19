@@ -35,11 +35,20 @@ public class CarregaFases : MonoBehaviour {
 			{
 				obj.SetActive(false);
 			}
+			Button btn = obj.GetComponent<Button>();
+			btn.onClick.RemoveAllListeners();
+			int n = (ControladorGeral.referencia.jogoAtual.capituloAtual-1)*10+numeroFase;
+			btn.onClick.AddListener(() => CarregaFase("Fase "+n.ToString()));
+			Debug.Log (n);
 		}
 
 		//Debug.Log ("O Capitulo e: " + ControladorGeral.referencia.jogoAtual.capituloAtual + " e a Fase e: " + numeroFase);
 	}
 
+	public void CarregaFase(string fase)
+	{
+		Application.LoadLevel(fase);
+	}
 
 
 }

@@ -25,9 +25,11 @@ public class ControladorGeral : MonoBehaviour {
 	public Image myBtnExecutarImage;
 	public Sprite myBtnPlay;
 	public Sprite myBtnRetry;
+	public GameObject janelaFaseConcluida;
 
 	//Fase Atual
 	public Vector2 posicaoInicial;
+	//Direçao do personagem Inicial - a fazer
 	public Vector2 posicaoObjetivo;
 
 	//Referencias aos objetos da Selecao de fases--------------------------

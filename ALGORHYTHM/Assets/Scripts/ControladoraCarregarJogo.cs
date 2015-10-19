@@ -132,7 +132,7 @@ public class ControladoraCarregarJogo : MonoBehaviour
 		ControladorGeral.referencia.jogoAtual = jg;
 		ControladorGeral.referencia.perfilAtual = perf;
 		Debug.Log ("Capitulo Carregado: "+jg.capituloAtual);
-		Application.LoadLevel (1);
+		Application.LoadLevel (3);
 	}
 
 }

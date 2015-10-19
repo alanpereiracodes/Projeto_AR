@@ -39,7 +39,7 @@ public class CameraBtnEvents : MonoBehaviour {
 //			myCamera.transform.rotation = Quaternion.Euler(30, 315, 0);
 //			Debug.Log ("ok2");
 
-			myCameraSuporte.transform.position = Vector3.zero;
+			myCameraSuporte.transform.position = new Vector3(2.5f,0,0);
 			myCameraSuporte.transform.rotation = Quaternion.identity;
 			ControladorGeral.referencia.myPlayer.GetComponent<Player>().direcaoCamera = Player.Direction.Frente;
 			ControladorGeral.referencia.myPlayer.GetComponentInChildren<Animator>().SetInteger("direcao",1);
@@ -75,7 +75,7 @@ public class CameraBtnEvents : MonoBehaviour {
 		}
 
 		cameraYAxisRotation = temp;
-		Quaternion novaRotation = Quaternion.Euler (2.5f, cameraYAxisRotation, 0);
+		Quaternion novaRotation = Quaternion.Euler (0, cameraYAxisRotation, 0);
 
 		//myCameraSuporte.transform.rotation = novaRotation;
 		StartCoroutine(rotateObject (myCameraSuporte.transform.rotation, novaRotation, rotationTime));

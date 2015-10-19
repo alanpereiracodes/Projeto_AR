@@ -854,7 +854,6 @@ public class ExecuteProgramList : MonoBehaviour {
                 ControladorGeral.referencia.tabuleiroAtual.RecolocaObjetos();
 
 				//Reposicionar Jogador
-				//ControladorGeral.referencia.tabuleiroAtual.ProcuraTile (myPlayerStat.posicaoTabuleiro).objetosEmCima.Clear ();
 				Destroy (ControladorGeral.referencia.myPlayer);
 				Vector3 tempPosInicial = new Vector3 ();
 				Tile oTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile (ControladorGeral.referencia.posicaoInicial);
