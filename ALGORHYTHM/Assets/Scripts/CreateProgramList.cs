@@ -22,7 +22,7 @@ public class CreateProgramList : MonoBehaviour {
 	public static CreateProgramList referencia;
 
 	public Transform contentPanel;
-	public int limiteLista;
+	//public int limiteLista;
 
 	//UI Fase
 	public Text refLog;
@@ -50,6 +50,7 @@ public class CreateProgramList : MonoBehaviour {
 		else if (referencia != this)
 			//Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
 			Destroy(gameObject);  
+
 	}
 
 	void Start()
@@ -70,9 +71,8 @@ public class CreateProgramList : MonoBehaviour {
 	{
 		if (!ControladorGeral.referencia.listaEmExecucao) 
 		{
-			//if (programList.Count < limiteLista) 
-			if (listaPrograma.Count < limiteLista) 
-			{
+		//	if (listaPrograma.Count < limiteLista) 
+		//	{
 				GameObject newButton = Instantiate (sampleButton) as GameObject;
 				//CommandButton button = newButton.GetComponent <CommandButton>();
 				Comando meuComando = newButton.GetComponent<Comando> ();
@@ -87,9 +87,9 @@ public class CreateProgramList : MonoBehaviour {
 				//programList.Add (button);
 				listaPrograma.Add (meuComando);
 
-			} else
-				Debug.Log ("A Lista esta cheia!");
-		} 
+		//	} else
+		//		Debug.Log ("A Lista esta cheia!");
+		}
 		else 
 		{
 			Debug.Log ("A Lista de Programa ja esta em execuçao!!");

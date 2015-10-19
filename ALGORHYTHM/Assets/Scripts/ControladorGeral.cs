@@ -71,7 +71,7 @@ public class ControladorGeral : MonoBehaviour {
 		else if (referencia != this)
 			//Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
 			Destroy(gameObject);  
-		
+
 		//Sets this to not be destroyed when reloading scene
 		DontDestroyOnLoad(gameObject);
 		//Call the InitGame function to initialize the first level 

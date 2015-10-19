@@ -75,7 +75,7 @@ public class CameraBtnEvents : MonoBehaviour {
 		}
 
 		cameraYAxisRotation = temp;
-		Quaternion novaRotation = Quaternion.Euler (0, cameraYAxisRotation, 0);
+		Quaternion novaRotation = Quaternion.Euler (2.5f, cameraYAxisRotation, 0);
 
 		//myCameraSuporte.transform.rotation = novaRotation;
 		StartCoroutine(rotateObject (myCameraSuporte.transform.rotation, novaRotation, rotationTime));

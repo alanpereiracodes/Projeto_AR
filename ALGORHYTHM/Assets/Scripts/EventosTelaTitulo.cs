@@ -28,8 +28,8 @@ public class EventosTelaTitulo : MonoBehaviour {
 		Sair
 	};
 	
-	float intervaloEspera = 0.2f;
-	float tempo;
+	private float intervaloEspera = 0.2f;
+	private float tempo;
 	private bool menuHabilitado = false;
 
 	OpcoesTitulo opcaoAtual = OpcoesTitulo.Novojogo;

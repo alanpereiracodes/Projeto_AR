@@ -15,6 +15,8 @@ public class ControladoraCadastroPerfil : MonoBehaviour {
 	public GameObject janelaMensagem;
 
 	private string mensagem;
+	private float intervaloEspera = 0.2f;
+	private float tempo;
 
 	// Use this for initialization
 	void Awake () 
@@ -23,6 +25,39 @@ public class ControladoraCadastroPerfil : MonoBehaviour {
 		if (ControladorGeral.referencia == null)			
 			//Instantiate gameManager prefab
 			Instantiate(gameManager);
+		inputNomeAluno.Select();
+		tempo = Time.time;
+	}
+
+	void Update()
+	{
+		if(tempo < Time.time)
+		{
+
+			if(Input.GetKey(KeyCode.Escape))
+			{
+				tempo = Time.time + intervaloEspera;
+				Application.LoadLevel(0);
+			}
+			if(Input.GetButton("Submit"))
+			{
+				tempo = Time.time + intervaloEspera;
+				SalvarJogar_OnClick();
+			}
+			if(Input.GetKey(KeyCode.Tab))
+			{
+				tempo = Time.time + intervaloEspera;
+				Tabulacao();
+			}
+		}
+	}
+
+	public void Tabulacao()
+	{
+		if(!inputNomeAluno.isFocused && !inputIdadeAluno.isFocused)
+			inputNomeAluno.Select ();
+		else if(inputNomeAluno.isFocused)
+				inputIdadeAluno.Select ();
 	}
 
 	public void SalvarJogar_OnClick()
@@ -56,7 +91,6 @@ public class ControladoraCadastroPerfil : MonoBehaviour {
 			janelaMensagem.SetActive(true);
 			Debug.Log ("Todos os campos sao obrigatorios! " + mensagem);
 		}
-
 	}
 
 	public bool ValidarCampos()

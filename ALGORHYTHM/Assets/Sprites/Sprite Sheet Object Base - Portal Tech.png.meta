@@ -1,0 +1,203 @@
+fileFormatVersion: 2
+guid: 2e300fb1cbcc14642937da3a9daf9803
+timeCreated: 1445219034
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Sprite Sheet Object Base - Portal Tech_0
+    21300002: Sprite Sheet Object Base - Portal Tech_1
+    21300004: Sprite Sheet Object Base - Portal Tech_2
+    21300006: Sprite Sheet Object Base - Portal Tech_3
+    21300008: Sprite Sheet Object Base - Portal Tech_4
+    21300010: Sprite Sheet Object Base - Portal Tech_5
+    21300012: Sprite Sheet Object Base - Portal Tech_6
+    21300014: Sprite Sheet Object Base - Portal Tech_7
+    21300016: Sprite Sheet Object Base - Portal Tech_8
+    21300018: Sprite Sheet Object Base - Portal Tech_9
+    21300020: Sprite Sheet Object Base - Portal Tech_10
+    21300022: Sprite Sheet Object Base - Portal Tech_11
+    21300024: Sprite Sheet Object Base - Portal Tech_12
+    21300026: Sprite Sheet Object Base - Portal Tech_13
+    21300028: Sprite Sheet Object Base - Portal Tech_14
+    21300030: Sprite Sheet Object Base - Portal Tech_15
+    21300032: Sprite Sheet Object Base - Portal Tech_16
+    21300034: Sprite Sheet Object Base - Portal Tech_17
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 80
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Sprite Sheet Object Base - Portal Tech_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 342
+        width: 100
+        height: 120
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite Sheet Object Base - Portal Tech_1
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 342
+        width: 100
+        height: 120
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite Sheet Object Base - Portal Tech_2
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 342
+        width: 100
+        height: 120
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite Sheet Object Base - Portal Tech_3
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 342
+        width: 100
+        height: 120
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite Sheet Object Base - Portal Tech_4
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 342
+        width: 100
+        height: 120
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite Sheet Object Base - Portal Tech_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 170
+        width: 100
+        height: 120
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite Sheet Object Base - Portal Tech_11
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 170
+        width: 100
+        height: 120
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite Sheet Object Base - Portal Tech_12
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 170
+        width: 100
+        height: 120
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite Sheet Object Base - Portal Tech_13
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 169
+        width: 100
+        height: 120
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite Sheet Object Base - Portal Tech_14
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 169
+        width: 100
+        height: 120
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite Sheet Object Base - Portal Tech_15
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 0
+        width: 100
+        height: 116
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite Sheet Object Base - Portal Tech_16
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 0
+        width: 100
+        height: 117
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Sprite Sheet Object Base - Portal Tech_17
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 0
+        width: 100
+        height: 116
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

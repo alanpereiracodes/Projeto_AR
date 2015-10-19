@@ -14,6 +14,8 @@ public class ControladoraCarregarJogo : MonoBehaviour
 
 	//Banco
 	private ConexaoBanco banco;
+	private float intervaloEspera = 0.2f;
+	private float tempo;
 
 	// Use this for initialization
 	void Awake ()
@@ -24,6 +26,20 @@ public class ControladoraCarregarJogo : MonoBehaviour
 			//Instantiate gameManager prefab
 			Instantiate(gameManager);
 		CarregaJogosSalvos();
+		tempo = Time.time;
+	}
+
+	void Update()
+	{
+		if(tempo < Time.time)
+		{
+			
+			if(Input.GetKey(KeyCode.Escape))
+			{
+				tempo = Time.time + intervaloEspera;
+				Application.LoadLevel(0);
+			}
+		}
 	}
 
 	void CarregaJogosSalvos()
