@@ -34,17 +34,17 @@ public class ControladoraCadastroPerfil : MonoBehaviour {
 		if(tempo < Time.time)
 		{
 
-			if(Input.GetKey(KeyCode.Escape))
+			if(Input.GetKey(KeyCode.Escape) && !janelaMensagem.activeInHierarchy)
 			{
 				tempo = Time.time + intervaloEspera;
 				Application.LoadLevel(0);
 			}
-			if(Input.GetButton("Submit"))
+			if(Input.GetButton("Submit") && !janelaMensagem.activeInHierarchy)
 			{
 				tempo = Time.time + intervaloEspera;
 				SalvarJogar_OnClick();
 			}
-			if(Input.GetKey(KeyCode.Tab))
+			if(Input.GetKey(KeyCode.Tab) && !janelaMensagem.activeInHierarchy)
 			{
 				tempo = Time.time + intervaloEspera;
 				Tabulacao();
@@ -135,7 +135,7 @@ public class ControladoraCadastroPerfil : MonoBehaviour {
 				mensagem = "Selecione a Série!";
 				return false;
 			}
-		} 
+		}
 		catch
 		{
 			mensagem = "Idade permite apenas números!";

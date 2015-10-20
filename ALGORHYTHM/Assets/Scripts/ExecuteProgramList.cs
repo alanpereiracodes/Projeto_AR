@@ -14,6 +14,8 @@ public class ExecuteProgramList : MonoBehaviour {
 	private Animator myPlayAnim;
 	private float alturaPulo;
 
+	ControladorGeral cGeral;
+
 	//Notas:
 	//Awake acontece quando um GameObject e criado.
 	//Start acontece quando um GameObject e iniciado.
@@ -21,9 +23,11 @@ public class ExecuteProgramList : MonoBehaviour {
 	//Acontece depois do Awake, dando tempo de a referencia do Player ser atribuida!
 	void Start()
 	{
-		myPlayer = ControladorGeral.referencia.myPlayer;
+		cGeral = ControladorGeral.referencia;
+		myPlayer = cGeral.myPlayer;
 		myPlayerStat = myPlayer.GetComponent<Player> ();
 		myPlayAnim = myPlayer.GetComponentInChildren<Animator>();
+
 	}
 	
 	//Funçao para executar a Lista de Programa! Essa funçao e chamada pelo botao "Executar Programa" na UI do jogo.
@@ -114,7 +118,7 @@ public class ExecuteProgramList : MonoBehaviour {
 
 		if(direcao == Player.Direction.Frente)
 		{
-			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y+1));
+			Tile novoTile = cGeral.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y+1));
 			if(novoTile != null)
 			{
 				List<Objeto> novosObjetos = new List<Objeto>();
@@ -138,7 +142,7 @@ public class ExecuteProgramList : MonoBehaviour {
 				}
 				if(novoTile.andavel && passavel)
 				{
-					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
+					Tile velhoTile = cGeral.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
 					if(velhoTile != null && velhoTile.altura == novoTile.altura)
 					{
 						velhoTile.objetosEmCima.Remove(myPlayer);
@@ -151,7 +155,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		}
 		if(direcao == Player.Direction.Tras)
 		{
-			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y-1));
+			Tile novoTile = cGeral.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y-1));
 			if(novoTile != null)
 			{
 				List<Objeto> novosObjetos = new List<Objeto>();
@@ -175,7 +179,7 @@ public class ExecuteProgramList : MonoBehaviour {
 				}
 				if(novoTile.andavel && passavel)
 				{
-					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
+					Tile velhoTile = cGeral.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
 					if(velhoTile != null && velhoTile.altura == novoTile.altura)
 					{
 						velhoTile.objetosEmCima.Remove(myPlayer);
@@ -188,7 +192,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		}
 		if(direcao == Player.Direction.Direita)
 		{
-			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x-1, myPlayerStat.posicaoTabuleiro.y));
+			Tile novoTile = cGeral.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x-1, myPlayerStat.posicaoTabuleiro.y));
 			if(novoTile != null)
 			{
 				List<Objeto> novosObjetos = new List<Objeto>();
@@ -213,7 +217,7 @@ public class ExecuteProgramList : MonoBehaviour {
 
 				if(novoTile.andavel && passavel)
 				{
-					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
+					Tile velhoTile = cGeral.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
 					if(velhoTile != null && velhoTile.altura == novoTile.altura)
 					{
 						velhoTile.objetosEmCima.Remove(myPlayer);
@@ -226,7 +230,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		}
 		if(direcao == Player.Direction.Esquerda)
 		{
-			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x+1, myPlayerStat.posicaoTabuleiro.y));
+			Tile novoTile = cGeral.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x+1, myPlayerStat.posicaoTabuleiro.y));
 			if(novoTile != null)
 			{
 				List<Objeto> novosObjetos = new List<Objeto>();
@@ -250,7 +254,7 @@ public class ExecuteProgramList : MonoBehaviour {
 				}
 				if(novoTile.andavel && passavel)
 				{
-					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
+					Tile velhoTile = cGeral.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
 					if(velhoTile != null && velhoTile.altura == novoTile.altura)
 					{
 						velhoTile.objetosEmCima.Remove(myPlayer);
@@ -262,10 +266,10 @@ public class ExecuteProgramList : MonoBehaviour {
 			}
 		}
 		EnviaMensagem("\n<b>Algo</b> não andou!");
-		if (ControladorGeral.referencia.myScroll != null)
+		if (cGeral.myScroll != null)
 		{
-			//Debug.Log (ControladorGeral.referencia.myScroll.value.ToString ());
-			ControladorGeral.referencia.myScroll.value = 0;
+			//Debug.Log (cGeral.myScroll.value.ToString ());
+			cGeral.myScroll.value = 0;
 		}
 		Debug.Log ("Não andou!");
 		return false;
@@ -377,7 +381,7 @@ public class ExecuteProgramList : MonoBehaviour {
 
 		if(direcao == Player.Direction.Frente)
 		{
-			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y+1));
+			Tile novoTile = cGeral.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y+1));
 			if(novoTile != null)
 			{
 
@@ -403,7 +407,7 @@ public class ExecuteProgramList : MonoBehaviour {
 
 				if(novoTile.andavel && passavel)
 				{
-					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
+					Tile velhoTile = cGeral.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
 					if(velhoTile != null && (velhoTile.altura == novoTile.altura+1 || velhoTile.altura == novoTile.altura-1))
 					{
 						if(velhoTile.altura < novoTile.altura)
@@ -420,7 +424,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		}
 		if(direcao == Player.Direction.Tras)
 		{
-			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y-1));
+			Tile novoTile = cGeral.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y-1));
 			if(novoTile != null)
 			{
 				
@@ -446,7 +450,7 @@ public class ExecuteProgramList : MonoBehaviour {
 				
 				if(novoTile.andavel && passavel)
 				{
-					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
+					Tile velhoTile = cGeral.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
 					if(velhoTile != null && (velhoTile.altura == novoTile.altura+1 || velhoTile.altura == novoTile.altura-1))
 					{
 						if(velhoTile.altura < novoTile.altura)
@@ -463,7 +467,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		}
 		if(direcao == Player.Direction.Direita)
 		{
-			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x-1, myPlayerStat.posicaoTabuleiro.y));
+			Tile novoTile = cGeral.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x-1, myPlayerStat.posicaoTabuleiro.y));
 			if(novoTile != null)
 			{
 				
@@ -489,7 +493,7 @@ public class ExecuteProgramList : MonoBehaviour {
 				
 				if(novoTile.andavel && passavel)
 				{
-					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
+					Tile velhoTile = cGeral.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
 					if(velhoTile != null && (velhoTile.altura == novoTile.altura+1 || velhoTile.altura == novoTile.altura-1))
 					{
 						if(velhoTile.altura < novoTile.altura)
@@ -506,7 +510,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		}
 		if(direcao == Player.Direction.Esquerda)
 		{
-			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x+1, myPlayerStat.posicaoTabuleiro.y));
+			Tile novoTile = cGeral.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x+1, myPlayerStat.posicaoTabuleiro.y));
 			if(novoTile != null)
 			{
 				
@@ -532,7 +536,7 @@ public class ExecuteProgramList : MonoBehaviour {
 				
 				if(novoTile.andavel && passavel)
 				{
-					Tile velhoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
+					Tile velhoTile = cGeral.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
 					if(velhoTile != null && (velhoTile.altura == novoTile.altura+1 || velhoTile.altura == novoTile.altura-1))
 					{
 						if(velhoTile.altura < novoTile.altura)
@@ -621,7 +625,7 @@ public class ExecuteProgramList : MonoBehaviour {
 				myPlayerStat.objetoEmMaos = objetoFrente.gameObject;
 				EnviaMensagem("\n<b>Algo</b>, interagiu com um " + objetoFrente.nome.ToString());
 				Debug.Log ("Algo, interagiu com um " + objetoFrente.nome.ToString());
-				Tile tempTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(objetoFrente.posicaoTabuleiro);
+				Tile tempTile = cGeral.tabuleiroAtual.ProcuraTile(objetoFrente.posicaoTabuleiro);
 				tempTile.objetosEmCima.Remove(objetoFrente.gameObject);
 				objetoFrente.gameObject.SetActive (false);
 				//Destroy (objetoFrente.gameObject);
@@ -642,7 +646,7 @@ public class ExecuteProgramList : MonoBehaviour {
 
 						myPlayerStat.objetoEmMaos.SetActive(true);
 						myPlayerStat.objetoEmMaos = null;
-						ControladorGeral.referencia.PassouFase();
+						cGeral.PassouFase();
 					}
 				}
 				else
@@ -675,7 +679,7 @@ public class ExecuteProgramList : MonoBehaviour {
 
 		if(direcao == Player.Direction.Frente)
 		{
-			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y+1));
+			Tile novoTile = cGeral.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y+1));
 			if(novoTile != null)
 			{
 				List<Objeto> novosObjetos = new List<Objeto>();
@@ -699,7 +703,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		}
 		if(direcao == Player.Direction.Tras)
 		{
-			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y-1));
+			Tile novoTile = cGeral.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y-1));
 			if(novoTile != null)
 			{
 				List<Objeto> novosObjetos = new List<Objeto>();
@@ -723,7 +727,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		}
 		if(direcao == Player.Direction.Direita)
 		{
-			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x-1, myPlayerStat.posicaoTabuleiro.y));
+			Tile novoTile = cGeral.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x-1, myPlayerStat.posicaoTabuleiro.y));
 			if(novoTile != null)
 			{
 				List<Objeto> novosObjetos = new List<Objeto>();
@@ -747,7 +751,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		}
 		if(direcao == Player.Direction.Esquerda)
 		{
-			Tile novoTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x+1, myPlayerStat.posicaoTabuleiro.y));
+			Tile novoTile = cGeral.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x+1, myPlayerStat.posicaoTabuleiro.y));
 			if(novoTile != null)
 			{
 				List<Objeto> novosObjetos = new List<Objeto>();
@@ -781,11 +785,11 @@ public class ExecuteProgramList : MonoBehaviour {
 
 	public void EnviaMensagem(string mensagem)
 	{
-		ControladorGeral.referencia.myLog.text += mensagem;
-		if (ControladorGeral.referencia.myScroll != null)
+		cGeral.myLog.text += mensagem;
+		if (cGeral.myScroll != null)
 		{
-			//Debug.Log (ControladorGeral.referencia.myScroll.value.ToString ());
-			ControladorGeral.referencia.myScroll.value = 0;
+			//Debug.Log (cGeral.myScroll.value.ToString ());
+			cGeral.myScroll.value = 0;
 		}
 	}
 
@@ -798,11 +802,11 @@ public class ExecuteProgramList : MonoBehaviour {
 	{
 		if (CreateProgramList.referencia.listaPrograma != null && CreateProgramList.referencia.listaPrograma.Count > 0) 
 		{
-			if (!ControladorGeral.referencia.retry) 
+			if (!cGeral.retry) 
 			{
-				if (!ControladorGeral.referencia.listaEmExecucao) 
+				if (!cGeral.listaEmExecucao) 
 				{
-					ControladorGeral.referencia.listaEmExecucao = true;
+					cGeral.listaEmExecucao = true;
 						//foreach (CommandButton comando in lista) {
 						foreach (Comando comando in lista)
 						{
@@ -838,9 +842,9 @@ public class ExecuteProgramList : MonoBehaviour {
 								break;
 							}
 						}
-						ControladorGeral.referencia.retry = true;
-						ControladorGeral.referencia.myBtnExecutarImage.sprite = ControladorGeral.referencia.myBtnRetry;
-						ControladorGeral.referencia.listaEmExecucao = false;
+						cGeral.retry = true;
+						cGeral.myBtnExecutarImage.sprite = cGeral.myBtnRetry;
+						cGeral.listaEmExecucao = false;
 					yield return null;
 				}
 				else {
@@ -851,30 +855,30 @@ public class ExecuteProgramList : MonoBehaviour {
 			else 
 			{
                 //Recoloca Os Objetos
-                ControladorGeral.referencia.tabuleiroAtual.RecolocaObjetos();
+                cGeral.tabuleiroAtual.RecolocaObjetos();
 
 				//Reposicionar Jogador
-				Destroy (ControladorGeral.referencia.myPlayer);
+				Destroy (cGeral.myPlayer);
 				Vector3 tempPosInicial = new Vector3 ();
-				Tile oTile = ControladorGeral.referencia.tabuleiroAtual.ProcuraTile (ControladorGeral.referencia.posicaoInicial);
+				Tile oTile = cGeral.tabuleiroAtual.ProcuraTile (cGeral.posicaoInicial);
 				if (oTile != null) 
 				{
 					tempPosInicial = oTile.transform.position;
 					tempPosInicial.y = 1.5f + oTile.altura * 0.5f;
 				}
-				ControladorGeral.referencia.myPlayer = (GameObject)Instantiate (playerPrefab, tempPosInicial/*new Vector3 (-5.5f, 1.3f, 4.5f)*/, Quaternion.identity);
-				ControladorGeral.referencia.myPlayer.GetComponent<Player> ().posicaoTabuleiro = ControladorGeral.referencia.posicaoInicial;
+				cGeral.myPlayer = (GameObject)Instantiate (playerPrefab, tempPosInicial/*new Vector3 (-5.5f, 1.3f, 4.5f)*/, Quaternion.identity);
+				cGeral.myPlayer.GetComponent<Player> ().posicaoTabuleiro = cGeral.posicaoInicial;
 				if (oTile != null)
-					oTile.objetosEmCima.Add (ControladorGeral.referencia.myPlayer);
-				ControladorGeral.referencia.retry = false;
-				ControladorGeral.referencia.myBtnExecutarImage.sprite = ControladorGeral.referencia.myBtnPlay;
+					oTile.objetosEmCima.Add (cGeral.myPlayer);
+				cGeral.retry = false;
+				cGeral.myBtnExecutarImage.sprite = cGeral.myBtnPlay;
 
-				myPlayer = ControladorGeral.referencia.myPlayer;
+				myPlayer = cGeral.myPlayer;
 				myPlayerStat = myPlayer.GetComponent<Player> ();
 				myPlayAnim = myPlayer.GetComponentInChildren<Animator> ();
 
 				//Reinicia a Camera
-				ControladorGeral.referencia.cameraEventos.SetCameraToDefault();
+				cGeral.cameraEventos.SetCameraToDefault();
 
 				//Zerar Contagem Pontuaçao da Fase
 			}

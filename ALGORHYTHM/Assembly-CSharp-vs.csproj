@@ -64,6 +64,7 @@
      <Compile Include="Assets\Scripts\ExecuteProgramList.cs" />
      <Compile Include="Assets\Scripts\Fase.cs" />
      <Compile Include="Assets\Scripts\JanelaDeMensagem.cs" />
+     <Compile Include="Assets\Scripts\JanelaPassouFase.cs" />
      <Compile Include="Assets\Scripts\Jogo.cs" />
      <Compile Include="Assets\Scripts\LookToCamera.cs" />
      <Compile Include="Assets\Scripts\Objeto.cs" />

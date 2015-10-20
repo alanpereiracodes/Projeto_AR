@@ -31,6 +31,10 @@ public class ControladorGeral : MonoBehaviour {
 	public Vector2 posicaoInicial;
 	//Direçao do personagem Inicial - a fazer
 	public Vector2 posicaoObjetivo;
+	public int numeroComandosIdeal; //para pontuaçao
+
+	public int numeroComandos;
+	public int numeroRetries;
 
 	//Referencias aos objetos da Selecao de fases--------------------------
 	//Esses atributos podem ser encontrados na variavel Jogo Atual!! 
@@ -62,6 +66,18 @@ public class ControladorGeral : MonoBehaviour {
 	private ArrayList columnValues;
 	
 	//===================== INICIO ===============================
+
+	void Update()
+	{
+		if(tabuleiroAtual != null && myPlayer != null && posicaoObjetivo != null && !janelaFaseConcluida.activeInHierarchy)
+		{
+			if(myPlayer.GetComponent<Player>().posicaoTabuleiro == posicaoObjetivo)
+			{
+				//PassouDeFase
+				janelaFaseConcluida.SetActive(true);
+			}
+		}
+	}
 
 	// Use this for initialization
 	void Awake () {
