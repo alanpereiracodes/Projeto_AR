@@ -21,6 +21,7 @@ public class ControladorGeral : MonoBehaviour {
 	public Scrollbar myScroll;
 	public Text myTituloFase;
 	public int faseAtual;
+	public int capituloAtual;
 	public bool retry = false;
 	public Image myBtnExecutarImage;
 	public Sprite myBtnPlay;
@@ -35,6 +36,7 @@ public class ControladorGeral : MonoBehaviour {
 
 	public int numeroComandos;
 	public int numeroRetries;
+	public int pontuacao;
 
 	//Referencias aos objetos da Selecao de fases--------------------------
 	//Esses atributos podem ser encontrados na variavel Jogo Atual!! 
@@ -66,21 +68,8 @@ public class ControladorGeral : MonoBehaviour {
 	private ArrayList columnValues;
 	
 	//===================== INICIO ===============================
-
-	void Update()
+	void Awake () 
 	{
-		if(tabuleiroAtual != null && myPlayer != null && posicaoObjetivo != null && !janelaFaseConcluida.activeInHierarchy)
-		{
-			if(myPlayer.GetComponent<Player>().posicaoTabuleiro == posicaoObjetivo)
-			{
-				//PassouDeFase
-				janelaFaseConcluida.SetActive(true);
-			}
-		}
-	}
-
-	// Use this for initialization
-	void Awake () {
 		//Check if instance already exists
 		if (referencia == null)	
 			//if not, set instance to this
@@ -102,6 +91,43 @@ public class ControladorGeral : MonoBehaviour {
         banco = null;
     }
 
+	void Update()
+	{
+		if (tabuleiroAtual != null && myPlayer != null && posicaoObjetivo != null && !janelaFaseConcluida.activeInHierarchy) {
+			if (myPlayer.GetComponent<Player> ().posicaoTabuleiro == posicaoObjetivo) {
+				if (numeroRetries > 0)
+					pontuacao = 1;
+				else 
+				{
+					if (numeroComandos > numeroComandosIdeal)
+						pontuacao = 2;
+					else 
+					{
+						pontuacao = 3;
+					}
+				}
+				Debug.Log (pontuacao);
+				//PassouDeFase
+				retry = false;
+				listaEmExecucao = false;
+
+				JanelaPassouFase jan = janelaFaseConcluida.GetComponent<JanelaPassouFase> ();
+				jan.PreencheCubos (pontuacao, capituloAtual.ToString () + " - " + faseAtual.ToString ()); //Apagado 303030FF Ligado FFFFFFFF
+				jan.btnOk.onClick.RemoveAllListeners ();
+				jan.btnAgain.onClick.RemoveAllListeners ();
+
+				jan.btnOk.onClick.AddListener (() => PassaFase (capituloAtual, faseAtual + 1));
+				jan.btnAgain.onClick.AddListener (() => RecarregaFase ());
+				
+				
+				janelaFaseConcluida.SetActive (true);
+				//toca animaçao
+			}
+		} 
+	}
+
+
+	#region BancoDados
 	public void CriarTabelas ()
 	{
 		//Criar/Verifica Existencia da tabela Perfil
@@ -265,7 +291,21 @@ public class ControladorGeral : MonoBehaviour {
 		banco.FecharBanco();
 
 	}
+	#endregion
 
+	public void PassaFase(int cap, int fase)
+	{
+		//IF fase != Ultima Fase
+		int contaFase = ((cap-1) * 10) + fase;
+		Debug.Log (contaFase);
+		Application.LoadLevel ("Fase " + contaFase);
+
+	}
+
+	public void RecarregaFase()
+	{
+		Application.LoadLevel (Application.loadedLevelName);
+	}
 
 	//=========================================
 

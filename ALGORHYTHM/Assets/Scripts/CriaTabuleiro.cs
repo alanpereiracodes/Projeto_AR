@@ -53,13 +53,9 @@ public class CriaTabuleiro : MonoBehaviour {
 	//Lista para armazenar a informaçao de cada objeto gerado, exemplo:
 	//Suas coordenadas, seu tipo, se e interativo, etc
 	public List<List<Objeto>> mapaObjetosGerado;
+
 	//Uma variavel para armazenar o nosso tabuleiro
 	private Transform meuTabuleiro;                      
-	//O metodo Start eh chamado assim que o objeto a qual o Script esta vinculado eh inicializado.
-	void Start () {	
-		//Gera o Mapa
-		//GeraMapa();
-	}
 
 	public void GeraMapa()
 	{

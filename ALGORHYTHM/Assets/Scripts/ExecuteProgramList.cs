@@ -800,6 +800,10 @@ public class ExecuteProgramList : MonoBehaviour {
 	//IEnumerator ExecutarLista(List<CommandButton> lista)
 	IEnumerator ExecutarLista(List<Comando> lista)
 	{
+
+		cGeral.numeroComandos = lista.Count;
+		Debug.Log ("numero comandos: "+cGeral.numeroComandos);
+		Debug.Log ("numero retries: "+cGeral.numeroRetries);
 		if (CreateProgramList.referencia.listaPrograma != null && CreateProgramList.referencia.listaPrograma.Count > 0) 
 		{
 			if (!cGeral.retry) 
@@ -855,6 +859,8 @@ public class ExecuteProgramList : MonoBehaviour {
 			else 
 			{
                 //Recoloca Os Objetos
+				cGeral.numeroRetries++;
+				Debug.Log ("numero retries: "+cGeral.numeroRetries);
                 cGeral.tabuleiroAtual.RecolocaObjetos();
 
 				//Reposicionar Jogador

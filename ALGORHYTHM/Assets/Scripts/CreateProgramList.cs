@@ -65,6 +65,18 @@ public class CreateProgramList : MonoBehaviour {
 		ControladorGeral.referencia.janelaFaseConcluida = janelaPontuacao;
 	}
 
+	public void RecarregaUI()
+	{
+		ControladorGeral.referencia.myLog = refLog;
+		ControladorGeral.referencia.myScroll = refScroll;
+		ControladorGeral.referencia.myTituloFase = tituloFase;
+		ControladorGeral.referencia.myBtnExecutarImage = btnExecutarImage;
+		ControladorGeral.referencia.myBtnPlay = btnPlay;
+		ControladorGeral.referencia.myBtnRetry = btnRetry;
+		ControladorGeral.referencia.cubinhoVazio = cubinhoVazio;
+		ControladorGeral.referencia.cubinhoPreenchido = cubinhoPreenchido;
+		ControladorGeral.referencia.janelaFaseConcluida = janelaPontuacao;
+	}
 
 	
 	public void PopulateList(GameObject sampleButton)

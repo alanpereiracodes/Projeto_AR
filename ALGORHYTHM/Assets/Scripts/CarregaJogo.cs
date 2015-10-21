@@ -6,12 +6,14 @@ using System.Collections.Generic;
 public class CarregaJogo : MonoBehaviour {
 
 	public string tituloFase;
-	public GameObject gameManager;          //GameManager prefab to instantiate.
+	public GameObject gameManager; //GameManager prefab to instantiate.
 	public GameObject myPlayer;
 	public Vector2 posicaoPlayer;
 	public Vector2 posicaoObjetivo;
+	public int numeroComandos; //numero de comandos ideal encontrado para resolver a fase, Usado para ver a Pontuaçao
 	
 	public int numeroFase;
+	public int capituloFase;
 	//public int tipoObjetivo;
 
 	private CriaTabuleiro tabuleiroScript;
@@ -53,27 +55,20 @@ public class CarregaJogo : MonoBehaviour {
 
     void Start()
     {
+		Debug.Log ("vai carregar "+tituloFase);
+		CreateProgramList.referencia.RecarregaUI ();
         ControladorGeral.referencia.myTituloFase.text = tituloFase;
+		ControladorGeral.referencia.numeroComandosIdeal = numeroComandos;
+		ControladorGeral.referencia.faseAtual = numeroFase;
+		ControladorGeral.referencia.capituloAtual = capituloFase;
+		ControladorGeral.referencia.numeroComandos = 0;
+		ControladorGeral.referencia.numeroRetries = 0;
+		ControladorGeral.referencia.retry = false;
+		ControladorGeral.referencia.listaEmExecucao = false;
+		Debug.Log ("carregou");
+
     }
 
-	void Update()
-	{
-		//switch (tipo Objetivo)
-		ChecarObjetivo();
-	}
-
-	void ChecarObjetivo() //Consiste no Jogador apenas chegar ao local do objetivo.
-	{
-		if (ControladorGeral.referencia.myPlayer.GetComponent<Player> ().posicaoTabuleiro == posicaoObjetivo) 
-		{
-			//Ativa Janela de que passou de fase.
-		}
-	}
-
-//	void ChecaObjetivo2() //Consiste no Jogador colocar os Cubos em todos os Altares e ai sim ir para um lugar.
-//	{
-//
-//	}
 
 }
 

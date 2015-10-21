@@ -33,21 +33,29 @@ public class ControladoraCadastroPerfil : MonoBehaviour {
 	{
 		if(tempo < Time.time)
 		{
+			if((Input.GetButton("Submit") && janelaMensagem.activeInHierarchy) || (Input.GetButton("Cancel") && janelaMensagem.activeInHierarchy) )
+			{
+				tempo = Time.time + intervaloEspera;
+				janelaMensagem.SetActive (false);
+			}
 
-			if(Input.GetKey(KeyCode.Escape) && !janelaMensagem.activeInHierarchy)
+			else 
 			{
-				tempo = Time.time + intervaloEspera;
-				Application.LoadLevel(0);
-			}
-			if(Input.GetButton("Submit") && !janelaMensagem.activeInHierarchy)
-			{
-				tempo = Time.time + intervaloEspera;
-				SalvarJogar_OnClick();
-			}
-			if(Input.GetKey(KeyCode.Tab) && !janelaMensagem.activeInHierarchy)
-			{
-				tempo = Time.time + intervaloEspera;
-				Tabulacao();
+				if(Input.GetButton("Cancel") && !janelaMensagem.activeInHierarchy)
+				{
+					tempo = Time.time + intervaloEspera;
+					Application.LoadLevel(0);
+				}
+				if(Input.GetButton("Submit") && !janelaMensagem.activeInHierarchy)
+				{
+					tempo = Time.time + intervaloEspera;
+					SalvarJogar_OnClick();
+				}
+				if(Input.GetKey(KeyCode.Tab) && !janelaMensagem.activeInHierarchy)
+				{
+					tempo = Time.time + intervaloEspera;
+					Tabulacao();
+				}
 			}
 		}
 	}
