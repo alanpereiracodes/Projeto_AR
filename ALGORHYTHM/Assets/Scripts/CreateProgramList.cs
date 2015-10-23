@@ -34,6 +34,7 @@ public class CreateProgramList : MonoBehaviour {
 	public Sprite cubinhoVazio;
 	public Sprite cubinhoPreenchido;
 	public GameObject janelaPontuacao;
+	public GameObject janelaOpcao;
 
 	//public ScrollRect scroller;
 	//public static GameObject stContentPanel;
@@ -133,6 +134,17 @@ public class CreateProgramList : MonoBehaviour {
 		{
 			//Debug.Log (ControladorGeral.referencia.myScroll.value.ToString ());
 			ControladorGeral.referencia.myScroll.value = 0;
+		}
+	}
+
+	public void AbreOption()
+	{
+		if (!janelaOpcao.activeInHierarchy) {
+			janelaOpcao.SetActive (true);
+		} 
+		else
+		{
+			janelaOpcao.SetActive (false);
 		}
 	}
 
