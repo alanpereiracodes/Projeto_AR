@@ -45,11 +45,13 @@ public class RemoveBotaoLista : MonoBehaviour {
 			else 
 			{
 				EnviaMensagem ("\nNão foi possível remover o Comando porque a lista esta em execução.");
+				EnviaCodigo ("\nErro: if(lista.execucao){ retorno false;}");
 			}
 		}
 		else 
 		{
 			EnviaMensagem ("\nReinicie a Fase antes de remover o Comando.");
+			EnviaCodigo ("\nErro: if(!fase.reiniciada){ retorno false;}");
 		}
 	}
 
@@ -60,6 +62,16 @@ public class RemoveBotaoLista : MonoBehaviour {
 		{
 			//Debug.Log (ControladorGeral.referencia.myScroll.value.ToString ());
 			ControladorGeral.referencia.myScroll.value = 0;
+		}
+	}
+
+	public void EnviaCodigo(string mensagem)
+	{
+		ControladorGeral.referencia.myLogAvanc.text += mensagem;
+		if (ControladorGeral.referencia.myScrollAvanc != null)
+		{
+			//Debug.Log (ControladorGeral.referencia.myScroll.value.ToString ());
+			ControladorGeral.referencia.myScrollAvanc.value = 0;
 		}
 	}
 }

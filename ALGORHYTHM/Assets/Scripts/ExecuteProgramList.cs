@@ -347,6 +347,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		}
 		//MudaSpriteDeAcordoComAPosicao
 		EnviaMensagem("\n<b>Algo</b> girou para " + myPlayerStat.direcaoGlobal.ToString ());
+		EnviaCodigo("\n<b>Algo</b>.direcao = direcao." + myPlayerStat.direcaoGlobal.ToString ()+";");
 		Debug.Log ("Girou para "+myPlayerStat.direcaoGlobal.ToString());
 		//Muda Animaçao
 			//switch(myPlayerStat.direcaoGlobal)
@@ -552,6 +553,7 @@ public class ExecuteProgramList : MonoBehaviour {
 			}
 		}
 		EnviaMensagem("\n<b>Algo</b> não Pulou!");
+		EnviaCodigo("\nErro: posicao(x,y).naoAndavel = true;");
 		Debug.Log ("não Pulou!");
 		return false;
 	}
@@ -623,7 +625,8 @@ public class ExecuteProgramList : MonoBehaviour {
 			{
 			case Objeto.Tipo.ItemPegavel:
 				myPlayerStat.objetoEmMaos = objetoFrente.gameObject;
-				EnviaMensagem("\n<b>Algo</b>, interagiu com um " + objetoFrente.nome.ToString());
+				EnviaMensagem("\n<b>Algo</b>, pegou um " + objetoFrente.nome.ToString());
+				EnviaCodigo("\n<b>Algo</b>.objetoEmMaos = " + objetoFrente.nome.ToString()+";");
 				Debug.Log ("Algo, interagiu com um " + objetoFrente.nome.ToString());
 				Tile tempTile = cGeral.tabuleiroAtual.ProcuraTile(objetoFrente.posicaoTabuleiro);
 				tempTile.objetosEmCima.Remove(objetoFrente.gameObject);
@@ -635,11 +638,13 @@ public class ExecuteProgramList : MonoBehaviour {
 				if(myPlayerStat.objetoEmMaos != null)
 				{
 					EnviaMensagem("\n<b>Algo</b>, interagiu com um " + objetoFrente.nome.ToString() + " possuindo um " + myPlayerStat.objetoEmMaos.GetComponent<Objeto>().nome.ToString());
+					EnviaCodigo("\n<b>Algo</b>.colocarNoAltar(" + objetoFrente.nome.ToString() + "," + myPlayerStat.objetoEmMaos.GetComponent<Objeto>().nome.ToString()+";");
 					Debug.Log ("Algo, interagiu com um " + objetoFrente.nome.ToString() + " possuindo um " + myPlayerStat.objetoEmMaos.GetComponent<Objeto>().nome.ToString());
 					if(myPlayerStat.objetoEmMaos.GetComponent<Objeto>().tipo == Objeto.Tipo.ItemPegavel)
 					{
 						objetoFrente.ativado = true;
 						EnviaMensagem("\nO " + objetoFrente.nome.ToString() + " foi ativado!");
+						EnviaCodigo("\n" + objetoFrente.nome.ToString() + ".ativo = true;");
 						Debug.Log ("O " + objetoFrente.nome.ToString() + " foi ativado!");
 						myPlayerStat.objetoEmMaos.transform.SetParent(objetoFrente.gameObject.transform);
 						myPlayerStat.objetoEmMaos.transform.localPosition = new Vector3(0,0,0);
@@ -652,6 +657,7 @@ public class ExecuteProgramList : MonoBehaviour {
 				else
 				{
 					EnviaMensagem("\n<b>Algo</b>, interagiu com um " + objetoFrente.nome.ToString());
+					EnviaCodigo("\n<b>Algo</b>.colocarNoAltar(" + objetoFrente.nome.ToString() + ",null);");
 					Debug.Log ("Algo, interagiu com um " + objetoFrente.nome.ToString());
 				}
 				break;
@@ -660,6 +666,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		else 
 		{
 			EnviaMensagem("\n<b>Algo</b> não encontrou um objeto para interagir");
+			EnviaCodigo("\n<b>Algo</b>.posicaoAFrente.objeto = null;");
 			Debug.Log ("Algo não encontrou um objeto para interagir.");
 		}
 	}
@@ -793,6 +800,16 @@ public class ExecuteProgramList : MonoBehaviour {
 		}
 	}
 
+	public void EnviaCodigo(string mensagem)
+	{
+		cGeral.myLogAvanc.text += mensagem;
+		if (cGeral.myScrollAvanc != null)
+		{
+			//Debug.Log (cGeral.myScroll.value.ToString ());
+			cGeral.myScrollAvanc.value = 0;
+		}
+	}
+
 	#region Corotinas
 
 	//Coroutine para Executar os comandos na Lista fornecida, neste caso de inicio e a "Programa".
@@ -853,6 +870,7 @@ public class ExecuteProgramList : MonoBehaviour {
 				}
 				else {
 					EnviaMensagem ("\nA lista de programa ja esta em execuçao!");
+					EnviaCodigo ("\nErro: listaComando.executando();");
 					Debug.Log ("A Lista de Programa ja esta em execuçao!!");
 				}
 			}
@@ -892,6 +910,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		else 
 		{
 			EnviaMensagem ("\nA lista de programa esta vazia.");
+			EnviaCodigo ("\nErro: listaComando == null");
 			Debug.Log ("A Lista de Programa esta nula!");
 		}
 
@@ -913,6 +932,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		{
 			myPlayAnim.SetBool("andando",false);
 			EnviaMensagem("\n<b>Algo</b> Andou!");
+			EnviaCodigo("\n<b>Algo</b>.posicao = x,y; <b>Algo</b>.altura = 0;");
 			Debug.Log (player.name + " Andou!");
 		}
 			
@@ -921,14 +941,10 @@ public class ExecuteProgramList : MonoBehaviour {
 		{
 			myPlayAnim.SetBool("pulando",false);
 			EnviaMensagem("\n<b>Algo</b> Pulou!");
+			EnviaCodigo("\n<b>Algo</b>.posicao = x,y; <b>Algo</b>.altura = z;");
 			Debug.Log (player.name + " Pulou!");
 		}
-			
-
-		
-
 	}
-
 	#endregion
 
 	#region Anotaçoes

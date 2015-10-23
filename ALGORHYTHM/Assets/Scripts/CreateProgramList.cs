@@ -26,7 +26,9 @@ public class CreateProgramList : MonoBehaviour {
 
 	//UI Fase
 	public Text refLog;
+	public Text refLogAvanc;
 	public Scrollbar refScroll;
+	public Scrollbar refScrollAvanc;
 	public Text tituloFase;
 	public Image btnExecutarImage;
 	public Sprite btnPlay;
@@ -35,6 +37,7 @@ public class CreateProgramList : MonoBehaviour {
 	public Sprite cubinhoPreenchido;
 	public GameObject janelaPontuacao;
 	public GameObject janelaOpcao;
+	public AudioSource musicaFase;
 
 	//public ScrollRect scroller;
 	//public static GameObject stContentPanel;
@@ -55,21 +58,15 @@ public class CreateProgramList : MonoBehaviour {
 
 	void Start()
 	{
-		ControladorGeral.referencia.myLog = refLog;
-		ControladorGeral.referencia.myScroll = refScroll;
-		ControladorGeral.referencia.myTituloFase = tituloFase;
-		ControladorGeral.referencia.myBtnExecutarImage = btnExecutarImage;
-		ControladorGeral.referencia.myBtnPlay = btnPlay;
-		ControladorGeral.referencia.myBtnRetry = btnRetry;
-		ControladorGeral.referencia.cubinhoVazio = cubinhoVazio;
-		ControladorGeral.referencia.cubinhoPreenchido = cubinhoPreenchido;
-		ControladorGeral.referencia.janelaFaseConcluida = janelaPontuacao;
+		RecarregaUI();
 	}
 
 	public void RecarregaUI()
 	{
 		ControladorGeral.referencia.myLog = refLog;
+		ControladorGeral.referencia.myLogAvanc = refLogAvanc;
 		ControladorGeral.referencia.myScroll = refScroll;
+		ControladorGeral.referencia.myScrollAvanc = refScrollAvanc;
 		ControladorGeral.referencia.myTituloFase = tituloFase;
 		ControladorGeral.referencia.myBtnExecutarImage = btnExecutarImage;
 		ControladorGeral.referencia.myBtnPlay = btnPlay;
@@ -77,6 +74,7 @@ public class CreateProgramList : MonoBehaviour {
 		ControladorGeral.referencia.cubinhoVazio = cubinhoVazio;
 		ControladorGeral.referencia.cubinhoPreenchido = cubinhoPreenchido;
 		ControladorGeral.referencia.janelaFaseConcluida = janelaPontuacao;
+		ControladorGeral.referencia.musicaRolando = musicaFase;
 	}
 
 	
@@ -124,6 +122,7 @@ public class CreateProgramList : MonoBehaviour {
 		else 
 		{
 			EnviaMensagem("\nReinicie a Fase antes de Limpar a Lista!");
+			EnviaCodigo ("\nErro: if(!fase.reiniciada){ retorno false;}");
 		}
 	}
 
@@ -134,6 +133,16 @@ public class CreateProgramList : MonoBehaviour {
 		{
 			//Debug.Log (ControladorGeral.referencia.myScroll.value.ToString ());
 			ControladorGeral.referencia.myScroll.value = 0;
+		}
+	}
+
+	public void EnviaCodigo(string mensagem)
+	{
+		ControladorGeral.referencia.myLogAvanc.text += mensagem;
+		if (ControladorGeral.referencia.myScrollAvanc != null)
+		{
+			//Debug.Log (ControladorGeral.referencia.myScroll.value.ToString ());
+			ControladorGeral.referencia.myScrollAvanc.value = 0;
 		}
 	}
 

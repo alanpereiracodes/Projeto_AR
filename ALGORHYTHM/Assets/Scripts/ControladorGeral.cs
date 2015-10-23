@@ -18,7 +18,9 @@ public class ControladorGeral : MonoBehaviour {
 	public CameraBtnEvents cameraEventos;
 	public bool listaEmExecucao = false;
 	public Text myLog;
+	public Text myLogAvanc;
 	public Scrollbar myScroll;
+	public Scrollbar myScrollAvanc;
 	public Text myTituloFase;
 	public int faseAtual;
 	public int capituloAtual;
@@ -27,6 +29,7 @@ public class ControladorGeral : MonoBehaviour {
 	public Sprite myBtnPlay;
 	public Sprite myBtnRetry;
 	public GameObject janelaFaseConcluida;
+	public AudioSource musicaRolando;
 
 	//Fase Atual
 	public Vector2 posicaoInicial;
