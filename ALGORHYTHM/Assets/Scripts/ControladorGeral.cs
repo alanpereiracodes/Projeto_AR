@@ -69,6 +69,7 @@ public class ControladorGeral : MonoBehaviour {
 	private string tableName;
 	private ArrayList columnNames;
 	private ArrayList columnValues;
+	private bool aSalvar = false;
 	
 	//===================== INICIO ===============================
 	void Awake () 
@@ -121,8 +122,13 @@ public class ControladorGeral : MonoBehaviour {
 
 				jan.btnOk.onClick.AddListener (() => PassaFase (capituloAtual, faseAtual + 1));
 				jan.btnAgain.onClick.AddListener (() => RecarregaFase ());
-				
-				
+
+				if(!aSalvar)
+				{
+					aSalvar = !aSalvar;
+					SalvarJogo (capituloAtual, faseAtual); //Salva o Jogo Atual se nao existir um registro dessa Fase ainda ou se a pontuaçao for maior
+				}
+
 				janelaFaseConcluida.SetActive (true);
 				//toca animaçao
 			}
@@ -147,12 +153,13 @@ public class ControladorGeral : MonoBehaviour {
 		columnValues.Add("TEXT NOT NULL");
 		columnValues.Add("INTEGER NOT NULL");
 		columnValues.Add("TEXT NOT NULL");
-		columnValues.Add("TEXT NOT NULL");
-		
-		try {
+		columnValues.Add("TEXT NOT NULL");		
+		try 
+		{
 			Debug.Log(banco.CriarTabelaRetornaQuery(tableName, columnNames, columnValues));
 		}
-		catch(UnityException e){
+		catch(UnityException e)
+		{
 			Debug.Log ("Nao foi possivel criar a tabela "+tableName+", devido a: "+e.ToString());
 		}
 		
@@ -196,10 +203,10 @@ public class ControladorGeral : MonoBehaviour {
 		
 		columnValues = null;
 		columnValues = new ArrayList();
-		columnValues.Add("INTEGER DEFAULT 1 PRIMARY KEY AUTOINCREMENT NOT NULL");
 		columnValues.Add("INTEGER NOT NULL");
 		columnValues.Add("INTEGER NOT NULL");
-		columnValues.Add("INTEGER NOT NULL, FOREIGN KEY(`idJogo`) REFERENCES Jogo");
+		columnValues.Add("INTEGER NOT NULL");
+		columnValues.Add("INTEGER NOT NULL, FOREIGN KEY(`idJogo`) REFERENCES Jogo, PRIMARY KEY (numeroFase, idJogo)");
 		
 		try {
 			banco.CriarTabela(tableName, columnNames, columnValues);
@@ -225,7 +232,7 @@ public class ControladorGeral : MonoBehaviour {
 		novoJogo.dataJogoSalvo = DateTime.Now.ToString("dd/MM/yyyy");
 		//novoJogo.idPerfilJogador = perfilJogador.idPerfil;
 		novoJogo.pontuacaoTotal = 0;
-		novoJogo.capituloAtual = 0; //Capitulo 0 e o Capitulo Tutorial, composto de 4 fases.
+		novoJogo.capituloAtual = 1;
 		novoJogo.numeroFaseLiberada = 1; //Fase 1 e a primeira fase;
 
 		//Inicia a COnexao com o Banco
@@ -296,9 +303,80 @@ public class ControladorGeral : MonoBehaviour {
 	}
 	#endregion
 
+	void SalvarJogo (int cap, int fase)
+	{
+		banco = new ConexaoBanco();
+		banco.AbrirBanco("URI=file:" + Application.dataPath + "/MeuJogoSalvo.sqdb");
+		CriarTabelas ();
+		Fase novaFase = new Fase ();
+		novaFase.idJogo = jogoAtual.idJogo;
+		novaFase.numeroFase = fase;
+		novaFase.capitulo = cap;
+		novaFase.pontuacaoCubinhoDigital = pontuacao;
+		
+		List<Fase> fasesSelect = new List<Fase> ();
+
+		ArrayList minhasFasesSelecionadas = banco.LerTabelaToda ("Fase");//banco.SelecionaUnicoWhere ("Fase", "*", "idJogo", "=", novaFase.idJogo.ToString ());
+		if (minhasFasesSelecionadas != null || minhasFasesSelecionadas.Count > 0) 
+		{
+			foreach(ArrayList faseSelecioanda in minhasFasesSelecionadas)
+			{
+				Fase abcFase = new Fase();
+				abcFase.numeroFase = (int)faseSelecioanda[0];
+				abcFase.capitulo = (int)faseSelecioanda[1];
+				abcFase.pontuacaoCubinhoDigital = (int)faseSelecioanda[2];
+				abcFase.idJogo = (int)faseSelecioanda[3];
+				
+				fasesSelect.Add (abcFase);
+				Debug.Log ("\n"+abcFase.numeroFase+abcFase.capitulo+abcFase.pontuacaoCubinhoDigital+abcFase.idJogo);
+			}
+		}
+
+		tableName = "Fase";
+		
+		columnNames.Clear ();
+		columnNames.Add ("numeroFase");
+		columnNames.Add ("capitulo");
+		columnNames.Add ("pontuacaoCubinhoDigital");
+		columnNames.Add ("idJogo");
+		
+		columnValues.Clear ();
+		columnValues.Add (novaFase.numeroFase.ToString ());
+		columnValues.Add (novaFase.capitulo.ToString ());
+		columnValues.Add (novaFase.pontuacaoCubinhoDigital.ToString ());
+		columnValues.Add (novaFase.idJogo.ToString ());
+
+		bool podeSalvar = true;
+		bool podeAlterar = false;
+		int numeroAltera = 0;
+
+			foreach (Fase fa in fasesSelect) 
+			{
+				if (fa.numeroFase == novaFase.numeroFase && fa.capitulo == novaFase.capitulo && fa.idJogo == novaFase.idJogo) 
+				{
+					podeSalvar = false;
+					if (novaFase.pontuacaoCubinhoDigital > fa.pontuacaoCubinhoDigital) 
+					{
+						numeroAltera = fa.numeroFase;
+						podeAlterar = true;
+					}
+				}
+			}
+		if(podeSalvar)
+			banco.IncluirEspecifico (tableName, columnNames, columnValues);
+		if (podeAlterar)
+		{
+			banco.AlterarPorIDComposto(tableName, columnNames, columnValues, "numeroFase","idJogo", numeroAltera.ToString (), novaFase.idJogo.ToString());
+			Debug.Log ("alterado");
+		}
+
+		banco.FecharBanco ();
+	}
+
 	public void PassaFase(int cap, int fase)
 	{
 		//IF fase != Ultima Fase
+		aSalvar = false;
 		int contaFase = ((cap-1) * 10) + fase;
 		Debug.Log (contaFase);
 		Application.LoadLevel ("Fase " + contaFase);

@@ -117,6 +117,36 @@ public class ConexaoBanco {
 		dbcmd.CommandText = query;
 		reader = dbcmd.ExecuteReader();
 	}
+
+	public void AlterarPorID(string nomeTabela, ArrayList colunas, ArrayList valores, string colunaID, string valorID)
+	{
+		string query;
+		query = "UPDATE " + nomeTabela + " SET "+colunas[0]+"="+ valores[0];
+		for(int i=1; i < valores.Count; i++)
+		{
+			query+= ", "+colunas[i]+"="+ valores[i];
+		}
+		query+= " WHERE "+colunaID+"="+valorID;
+		dbcmd = dbcon.CreateCommand();
+		dbcmd.CommandText = query;
+		Debug.Log (query);
+		reader = dbcmd.ExecuteReader();
+	}
+
+	public void AlterarPorIDComposto(string nomeTabela, ArrayList colunas, ArrayList valores, string colunaID, string colunaFK, string valorID, string valorFK)
+	{
+		string query;
+		query = "UPDATE " + nomeTabela + " SET "+colunas[0]+"="+ valores[0];
+		for(int i=1; i < valores.Count; i++)
+		{
+			query+= ", "+colunas[i]+"="+ valores[i];
+		}
+		query += " WHERE " + colunaID + "=" + valorID + " AND " + colunaFK + "=" + valorFK; //UPDATE tabela SET coluna=valor WHERE chave=valorChave AND chave2 = valorChave2
+		dbcmd = dbcon.CreateCommand();
+		dbcmd.CommandText = query;
+		Debug.Log (query);
+		reader = dbcmd.ExecuteReader();
+	}
 	
 	public string IncluirRetornaQuery(string nomeTabela, ArrayList valores)
 	{

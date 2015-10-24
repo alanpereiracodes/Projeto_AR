@@ -266,6 +266,7 @@ public class ExecuteProgramList : MonoBehaviour {
 			}
 		}
 		EnviaMensagem("\n<b>Algo</b> não andou!");
+		EnviaCodigo("\nErro: if(casa.posicao(x,y).naoAndavel || casa.posicao(x,y) == null){ retorno false;}");
 		if (cGeral.myScroll != null)
 		{
 			//Debug.Log (cGeral.myScroll.value.ToString ());
