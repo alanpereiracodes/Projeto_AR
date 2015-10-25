@@ -75,6 +75,7 @@ public class CreateProgramList : MonoBehaviour {
 		ControladorGeral.referencia.cubinhoPreenchido = cubinhoPreenchido;
 		ControladorGeral.referencia.janelaFaseConcluida = janelaPontuacao;
 		ControladorGeral.referencia.musicaRolando = musicaFase;
+		ControladorGeral.referencia.musicaRolando.volume = ControladorGeral.referencia.volumeAtual;
 	}
 
 	

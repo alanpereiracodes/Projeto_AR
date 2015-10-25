@@ -13,33 +13,48 @@ public class ControladorGeral : MonoBehaviour {
 	public static ControladorGeral referencia = null;
 
 	//Referencias aos objetosna excuçao das Fases.-----------------------------------
-	public GameObject myPlayer;
 	public CriaTabuleiro tabuleiroAtual;
 	public CameraBtnEvents cameraEventos;
+
 	public bool listaEmExecucao = false;
-	public Text myLog;
-	public Text myLogAvanc;
-	public Scrollbar myScroll;
-	public Scrollbar myScrollAvanc;
-	public Text myTituloFase;
+	public bool aSalvar = false;
+	public bool retry = false;
+	public bool logAvanc = false; //Guarda informaçoes sobre qual Log esta a ser mostrado. Simples (false) ou Avançado (true)
+
 	public int faseAtual;
 	public int capituloAtual;
-	public bool retry = false;
-	public Image myBtnExecutarImage;
+	public int numeroComandos;
+	public int numeroRetries;
+	public int pontuacao;
+	public int numeroComandosIdeal; //para pontuaçao
+
+	public float volumeAtual = 0.8f;
+
+	public string resolucaoAtual; //UI guarda informaçoes sobrea  resoluçao atual - Janela de Opçoes
+    
+	public Text myTituloFase; //UI Texto da Fase na tela de Fase
+	public Text myLog; //UI Log do Sistema Simples
+	public Text myLogAvanc; //UI Log do Sistema Avançado
+	public Text capituloTexto; //UI Texto do Capitulo na tela de Seleçao de Fase
+	public Scrollbar myScroll; //UI Scrollbar do Log de Sistema Simples
+	public Scrollbar myScrollAvanc; //UI Scrollbar do Log do Sistema Avançado
+	public Image myBtnExecutarImage; //Referencia ao componente de Imagem do Botao Executar na Tela de Fase
 	public Sprite myBtnPlay;
 	public Sprite myBtnRetry;
+	public Sprite cubinhoVazio;
+	public Sprite cubinhoPreenchido;
+	public AudioSource musicaRolando; //Controle da Musica que esta tocando no momento, volume e etc
+
+	public GameObject myPlayer;
 	public GameObject janelaFaseConcluida;
-	public AudioSource musicaRolando;
+
 
 	//Fase Atual
 	public Vector2 posicaoInicial;
 	//Direçao do personagem Inicial - a fazer
-	public Vector2 posicaoObjetivo;
-	public int numeroComandosIdeal; //para pontuaçao
+	public Vector2 posicaoObjetivo = new Vector2(99f,99f);
 
-	public int numeroComandos;
-	public int numeroRetries;
-	public int pontuacao;
+
 
 	//Referencias aos objetos da Selecao de fases--------------------------
 	//Esses atributos podem ser encontrados na variavel Jogo Atual!! 
@@ -52,9 +67,7 @@ public class ControladorGeral : MonoBehaviour {
 	public List<Fase> listaFases;
 	
 	//UI
-	public Text capituloTexto;
-	public Sprite cubinhoVazio;
-	public Sprite cubinhoPreenchido;
+
 
 	//Referencia para Tela de Carregar jogo
 	public List<Jogo> listaJogosSalvos;
@@ -69,7 +82,6 @@ public class ControladorGeral : MonoBehaviour {
 	private string tableName;
 	private ArrayList columnNames;
 	private ArrayList columnValues;
-	private bool aSalvar = false;
 	
 	//===================== INICIO ===============================
 	void Awake () 
@@ -97,7 +109,7 @@ public class ControladorGeral : MonoBehaviour {
 
 	void Update()
 	{
-		if (tabuleiroAtual != null && myPlayer != null && posicaoObjetivo != null && !janelaFaseConcluida.activeInHierarchy) {
+		if (tabuleiroAtual != null && myPlayer != null && posicaoObjetivo != new Vector2(99f,99f) && !janelaFaseConcluida.activeInHierarchy) {
 			if (myPlayer.GetComponent<Player> ().posicaoTabuleiro == posicaoObjetivo) {
 				if (numeroRetries > 0)
 					pontuacao = 1;
@@ -214,13 +226,6 @@ public class ControladorGeral : MonoBehaviour {
 		catch(UnityException e){
 			Debug.Log ("Nao foi possivel criar a tabela "+tableName+", devido a: "+e.ToString());
 		}
-	}
-
-	//Temporario
-	public void PassouFase()
-	{
-		myLog.text +="\n<b>VOCE PASSOU DE FASE!!!</b>";
-		//Aqui que ia aparecer a janela de pontuaçao!
 	}
 
 	//=========================================

@@ -64,15 +64,13 @@ public class JanelaOption : MonoBehaviour
 			break;	
 		}
 
-		ControladorGeral.referencia.musicaRolando.volume = volume.value;
-
 		if(togSimples.isOn)
 		{
 			if(logAvancado.activeInHierarchy)
 			{
 				logAvancado.SetActive(false);
 				logSimples.SetActive(true);
-			}
+            }
 		}
 		else
 		{
@@ -80,9 +78,15 @@ public class JanelaOption : MonoBehaviour
 			{
 				logAvancado.SetActive(true);
 				logSimples.SetActive(false);
-			}
+            }
 		}
 
+		ControladorGeral.referencia.resolucaoAtual = txtResolucao.text;
+		ControladorGeral.referencia.musicaRolando.volume = volume.value;
+		ControladorGeral.referencia.volumeAtual = volume.value;
+		ControladorGeral.referencia.logAvanc = logAvancado.activeInHierarchy;
+            
+        this.gameObject.SetActive (false);
 	}
 
 }

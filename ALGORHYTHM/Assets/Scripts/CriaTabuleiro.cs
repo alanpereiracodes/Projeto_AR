@@ -182,6 +182,31 @@ public class CriaTabuleiro : MonoBehaviour {
 
 	}//Fim RecolocaObjetos
 
+	public void DesativaBarreira()
+	{
+		foreach(List<Tile> listTile in mapaGerado)
+		{
+			foreach(Tile tile in listTile)
+			{
+				if(tile.objetosEmCima.Count > 0)
+				{
+					foreach(GameObject gObj in tile.objetosEmCima)
+					{
+						if(gObj.GetComponent<Objeto>() != null)
+						{
+							if(gObj.GetComponent<Objeto>().nome == Objeto.Nome.Barreira)
+							{
+								gObj.GetComponentInChildren<SpriteRenderer>().sortingLayerName = "Objeto";
+								gObj.GetComponentInChildren<Animator>().SetBool("ativado",false);
+								gObj.GetComponent<Objeto>().bloqueiaCaminho = false;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
 	//Procura um Tile com a Posiçao fornecida e retorna o Tile da seguinte posiçao se existir!
 	public Tile ProcuraTile(Vector2 pos)
 	{

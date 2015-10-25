@@ -65,6 +65,7 @@ public class CarregaJogo : MonoBehaviour {
 		ControladorGeral.referencia.numeroRetries = 0;
 		ControladorGeral.referencia.retry = false;
 		ControladorGeral.referencia.listaEmExecucao = false;
+		ControladorGeral.referencia.aSalvar = false;
 		Debug.Log ("carregou");
 
     }

@@ -652,7 +652,9 @@ public class ExecuteProgramList : MonoBehaviour {
 
 						myPlayerStat.objetoEmMaos.SetActive(true);
 						myPlayerStat.objetoEmMaos = null;
-						cGeral.PassouFase();
+						cGeral.tabuleiroAtual.DesativaBarreira();
+						//cGeral.tabuleiroAtual.
+
 					}
 				}
 				else
