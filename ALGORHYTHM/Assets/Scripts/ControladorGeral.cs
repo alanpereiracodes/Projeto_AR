@@ -82,6 +82,8 @@ public class ControladorGeral : MonoBehaviour {
 	private string tableName;
 	private ArrayList columnNames;
 	private ArrayList columnValues;
+	//private float tempo = 0f;
+	//private bool calculaTempo = true;
 	
 	//===================== INICIO ===============================
 	void Awake () 
@@ -109,40 +111,54 @@ public class ControladorGeral : MonoBehaviour {
 
 	void Update()
 	{
-		if (tabuleiroAtual != null && myPlayer != null && posicaoObjetivo != new Vector2(99f,99f) && !janelaFaseConcluida.activeInHierarchy) {
-			if (myPlayer.GetComponent<Player> ().posicaoTabuleiro == posicaoObjetivo) {
-				if (numeroRetries > 0)
-					pontuacao = 1;
-				else 
+
+		if (tabuleiroAtual != null && myPlayer != null && posicaoObjetivo != new Vector2(99f,99f) && !janelaFaseConcluida.activeInHierarchy) 
+		{
+				if (myPlayer.GetComponent<Player> ().posicaoTabuleiro == posicaoObjetivo)
 				{
-					if (numeroComandos > numeroComandosIdeal)
-						pontuacao = 2;
-					else 
-					{
-						pontuacao = 3;
-					}
-				}
-				Debug.Log (pontuacao);
-				//PassouDeFase
-				retry = false;
-				listaEmExecucao = false;
+					//if(calculaTempo)
+					//{
+					//	tempo = Time.time;
+					//	calculaTempo = false;
+					//}
+					
+					//if(Time.time > tempo+2f)
+					//{
+						if (numeroRetries > 0)
+							pontuacao = 1;
+						else 
+						{
+							if (numeroComandos > numeroComandosIdeal)
+								pontuacao = 2;
+							else 
+							{
+								pontuacao = 3;
+							}
+						}
+						Debug.Log (pontuacao);
+						//PassouDeFase
+						retry = false;
+						listaEmExecucao = false;
 
-				JanelaPassouFase jan = janelaFaseConcluida.GetComponent<JanelaPassouFase> ();
-				jan.PreencheCubos (pontuacao, capituloAtual.ToString () + " - " + faseAtual.ToString ()); //Apagado 303030FF Ligado FFFFFFFF
-				jan.btnOk.onClick.RemoveAllListeners ();
-				jan.btnAgain.onClick.RemoveAllListeners ();
+						JanelaPassouFase jan = janelaFaseConcluida.GetComponent<JanelaPassouFase> ();
+						jan.PreencheCubos (pontuacao, capituloAtual.ToString () + " - " + faseAtual.ToString ()); //Apagado 303030FF Ligado FFFFFFFF
+						jan.btnOk.onClick.RemoveAllListeners ();
+						jan.btnAgain.onClick.RemoveAllListeners ();
 
-				jan.btnOk.onClick.AddListener (() => PassaFase (capituloAtual, faseAtual + 1));
-				jan.btnAgain.onClick.AddListener (() => RecarregaFase ());
+						jan.btnOk.onClick.AddListener (() => PassaFase (capituloAtual, faseAtual + 1));
+						jan.btnAgain.onClick.AddListener (() => RecarregaFase ());
 
-				if(!aSalvar)
-				{
-					aSalvar = !aSalvar;
-					SalvarJogo (capituloAtual, faseAtual); //Salva o Jogo Atual se nao existir um registro dessa Fase ainda ou se a pontuaçao for maior
-				}
+						if(!aSalvar)
+						{
+							aSalvar = !aSalvar;
+							SalvarJogo (capituloAtual, faseAtual); //Salva o Jogo Atual se nao existir um registro dessa Fase ainda ou se a pontuaçao for maior
+						}
 
-				janelaFaseConcluida.SetActive (true);
-				//toca animaçao
+						janelaFaseConcluida.SetActive (true);
+						janelaFaseConcluida.GetComponentInChildren<Animation>().Play();
+						//calculaTempo = true;
+						//toca animaçao
+				//}
 			}
 		} 
 	}
@@ -400,5 +416,10 @@ public class ControladorGeral : MonoBehaviour {
 //		//?
 //	}
 
+	IEnumerator Esperar(float segundos) {
+		print(Time.time);
+		yield return new WaitForSeconds(segundos);
+		print(Time.time);
+	}
 
-}
+}//FIM

@@ -23,20 +23,26 @@ public class JanelaPassouFase : MonoBehaviour
 		{
 			case 1:
 			cubo1.sprite = cGeral.cubinhoPreenchido; cubo1.color = Color.white;
+			cubo1.rectTransform.rotation = Quaternion.identity;
 			cubo2.sprite = cGeral.cubinhoVazio; cubo2.color = new Color32 (50,50,50,255);
 			cubo3.sprite = cGeral.cubinhoVazio; cubo3.color = new Color32 (50,50,50,255);
 			break;
 
 			case 2:
 			cubo1.sprite = cGeral.cubinhoPreenchido; cubo1.color = Color.white;
-			cubo2.sprite = cGeral.cubinhoPreenchido; cubo2.color = Color.white;
-			cubo3.sprite = cGeral.cubinhoVazio; cubo3.color = new Color32 (50,50,50,255);
+			cubo1.rectTransform.rotation = Quaternion.identity;
+			cubo3.sprite = cGeral.cubinhoPreenchido; cubo3.color = Color.white;
+			cubo3.rectTransform.rotation = Quaternion.identity;
+			cubo2.sprite = cGeral.cubinhoVazio; cubo2.color = new Color32 (50,50,50,255);
 			break;
 
 			case 3:
 			cubo1.sprite = cGeral.cubinhoPreenchido; cubo1.color = Color.white;
+			cubo1.rectTransform.rotation = Quaternion.identity;
 			cubo2.sprite = cGeral.cubinhoPreenchido; cubo2.color = Color.white;
+			cubo2.rectTransform.rotation = Quaternion.identity;
 			cubo3.sprite = cGeral.cubinhoPreenchido; cubo3.color = Color.white;
+			cubo3.rectTransform.rotation = Quaternion.identity;
 			break;
 		}
 	}
