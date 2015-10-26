@@ -30,7 +30,7 @@ public class ControladorGeral : MonoBehaviour {
 
 	public float volumeAtual = 0.8f;
 
-	public string resolucaoAtual; //UI guarda informaçoes sobrea  resoluçao atual - Janela de Opçoes
+	public string resolucaoAtual = "1366x728"; //UI guarda informaçoes sobrea  resoluçao atual - Janela de Opçoes
     
 	public Text myTituloFase; //UI Texto da Fase na tela de Fase
 	public Text myLog; //UI Log do Sistema Simples
@@ -105,6 +105,9 @@ public class ControladorGeral : MonoBehaviour {
 		perfilAtual = null;
 		listaJogosSalvos = new List<Jogo>(); //Lista para armazenar todos os jogos salvos de um dado perfil;
         
+		//Option
+		resolucaoAtual = "1366x728";
+
 		//Inicializa o banco como null;
         banco = null;
     }
@@ -124,38 +127,38 @@ public class ControladorGeral : MonoBehaviour {
 					
 					//if(Time.time > tempo+2f)
 					//{
-						if (numeroRetries > 0)
-							pontuacao = 1;
+					if (numeroRetries > 0)
+						pontuacao = 1;
+					else 
+					{
+						if (numeroComandos > numeroComandosIdeal)
+							pontuacao = 2;
 						else 
 						{
-							if (numeroComandos > numeroComandosIdeal)
-								pontuacao = 2;
-							else 
-							{
-								pontuacao = 3;
-							}
+							pontuacao = 3;
 						}
-						Debug.Log (pontuacao);
-						//PassouDeFase
-						retry = false;
-						listaEmExecucao = false;
+					}
+					Debug.Log (pontuacao);
+					//PassouDeFase
+					retry = false;
+					listaEmExecucao = false;
 
-						JanelaPassouFase jan = janelaFaseConcluida.GetComponent<JanelaPassouFase> ();
-						jan.PreencheCubos (pontuacao, capituloAtual.ToString () + " - " + faseAtual.ToString ()); //Apagado 303030FF Ligado FFFFFFFF
-						jan.btnOk.onClick.RemoveAllListeners ();
-						jan.btnAgain.onClick.RemoveAllListeners ();
+					JanelaPassouFase jan = janelaFaseConcluida.GetComponent<JanelaPassouFase> ();
+					jan.PreencheCubos (pontuacao, capituloAtual.ToString () + " - " + faseAtual.ToString ()); //Apagado 303030FF Ligado FFFFFFFF
+					jan.btnOk.onClick.RemoveAllListeners ();
+					jan.btnAgain.onClick.RemoveAllListeners ();
 
-						jan.btnOk.onClick.AddListener (() => PassaFase (capituloAtual, faseAtual + 1));
-						jan.btnAgain.onClick.AddListener (() => RecarregaFase ());
+					jan.btnOk.onClick.AddListener (() => PassaFase (capituloAtual, faseAtual + 1));
+					jan.btnAgain.onClick.AddListener (() => RecarregaFase ());
 
-						if(!aSalvar)
-						{
-							aSalvar = !aSalvar;
-							SalvarJogo (capituloAtual, faseAtual); //Salva o Jogo Atual se nao existir um registro dessa Fase ainda ou se a pontuaçao for maior
-						}
+					if(!aSalvar)
+					{
+						aSalvar = !aSalvar;
+						SalvarJogo (capituloAtual, faseAtual); //Salva o Jogo Atual se nao existir um registro dessa Fase ainda ou se a pontuaçao for maior
+					}
 
-						janelaFaseConcluida.SetActive (true);
-						janelaFaseConcluida.GetComponentInChildren<Animation>().Play();
+					janelaFaseConcluida.SetActive (true);
+					janelaFaseConcluida.GetComponentInChildren<Animation>().Play();
 						//calculaTempo = true;
 						//toca animaçao
 				//}

@@ -1,8 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MudarSortingLayer.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CreateProgramList.cs">
     <Files>
-      <File FileName="Assets\Scripts\MudarSortingLayer.cs" Line="16" Column="77" />
+      <File FileName="Assets\Scripts\JanelaOption.cs" Line="52" Column="28" />
+      <File FileName="Assets\Scripts\ControladorGeral.cs" Line="92" Column="27" />
+      <File FileName="Assets\Scripts\CreateProgramList.cs" Line="178" Column="59" />
+      <File FileName="Assets\Scripts\CarregaJogo.cs" Line="67" Column="55" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

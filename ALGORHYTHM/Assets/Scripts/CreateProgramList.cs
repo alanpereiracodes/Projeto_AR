@@ -76,6 +76,16 @@ public class CreateProgramList : MonoBehaviour {
 		ControladorGeral.referencia.janelaFaseConcluida = janelaPontuacao;
 		ControladorGeral.referencia.musicaRolando = musicaFase;
 		ControladorGeral.referencia.musicaRolando.volume = ControladorGeral.referencia.volumeAtual;
+		if(ControladorGeral.referencia.logAvanc)
+		{
+			ControladorGeral.referencia.myLogAvanc.enabled = true;
+			ControladorGeral.referencia.myLog.enabled = false;
+		}
+		else
+		{
+			ControladorGeral.referencia.myLog.enabled = true;
+			ControladorGeral.referencia.myLogAvanc.enabled = false;
+		}
 	}
 
 	
@@ -149,8 +159,24 @@ public class CreateProgramList : MonoBehaviour {
 
 	public void AbreOption()
 	{
-		if (!janelaOpcao.activeInHierarchy) {
+		if (!janelaOpcao.activeInHierarchy) 
+		{
+			JanelaOption jaOpt = janelaOpcao.GetComponent<JanelaOption>();
+			jaOpt.txtResolucao.text = ControladorGeral.referencia.resolucaoAtual;
+			jaOpt.volume.value = ControladorGeral.referencia.volumeAtual;
+			if(ControladorGeral.referencia.logAvanc)
+			{
+				jaOpt.togAvancado.isOn = true;
+				jaOpt.togSimples.isOn = false;
+			}
+			else
+			{
+				jaOpt.togSimples.isOn = true;
+				jaOpt.togAvancado.isOn = false;
+			}
 			janelaOpcao.SetActive (true);
+			janelaOpcao.GetComponentInChildren<Animation>().Play();
+
 		} 
 		else
 		{
