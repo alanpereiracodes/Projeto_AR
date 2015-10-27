@@ -78,13 +78,13 @@ public class CreateProgramList : MonoBehaviour {
 		ControladorGeral.referencia.musicaRolando.volume = ControladorGeral.referencia.volumeAtual;
 		if(ControladorGeral.referencia.logAvanc)
 		{
-			ControladorGeral.referencia.myLogAvanc.enabled = true;
-			ControladorGeral.referencia.myLog.enabled = false;
+			ControladorGeral.referencia.myLogAvanc.rectTransform.parent.transform.parent.gameObject.SetActive(true);
+			ControladorGeral.referencia.myLog.rectTransform.parent.transform.parent.gameObject.SetActive(false);
 		}
 		else
 		{
-			ControladorGeral.referencia.myLog.enabled = true;
-			ControladorGeral.referencia.myLogAvanc.enabled = false;
+			ControladorGeral.referencia.myLog.rectTransform.parent.transform.parent.gameObject.SetActive(true);
+			ControladorGeral.referencia.myLogAvanc.rectTransform.parent.transform.parent.gameObject.SetActive(false);
 		}
 	}
 

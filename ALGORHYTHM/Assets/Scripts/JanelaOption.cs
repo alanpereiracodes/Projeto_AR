@@ -70,6 +70,7 @@ public class JanelaOption : MonoBehaviour
 			{
 				logAvancado.SetActive(false);
 				logSimples.SetActive(true);
+				ControladorGeral.referencia.logAvanc = false;
             }
 		}
 		else
@@ -78,13 +79,13 @@ public class JanelaOption : MonoBehaviour
 			{
 				logAvancado.SetActive(true);
 				logSimples.SetActive(false);
+				ControladorGeral.referencia.logAvanc = true;
             }
 		}
 
 		ControladorGeral.referencia.resolucaoAtual = txtResolucao.text;
 		ControladorGeral.referencia.musicaRolando.volume = volume.value;
 		ControladorGeral.referencia.volumeAtual = volume.value;
-		ControladorGeral.referencia.logAvanc = logAvancado.activeInHierarchy;
             
         this.gameObject.SetActive (false);
 	}
