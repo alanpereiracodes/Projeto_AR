@@ -37,6 +37,7 @@ public class CreateProgramList : MonoBehaviour {
 	public Sprite cubinhoPreenchido;
 	public GameObject janelaPontuacao;
 	public GameObject janelaOpcao;
+    public GameObject janelaAjuda;
 	public AudioSource musicaFase;
 
 	//public ScrollRect scroller;
