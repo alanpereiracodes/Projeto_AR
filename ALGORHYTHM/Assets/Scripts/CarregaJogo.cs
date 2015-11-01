@@ -8,9 +8,14 @@ public class CarregaJogo : MonoBehaviour {
 	public string tituloFase;
 	public GameObject gameManager; //GameManager prefab to instantiate.
 	public GameObject myPlayer;
+	public Player.Direction direcaoInicial;
 	public Vector2 posicaoPlayer;
 	public Vector2 posicaoObjetivo;
 	public int numeroComandos; //numero de comandos ideal encontrado para resolver a fase, Usado para ver a Pontuaçao
+	public string textoObjetivo; //Texto do Objetivo Atual
+	public Sprite imagemObjetivo; //Imagem do Objetivo
+	public Sprite imagemObjetivo2; //Comando introduzido na fase.
+	public bool imgObjetivoHablita;
 	
 	public int numeroFase;
 	public int capituloFase;
@@ -44,6 +49,26 @@ public class CarregaJogo : MonoBehaviour {
 		ControladorGeral.referencia.posicaoObjetivo = posicaoObjetivo;
 		ControladorGeral.referencia.myPlayer = (GameObject)Instantiate(myPlayer, tempPosInicial/*new Vector3 (-5.5f, 1.3f, 4.5f)*/, Quaternion.identity);
 		ControladorGeral.referencia.myPlayer.GetComponent<Player>().posicaoTabuleiro = posicaoPlayer;
+		ControladorGeral.referencia.myPlayer.GetComponent<Player>().direcaoGlobal = direcaoInicial;
+		ControladorGeral.referencia.myPlayer.GetComponent<Player>().direcaoCamera = direcaoInicial;
+		ControladorGeral.referencia.direcaoInicial = direcaoInicial;
+
+		switch(direcaoInicial)
+		{
+		case Player.Direction.Frente:
+			ControladorGeral.referencia.myPlayer.GetComponentInChildren<Animator>().SetInteger("direcao",1);
+			break;
+		case Player.Direction.Esquerda:
+			ControladorGeral.referencia.myPlayer.GetComponentInChildren<Animator>().SetInteger("direcao",2);
+			break;
+		case Player.Direction.Tras:
+			ControladorGeral.referencia.myPlayer.GetComponentInChildren<Animator>().SetInteger("direcao",3);
+			break;
+		case Player.Direction.Direita:
+			ControladorGeral.referencia.myPlayer.GetComponentInChildren<Animator>().SetInteger("direcao",4);
+			break;
+		}
+
 		if(oTile != null)
 			oTile.objetosEmCima.Add(ControladorGeral.referencia.myPlayer);
 		ControladorGeral.referencia.tabuleiroAtual = tabuleiroScript;
@@ -66,6 +91,10 @@ public class CarregaJogo : MonoBehaviour {
 		ControladorGeral.referencia.retry = false;
 		ControladorGeral.referencia.listaEmExecucao = false;
 		ControladorGeral.referencia.aSalvar = false;
+		CreateProgramList.referencia.textoObjetivo.text = textoObjetivo;
+		CreateProgramList.referencia.imagemFase.sprite = imagemObjetivo;
+		CreateProgramList.referencia.imagemFase2.sprite = imagemObjetivo2;
+		CreateProgramList.referencia.imagemFase2.enabled = imgObjetivoHablita;
 		Debug.Log ("carregou");
 
     }

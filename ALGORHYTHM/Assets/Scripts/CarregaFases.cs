@@ -7,20 +7,62 @@ public class CarregaFases : MonoBehaviour {
 
 	public GameObject gameManager;
 	public Text capituloTitulo;
+	public AudioSource musicaMenu;
 	//public int capitulo;
 
 	public List<GameObject> listaBotoesFases;
+	public List<Sprite> listaImagensFases;
+
+	private float intervaloEspera = 0.2f;
+	private float tempo;
 
 	void Awake () 
 	{
-		if (ControladorGeral.referencia == null)			
-			Instantiate(gameManager);
-	}
 
+		if (ControladorGeral.referencia == null)
+		{
+			Instantiate(gameManager);
+			ControladorGeral.referencia.musicaRolando = musicaMenu;
+			ControladorGeral.referencia.musicaRolando.Play ();
+			DontDestroyOnLoad(musicaMenu.gameObject);
+		}
+		else
+		{
+			if(ControladorGeral.referencia.musicaRolando.clip != musicaMenu.clip)
+			{
+				Destroy(ControladorGeral.referencia.musicaRolando.gameObject);
+				ControladorGeral.referencia.musicaRolando = musicaMenu;
+				ControladorGeral.referencia.musicaRolando.Play ();
+				ControladorGeral.referencia.musicaRolando.volume = ControladorGeral.referencia.volumeAtual;
+				DontDestroyOnLoad(musicaMenu.gameObject);
+			}
+			else
+			{
+				Destroy (musicaMenu.gameObject);
+			}
+		}
+
+		tempo = Time.time;
+	}
+	
 	void Start()
 	{
 		CarregarFases ();
 	}
+
+	void Update()
+	{
+		if(tempo < Time.time)
+		{
+			
+			if(Input.GetKey(KeyCode.Escape))
+			{
+				tempo = Time.time + intervaloEspera;
+				Application.LoadLevel(2);
+			}
+		}
+	}
+
 
 	public void CarregarFases()
 	{
@@ -37,12 +79,72 @@ public class CarregaFases : MonoBehaviour {
 			}
 			Button btn = obj.GetComponent<Button>();
 			btn.onClick.RemoveAllListeners();
-			int n = (ControladorGeral.referencia.jogoAtual.capituloAtual-1)*10+numeroFase;
+			int n = (ControladorGeral.referencia.jogoAtual.capituloAtual-1)*10+obj.GetComponent<BotaoFase>().numero;
+			int pontuacao = ProcuraPontuacaoFase(n);
+			Debug.Log ("Jogo "+ControladorGeral.referencia.jogoAtual.idJogo+" pontuacao Fase "+n+" es:"+pontuacao);
+			Transform painelImagens = obj.transform.FindChild("Panel");
+			switch(pontuacao)
+			{
+			case 1:
+				painelImagens.FindChild("Image").gameObject.GetComponent<Image>().color = Color.white;
+				break;
+			case 2:
+				painelImagens.FindChild("Image").gameObject.GetComponent<Image>().color = Color.white;
+				painelImagens.FindChild("Image 2").gameObject.GetComponent<Image>().color = Color.white;
+				break;
+			case 3:
+				Debug.Log ("tentou 3");
+				painelImagens.FindChild("Image").gameObject.GetComponent<Image>().color = Color.white;
+				painelImagens.FindChild("Image 2").gameObject.GetComponent<Image>().color = Color.white;
+				painelImagens.FindChild("Image 3").gameObject.GetComponent<Image>().color = Color.white;
+				break;
+			}
+			obj.transform.FindChild("ImagemFase").gameObject.GetComponent<Image>().sprite = listaImagensFases[n];
+
 			btn.onClick.AddListener(() => CarregaFase("Fase "+n.ToString()));
 			Debug.Log (n);
 		}
 
 		//Debug.Log ("O Capitulo e: " + ControladorGeral.referencia.jogoAtual.capituloAtual + " e a Fase e: " + numeroFase);
+	}
+
+	int ProcuraPontuacaoFase (int n)
+	{
+		int pontuacao = 0;
+
+		ConexaoBanco banco = new ConexaoBanco();
+		banco.AbrirBanco("URI=file:" + Application.dataPath + "/MeuJogoSalvo.sqdb");
+
+		List<Fase> fasesSelect = new List<Fase> ();
+		
+		ArrayList minhasFasesSelecionadas = banco.LerTabelaToda ("Fase");//banco.SelecionaUnicoWhere ("Fase", "*", "idJogo", "=", novaFase.idJogo.ToString ());
+		if (minhasFasesSelecionadas != null || minhasFasesSelecionadas.Count > 0) 
+		{
+			foreach(ArrayList faseSelecioanda in minhasFasesSelecionadas)
+			{
+				Fase abcFase = new Fase();
+				abcFase.numeroFase = (int)faseSelecioanda[0];
+				abcFase.capitulo = (int)faseSelecioanda[1];
+				abcFase.pontuacaoCubinhoDigital = (int)faseSelecioanda[2];
+				abcFase.idJogo = (int)faseSelecioanda[3];
+				
+				fasesSelect.Add (abcFase);
+				Debug.Log ("\n"+abcFase.numeroFase+abcFase.capitulo+abcFase.pontuacaoCubinhoDigital+abcFase.idJogo);
+			}
+		}
+
+		Debug.Log (fasesSelect.Count);
+		foreach(Fase fs in fasesSelect)
+		{
+			if(fs.numeroFase == n && fs.idJogo == ControladorGeral.referencia.jogoAtual.idJogo)
+			{
+				Debug.Log (pontuacao+" Achou!");
+				pontuacao = fs.pontuacaoCubinhoDigital;
+			}
+		}
+
+		banco.FecharBanco();
+		return pontuacao;
 	}
 
 	public void CarregaFase(string fase)

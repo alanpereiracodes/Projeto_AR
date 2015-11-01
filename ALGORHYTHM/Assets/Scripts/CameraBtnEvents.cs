@@ -41,8 +41,25 @@ public class CameraBtnEvents : MonoBehaviour {
 
 			myCameraSuporte.transform.position = new Vector3(2.5f,0,0);
 			myCameraSuporte.transform.rotation = Quaternion.identity;
-			ControladorGeral.referencia.myPlayer.GetComponent<Player>().direcaoCamera = Player.Direction.Frente;
-			ControladorGeral.referencia.myPlayer.GetComponentInChildren<Animator>().SetInteger("direcao",1);
+			ControladorGeral.referencia.myPlayer.GetComponent<Player>().direcaoGlobal = ControladorGeral.referencia.direcaoInicial;
+			ControladorGeral.referencia.myPlayer.GetComponent<Player>().direcaoCamera = ControladorGeral.referencia.direcaoInicial;
+			//ControladorGeral.referencia.myPlayer.GetComponentInChildren<Animator>().SetInteger("direcao",1);
+
+			switch( ControladorGeral.referencia.direcaoInicial)
+			{
+			case Player.Direction.Frente:
+				ControladorGeral.referencia.myPlayer.GetComponentInChildren<Animator>().SetInteger("direcao",1);
+				break;
+			case Player.Direction.Esquerda:
+				ControladorGeral.referencia.myPlayer.GetComponentInChildren<Animator>().SetInteger("direcao",2);
+				break;
+			case Player.Direction.Tras:
+				ControladorGeral.referencia.myPlayer.GetComponentInChildren<Animator>().SetInteger("direcao",3);
+				break;
+			case Player.Direction.Direita:
+				ControladorGeral.referencia.myPlayer.GetComponentInChildren<Animator>().SetInteger("direcao",4);
+				break;
+			}
 
 		}
 	}

@@ -48,6 +48,7 @@ public class ControladorGeral : MonoBehaviour {
 	public GameObject myPlayer;
 	public GameObject janelaFaseConcluida;
 
+	public Player.Direction direcaoInicial;
 
 	//Fase Atual
 	public Vector2 posicaoInicial;
@@ -88,6 +89,7 @@ public class ControladorGeral : MonoBehaviour {
 	//===================== INICIO ===============================
 	void Awake () 
 	{
+		musicaRolando = null;
 		//Check if instance already exists
 		if (referencia == null)	
 			//if not, set instance to this
@@ -133,7 +135,7 @@ public class ControladorGeral : MonoBehaviour {
 					{
 						if (numeroComandos > numeroComandosIdeal)
 							pontuacao = 2;
-						else 
+						else
 						{
 							pontuacao = 3;
 						}
@@ -332,6 +334,8 @@ public class ControladorGeral : MonoBehaviour {
 		banco = new ConexaoBanco();
 		banco.AbrirBanco("URI=file:" + Application.dataPath + "/MeuJogoSalvo.sqdb");
 		CriarTabelas ();
+		if(jogoAtual != null)
+		{
 		Fase novaFase = new Fase ();
 		novaFase.idJogo = jogoAtual.idJogo;
 		novaFase.numeroFase = fase;
@@ -394,6 +398,45 @@ public class ControladorGeral : MonoBehaviour {
 			Debug.Log ("alterado");
 		}
 
+		//FASE SALVA
+		//SALVAR  O JOGO AGORA
+			Jogo salvaJogo = jogoAtual;
+			if(faseAtual >= 10)
+			{
+				salvaJogo.capituloAtual = capituloAtual++;
+			}
+			else
+			{
+				salvaJogo.capituloAtual = capituloAtual;
+			}
+			if(jogoAtual.numeroFaseLiberada < (((capituloAtual-1) * 10) + faseAtual + 1))
+			{
+				salvaJogo.numeroFaseLiberada = (((capituloAtual-1) * 10) + faseAtual + 1); 
+				Debug.Log ("Fase Liberada: "+salvaJogo.numeroFaseLiberada);
+			}
+			salvaJogo.dataJogoSalvo = DateTime.Now.ToString("dd/MM/yyyy");
+			salvaJogo.pontuacaoTotal += pontuacao;
+
+			tableName = "Jogo";
+			
+			columnNames.Clear ();
+			columnNames.Add ("pontuacaoTotal");
+			columnNames.Add ("dataJogoSalvo");
+			columnNames.Add ("numeroFaseLiberada");
+			columnNames.Add ("capituloAtual");
+			
+			columnValues.Clear ();
+			columnValues.Add (salvaJogo.pontuacaoTotal.ToString());
+			columnValues.Add ("'"+salvaJogo.dataJogoSalvo+"'");
+			columnValues.Add (salvaJogo.numeroFaseLiberada.ToString());
+			columnValues.Add (salvaJogo.capituloAtual.ToString());
+
+			banco.AlterarPorID(tableName,columnNames,columnValues,"idJogo",salvaJogo.idJogo.ToString());
+		}
+		else
+		{
+			Debug.Log("Nao foi possivel encontrar um jogo para ser salvo.");
+		}
 		banco.FecharBanco ();
 	}
 
@@ -403,6 +446,12 @@ public class ControladorGeral : MonoBehaviour {
 		aSalvar = false;
 		int contaFase = ((cap-1) * 10) + fase;
 		Debug.Log (contaFase);
+//		if(fase >= 11)
+//		{
+//			capituloAtual++;
+//			faseAtual = 1;
+//		}
+//		faseAtual = fase;
 		Application.LoadLevel ("Fase " + contaFase);
 
 	}

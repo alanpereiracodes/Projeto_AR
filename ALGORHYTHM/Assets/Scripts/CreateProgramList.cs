@@ -39,6 +39,9 @@ public class CreateProgramList : MonoBehaviour {
 	public GameObject janelaOpcao;
     public GameObject janelaAjuda;
 	public AudioSource musicaFase;
+	public Image imagemFase;
+	public Image imagemFase2;
+	public Text textoObjetivo;
 
 	//public ScrollRect scroller;
 	//public static GameObject stContentPanel;
@@ -57,10 +60,10 @@ public class CreateProgramList : MonoBehaviour {
 			Destroy(gameObject);
 	}
 
-	void Start()
-	{
-		RecarregaUI();
-	}
+//	void Start()
+//	{
+//		//RecarregaUI();
+//	}
 
 	public void RecarregaUI()
 	{
@@ -75,7 +78,38 @@ public class CreateProgramList : MonoBehaviour {
 		ControladorGeral.referencia.cubinhoVazio = cubinhoVazio;
 		ControladorGeral.referencia.cubinhoPreenchido = cubinhoPreenchido;
 		ControladorGeral.referencia.janelaFaseConcluida = janelaPontuacao;
-		ControladorGeral.referencia.musicaRolando = musicaFase;
+		if(ControladorGeral.referencia.musicaRolando != null)
+		{
+			if(ControladorGeral.referencia.musicaRolando.clip != musicaFase.clip)
+			{
+				Destroy(ControladorGeral.referencia.musicaRolando.gameObject);
+				GameObject MusicaHolder = new GameObject();
+				MusicaHolder.name = "Musica Fase";
+				MusicaHolder.AddComponent<AudioSource>();
+				MusicaHolder.GetComponent<AudioSource>().clip = musicaFase.clip;
+				ControladorGeral.referencia.musicaRolando = MusicaHolder.GetComponent<AudioSource>();
+				ControladorGeral.referencia.musicaRolando.Play();
+				Debug.Log ("Nao destroi vei2");
+				DontDestroyOnLoad(ControladorGeral.referencia.musicaRolando);
+			}
+			else
+			{
+				Debug.Log ("Nao destruiu");
+				Destroy (musicaFase.gameObject);
+			}
+		}
+		else
+		{
+
+			GameObject MusicaHolder = new GameObject();
+			MusicaHolder.name = "Musica Fase";
+			MusicaHolder.AddComponent<AudioSource>();
+			MusicaHolder.GetComponent<AudioSource>().clip = musicaFase.clip;
+			ControladorGeral.referencia.musicaRolando = MusicaHolder.GetComponent<AudioSource>();
+			ControladorGeral.referencia.musicaRolando.Play();
+			Debug.Log ("Nao destroi vei1");
+			DontDestroyOnLoad(ControladorGeral.referencia.musicaRolando);
+		}
 		ControladorGeral.referencia.musicaRolando.volume = ControladorGeral.referencia.volumeAtual;
 		if(ControladorGeral.referencia.logAvanc)
 		{

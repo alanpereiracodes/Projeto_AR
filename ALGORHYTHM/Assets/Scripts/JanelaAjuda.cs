@@ -4,8 +4,8 @@ using System.Collections;
 
 public class JanelaAjuda : MonoBehaviour {
 
-	public Text textoObjetivo; //Texto sobre o Objetivo da Fase Atual;
-	public Sprite spriteFase; //Imagem da Fase Atual, para compor a tela sobre o Objetivo na Janela de Ajuda
+	//public Text textoObjetivo; //Texto sobre o Objetivo da Fase Atual;
+	//public Sprite spriteFase; //Imagem da Fase Atual, para compor a tela sobre o Objetivo na Janela de Ajuda
 
 	public Scrollbar rolagemAjuda; //O valor aqui ira determinar a Seçao que esta // 1 Objetivo ... 3 Como Jogar : Executando ... 9 Objeto pt2. 
 

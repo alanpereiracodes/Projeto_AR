@@ -38,6 +38,14 @@ public class EventosTelaTitulo : MonoBehaviour {
 	{
 		//DontDestroyOnLoad(bgmTitulo);
 		tempo = Time.time;
+		if(ControladorGeral.referencia != null)
+		{
+			if(ControladorGeral.referencia.musicaRolando != null)
+			{
+				Destroy(ControladorGeral.referencia.musicaRolando.gameObject);
+			}
+			Destroy(ControladorGeral.referencia.gameObject);
+		}
 	}
 
 	// Update is called once per frame

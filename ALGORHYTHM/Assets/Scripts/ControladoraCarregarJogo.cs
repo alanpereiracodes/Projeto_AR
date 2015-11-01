@@ -17,16 +17,43 @@ public class ControladoraCarregarJogo : MonoBehaviour
 	private float intervaloEspera = 0.2f;
 	private float tempo;
 
+	public AudioSource musicaMenu;
+
 	// Use this for initialization
 	void Awake ()
 	{
 		banco = null;
 		//Check if a GameManager has already been assigned to static variable GameManager.instance or if it's still null
-		if (ControladorGeral.referencia == null)			
+		if (ControladorGeral.referencia == null)	
+		{
 			//Instantiate gameManager prefab
 			Instantiate(gameManager);
+			ControladorGeral.referencia.musicaRolando = musicaMenu;
+			ControladorGeral.referencia.musicaRolando.Play ();
+			DontDestroyOnLoad(musicaMenu);
+		}
+		else
+		{
+			if(ControladorGeral.referencia.musicaRolando.clip != musicaMenu.clip)
+			{
+				Destroy(ControladorGeral.referencia.musicaRolando.gameObject);
+				ControladorGeral.referencia.musicaRolando = musicaMenu;
+				ControladorGeral.referencia.musicaRolando.Play ();
+				ControladorGeral.referencia.musicaRolando.volume = ControladorGeral.referencia.volumeAtual;
+				DontDestroyOnLoad(musicaMenu);
+			}
+			else
+			{
+				Destroy (musicaMenu.gameObject);
+			}
+		}
 		CarregaJogosSalvos();
 		tempo = Time.time;
+
+	}
+
+	void Start()
+	{
 	}
 
 	void Update()
