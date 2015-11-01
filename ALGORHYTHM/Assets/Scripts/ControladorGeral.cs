@@ -377,6 +377,7 @@ public class ControladorGeral : MonoBehaviour {
 		bool podeSalvar = true;
 		bool podeAlterar = false;
 		int numeroAltera = 0;
+		int diferencaPontuacao = pontuacao;
 
 			foreach (Fase fa in fasesSelect) 
 			{
@@ -385,6 +386,7 @@ public class ControladorGeral : MonoBehaviour {
 					podeSalvar = false;
 					if (novaFase.pontuacaoCubinhoDigital > fa.pontuacaoCubinhoDigital) 
 					{
+						diferencaPontuacao = pontuacao - fa.pontuacaoCubinhoDigital;
 						numeroAltera = fa.numeroFase;
 						podeAlterar = true;
 					}
@@ -415,7 +417,7 @@ public class ControladorGeral : MonoBehaviour {
 				Debug.Log ("Fase Liberada: "+salvaJogo.numeroFaseLiberada);
 			}
 			salvaJogo.dataJogoSalvo = DateTime.Now.ToString("dd/MM/yyyy");
-			salvaJogo.pontuacaoTotal += pontuacao;
+			salvaJogo.pontuacaoTotal += diferencaPontuacao;
 
 			tableName = "Jogo";
 			
