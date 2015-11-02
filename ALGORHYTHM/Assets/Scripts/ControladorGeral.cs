@@ -377,7 +377,7 @@ public class ControladorGeral : MonoBehaviour {
 		bool podeSalvar = true;
 		bool podeAlterar = false;
 		int numeroAltera = 0;
-		int diferencaPontuacao = pontuacao;
+		int somaPontuacao = pontuacao;
 
 			foreach (Fase fa in fasesSelect) 
 			{
@@ -386,9 +386,16 @@ public class ControladorGeral : MonoBehaviour {
 					podeSalvar = false;
 					if (novaFase.pontuacaoCubinhoDigital > fa.pontuacaoCubinhoDigital) 
 					{
-						diferencaPontuacao = pontuacao - fa.pontuacaoCubinhoDigital;
+						somaPontuacao = pontuacao - fa.pontuacaoCubinhoDigital;
 						numeroAltera = fa.numeroFase;
 						podeAlterar = true;
+					}
+					else
+					{
+						if(novaFase.pontuacaoCubinhoDigital <= fa.pontuacaoCubinhoDigital)
+						{
+							somaPontuacao = 0; //Nao soma a pontuaçao a Pontuacao Total
+						}
 					}
 				}
 			}
@@ -406,6 +413,7 @@ public class ControladorGeral : MonoBehaviour {
 			if(faseAtual >= 10)
 			{
 				salvaJogo.capituloAtual = capituloAtual++;
+				faseAtual = 0;
 			}
 			else
 			{
@@ -417,7 +425,7 @@ public class ControladorGeral : MonoBehaviour {
 				Debug.Log ("Fase Liberada: "+salvaJogo.numeroFaseLiberada);
 			}
 			salvaJogo.dataJogoSalvo = DateTime.Now.ToString("dd/MM/yyyy");
-			salvaJogo.pontuacaoTotal += diferencaPontuacao;
+			salvaJogo.pontuacaoTotal += somaPontuacao;
 
 			tableName = "Jogo";
 			
@@ -444,17 +452,23 @@ public class ControladorGeral : MonoBehaviour {
 
 	public void PassaFase(int cap, int fase)
 	{
-		//IF fase != Ultima Fase
 		aSalvar = false;
+		if(fase >= 11)
+		{
+			cap++;
+			fase = 1;
+		}
 		int contaFase = ((cap-1) * 10) + fase;
 		Debug.Log (contaFase);
-//		if(fase >= 11)
-//		{
-//			capituloAtual++;
-//			faseAtual = 1;
-//		}
-//		faseAtual = fase;
-		Application.LoadLevel ("Fase " + contaFase);
+
+		if(cap == 2 && fase == 1) //Fase 2 - 1 e a ultima
+		{
+			Application.LoadLevel (3);
+		}
+		else
+		{
+			Application.LoadLevel ("Fase " + contaFase);
+		}
 
 	}
 
