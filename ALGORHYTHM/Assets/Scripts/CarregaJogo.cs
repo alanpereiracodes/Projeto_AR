@@ -19,20 +19,18 @@ public class CarregaJogo : MonoBehaviour {
 	
 	public int numeroFase;
 	public int capituloFase;
-	//public int tipoObjetivo;
 
 	private CriaTabuleiro tabuleiroScript;
-	//private bool passouFase = false;
-	//private int score = 150;
+
+	public bool capituloDois;
+	public int limiteListaPrincipal;
+	public int limiteListaFuncao;
 
 	void Awake ()
 	{
-		//Check if a GameManager has already been assigned to static variable GameManager.instance or if it's still null
 		if (ControladorGeral.referencia == null)			
-			//Instantiate gameManager prefab
 			Instantiate(gameManager);
 
-		//Get a component reference to the attached BoardManager script
 		tabuleiroScript = GetComponent<CriaTabuleiro>();
 		tabuleiroScript.GeraMapa();
 		tabuleiroScript.ColocaObjetos();
@@ -72,9 +70,6 @@ public class CarregaJogo : MonoBehaviour {
 		if(oTile != null)
 			oTile.objetosEmCima.Add(ControladorGeral.referencia.myPlayer);
 		ControladorGeral.referencia.tabuleiroAtual = tabuleiroScript;
-		//ControladorGeral.referencia.myLog = log;
-		//ControladorGeral.referencia.myScroll = scroll;
-		//ControladorGeral.referencia.faseAtual = numeroFase;
 		ControladorGeral.referencia.listaEmExecucao = false;
 	}
 
@@ -95,6 +90,18 @@ public class CarregaJogo : MonoBehaviour {
 		CreateProgramList.referencia.imagemFase.sprite = imagemObjetivo;
 		CreateProgramList.referencia.imagemFase2.sprite = imagemObjetivo2;
 		CreateProgramList.referencia.imagemFase2.enabled = imgObjetivoHablita;
+		//Capitulo 2
+		if(capituloDois)
+		{
+			Debug.Log ("Capitulo 2!");
+			ControladorGeral.referencia.capituloDois = capituloDois;
+			ControladorGeral.referencia.limiteListaPrincipal = limiteListaPrincipal;
+			ControladorGeral.referencia.limiteListaFuncao = limiteListaFuncao;
+			CreateProgramList.referencia.numLimitePrincipal = limiteListaPrincipal;
+			CreateProgramList.referencia.numLimiteFuncao = limiteListaFuncao;
+			CreateProgramList.referencia.limitePrincipal.text = "Principal\t\t\tLimite de Comandos: "+limiteListaPrincipal.ToString();
+			CreateProgramList.referencia.limiteFuncao.text = "Funçao\t\t\tLimite de Comandos: "+limiteListaFuncao.ToString();
+		}
 		Debug.Log ("carregou");
 
     }

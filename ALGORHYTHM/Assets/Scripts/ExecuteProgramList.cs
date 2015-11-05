@@ -7,6 +7,7 @@ public class ExecuteProgramList : MonoBehaviour {
 	public float tempoMover = 0.6f; //Tempo que o personagem leva para ir de um Tile ao outro.
 	//public List<CommandButton> programList = new List<CommandButton>(); //Variavel para referenciar a Lista de Programa Gerada
 	public List<Comando> listaPrograma = new List<Comando>();
+	public List<Comando> listaFuncao = new List<Comando>();
 	public GameObject playerPrefab;
 
 	private GameObject myPlayer; //Variaveis para armazenar referencias ao Status do nosso Player
@@ -40,9 +41,12 @@ public class ExecuteProgramList : MonoBehaviour {
 		listaPrograma = new List<Comando>();
 		listaPrograma = CreateProgramList.referencia.listaPrograma;
 
+		listaFuncao = new List<Comando>();
+		listaFuncao = CreateProgramList.referencia.listaFuncao;
+
 		//Inicia uma Corotina para executar os comandos na Lista!
 		//StartCoroutine (ExecutarLista (programList));	
-		StartCoroutine (ExecutarLista (listaPrograma));	
+		StartCoroutine (ExecutarLista (listaPrograma));
 		//Debug.Log (myPlayerStat.direcao); //teste
 	}
 	
@@ -820,7 +824,6 @@ public class ExecuteProgramList : MonoBehaviour {
 	//IEnumerator ExecutarLista(List<CommandButton> lista)
 	IEnumerator ExecutarLista(List<Comando> lista)
 	{
-
 		cGeral.numeroComandos = lista.Count;
 		Debug.Log ("numero comandos: "+cGeral.numeroComandos);
 		Debug.Log ("numero retries: "+cGeral.numeroRetries);
@@ -828,7 +831,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		{
 			if (!cGeral.retry) 
 			{
-				if (!cGeral.listaEmExecucao) 
+				if (!cGeral.listaEmExecucao)
 				{
 					cGeral.listaEmExecucao = true;
 						//foreach (CommandButton comando in lista) {
@@ -863,6 +866,10 @@ public class ExecuteProgramList : MonoBehaviour {
 							case Comando.botaoNome.Pular: //NomeBotoes.pular:
 								PularPersonagem ();
 								yield return new WaitForSeconds (0.8f);
+								break;
+							case Comando.botaoNome.Funcao: //NomeBotoes.pular:
+							StartCoroutine(ExecutarListaFuncao(listaFuncao));
+								yield return new WaitForSeconds (0.8f*listaFuncao.Count);
 								break;
 							}
 						}
@@ -916,8 +923,50 @@ public class ExecuteProgramList : MonoBehaviour {
 			EnviaCodigo ("\nErro: listaComando == null");
 			Debug.Log ("A Lista de Programa esta nula!");
 		}
+	}//FIM Executa Lista
 
-	}
+	IEnumerator ExecutarListaFuncao(List<Comando> lista)
+	{
+		foreach (Comando comando in lista)
+		{
+			switch (comando.nome) 
+			{
+			case Comando.botaoNome.Andar: //NomeBotoes.andar:
+				//MoveGo(myPlayer, myPlayerStat);
+				MoverPersonagem ();
+				yield return new WaitForSeconds (0.8f);
+				break;
+			case Comando.botaoNome.Falar://NomeBotoes.falar:
+				//ActTalk(string comando.parametro1.text, myPlayer, myPlayerStat);
+				//Debug.Log ("Falou " + comando.parametro1.text);
+				//Debug.Log ("Falou");
+				break;
+			case Comando.botaoNome.Interagir: //NomeBotoes.interagir:
+				//ActInteract(myPlayer, myPlayerStat);
+				Interagir ();
+				yield return new WaitForSeconds (0.3f);
+				//Debug.Log ("Interagiu");
+				break;
+			case Comando.botaoNome.GirarDireita: //NomeBotoes.girarDireita:
+				GirarPersonagem (Player.Direction.Direita);
+				yield return new WaitForSeconds (0.3f);
+				break;
+			case Comando.botaoNome.GirarEsquerda: //NomeBotoes.girarEsquerda:
+				GirarPersonagem (Player.Direction.Esquerda);
+				yield return new WaitForSeconds (0.3f);
+				break;
+			case Comando.botaoNome.Pular: //NomeBotoes.pular:
+				PularPersonagem ();
+				yield return new WaitForSeconds (0.8f);
+				break;
+//			case Comando.botaoNome.Funcao: //NomeBotoes.pular: //NAO ESTA PEPARADO PARA LOOP AINDA
+//				StartCoroutine(ExecutarListaFuncao(listaFuncao));
+//				yield return new WaitForSeconds (1f*listaFuncao.Count);
+//				break;
+			}
+		}
+	}//FIM Executa Lista 2
+
 
 	//Coroutine para dar a sensaçao de Movimento ao modificar a posiçao do Personagem, 
 	//sem teletransporta-lo direto a posiçao e sem depender das funçoes Update/Fixed Update do MonoBehaviour para fazer isso.

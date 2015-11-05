@@ -1,9 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ControladorGeral.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ExecuteProgramList.cs">
     <Files>
-      <File FileName="Assets\Scripts\ControladoraCadastroPerfil.cs" Line="14" Column="27" />
-      <File FileName="Assets\Scripts\ControladorGeral.cs" Line="412" Column="31" />
+      <File FileName="Assets\Scripts\ControladorGeral.cs" Line="314" Column="46" />
+      <File FileName="Assets\Scripts\CarregaJogo.cs" Line="100" Column="75" />
+      <File FileName="Assets\Scripts\CreateProgramList.cs" Line="51" Column="2" />
+      <File FileName="Assets\Scripts\RemoveBotaoLista.cs" Line="51" Column="62" />
+      <File FileName="Assets\Scripts\Comando.cs" Line="12" Column="17" />
+      <File FileName="Assets\Scripts\ExecuteProgramList.cs" Line="872" Column="45" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

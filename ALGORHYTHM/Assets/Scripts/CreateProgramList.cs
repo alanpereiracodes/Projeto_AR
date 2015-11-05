@@ -4,27 +4,14 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 
-
-//[System.Serializable]
-//public class Item
-//{
-//	public string name;
-//	public Sprite icon;
-//	public string method;
-//	/*espaço ocupados
-//	 *se o metodo precisa de algum argumento
-//	 */
-//}
-
-
 public class CreateProgramList : MonoBehaviour {
 
 	public static CreateProgramList referencia;
 
 	public Transform contentPanel;
-	//public int limiteLista;
+	public Transform contentPanel2; //Comandos Funçao
 
-	//UI Fase
+	//Capitulo 1 UI
 	public Text refLog;
 	public Text refLogAvanc;
 	public Scrollbar refScroll;
@@ -43,27 +30,24 @@ public class CreateProgramList : MonoBehaviour {
 	public Image imagemFase2;
 	public Text textoObjetivo;
 
-	//public ScrollRect scroller;
-	//public static GameObject stContentPanel;
-	//public List<CommandButton> programList = new List<CommandButton>();
+	//Capitulo 2 UI
+	public Text limitePrincipal;
+	public Text limiteFuncao;
+	public int numLimitePrincipal;
+	public int numLimiteFuncao;
+	public Toggle togPrincipal;
+	public Toggle togFuncao;
+	
 	public List<Comando> listaPrograma = new List<Comando>();
+	public List<Comando> listaFuncao = new List<Comando>();
 
-	void Awake() //for static use
+	void Awake()
 	{
-		//stContentPanel = contentPanel;
 		if (referencia == null)
-			//if not, set instance to this
 			referencia = this;	
-		//If instance already exists and it's not this:
 		else if (referencia != this)
-			//Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
 			Destroy(gameObject);
 	}
-
-//	void Start()
-//	{
-//		//RecarregaUI();
-//	}
 
 	public void RecarregaUI()
 	{
@@ -88,6 +72,7 @@ public class CreateProgramList : MonoBehaviour {
 				MusicaHolder.AddComponent<AudioSource>();
 				MusicaHolder.GetComponent<AudioSource>().clip = musicaFase.clip;
 				ControladorGeral.referencia.musicaRolando = MusicaHolder.GetComponent<AudioSource>();
+				ControladorGeral.referencia.musicaRolando.loop = true;
 				ControladorGeral.referencia.musicaRolando.Play();
 				Debug.Log ("Nao destroi vei2");
 				DontDestroyOnLoad(ControladorGeral.referencia.musicaRolando);
@@ -106,6 +91,7 @@ public class CreateProgramList : MonoBehaviour {
 			MusicaHolder.AddComponent<AudioSource>();
 			MusicaHolder.GetComponent<AudioSource>().clip = musicaFase.clip;
 			ControladorGeral.referencia.musicaRolando = MusicaHolder.GetComponent<AudioSource>();
+			ControladorGeral.referencia.musicaRolando.loop = true;
 			ControladorGeral.referencia.musicaRolando.Play();
 			Debug.Log ("Nao destroi vei1");
 			DontDestroyOnLoad(ControladorGeral.referencia.musicaRolando);
@@ -128,23 +114,48 @@ public class CreateProgramList : MonoBehaviour {
 	{
 		if (!ControladorGeral.referencia.listaEmExecucao)
 		{
-		//	if (listaPrograma.Count < limiteLista) 
-		//	{
+			if(!ControladorGeral.referencia.capituloDois)
+			{
 				GameObject newButton = Instantiate (sampleButton) as GameObject;
-				//CommandButton button = newButton.GetComponent <CommandButton>();
 				Comando meuComando = newButton.GetComponent<Comando> ();
 				if (contentPanel != null) 
 				{
 					newButton.transform.SetParent (contentPanel);
 				}
-				//button.listNumber = programList.Count + 1;
-				//button.numberLabel.text = '#'+button.listNumber.ToString();
 				meuComando.numeroLista = listaPrograma.Count + 1;
-				//programList.Add (button);
 				listaPrograma.Add (meuComando);
-
-		//	} else
-		//		Debug.Log ("A Lista esta cheia!");
+			}
+			else
+			{
+				if(togPrincipal.isOn) //Vai popular os comandos na lista de Comandos Principal
+				{
+					if(listaPrograma.Count < numLimitePrincipal)
+					{
+						GameObject newButton = Instantiate (sampleButton) as GameObject;
+						Comando meuComando = newButton.GetComponent<Comando> ();
+						if (contentPanel != null) 
+						{
+							newButton.transform.SetParent (contentPanel);
+						}
+						meuComando.numeroLista = listaPrograma.Count + 1;
+						listaPrograma.Add (meuComando);
+					}
+				}
+				else //Vai popular os comandos na lista de Comandos de Funçao
+				{
+					if(listaFuncao.Count < numLimiteFuncao)
+					{
+						GameObject newButton = Instantiate (sampleButton) as GameObject;
+						Comando meuComando = newButton.GetComponent<Comando> ();
+						if (contentPanel != null) 
+						{
+							newButton.transform.SetParent (contentPanel2);
+						}
+						meuComando.numeroLista = listaFuncao.Count + 1;
+						listaFuncao.Add (meuComando);
+					}
+				}
+			}
 		}
 		else 
 		{
@@ -155,11 +166,17 @@ public class CreateProgramList : MonoBehaviour {
 	public void LimpaLista()
 	{
 		if (!ControladorGeral.referencia.retry) {
-			if (!ControladorGeral.referencia.listaEmExecucao) {
-				foreach (GameObject objeto in GameObject.FindGameObjectsWithTag("Comando")) {
+			if (!ControladorGeral.referencia.listaEmExecucao) 
+			{
+				foreach (GameObject objeto in GameObject.FindGameObjectsWithTag("Comando")) 
+				{
 					Destroy (objeto);
 				}
 				listaPrograma.Clear ();
+				if(ControladorGeral.referencia.capituloDois)
+				{	
+					listaFuncao.Clear ();
+				}
 				Debug.Log ("Lista de Programa apagada!");
 			} 
 			else
@@ -177,7 +194,6 @@ public class CreateProgramList : MonoBehaviour {
 		ControladorGeral.referencia.myLog.text += mensagem;
 		if (ControladorGeral.referencia.myScroll != null)
 		{
-			//Debug.Log (ControladorGeral.referencia.myScroll.value.ToString ());
 			ControladorGeral.referencia.myScroll.value = 0;
 		}
 	}
@@ -187,7 +203,6 @@ public class CreateProgramList : MonoBehaviour {
 		ControladorGeral.referencia.myLogAvanc.text += mensagem;
 		if (ControladorGeral.referencia.myScrollAvanc != null)
 		{
-			//Debug.Log (ControladorGeral.referencia.myScroll.value.ToString ());
 			ControladorGeral.referencia.myScrollAvanc.value = 0;
 		}
 	}

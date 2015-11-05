@@ -11,7 +11,8 @@ public class Comando : MonoBehaviour {
 		GirarDireita,
 		GirarEsquerda,
 		Interagir,
-		Pular
+		Pular,
+		Funcao
 	};
 
 		public Button btn;

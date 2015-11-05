@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 //Esse script se encarrega de concentrar toda a informaçao a ser manipulad apor outros scripts em um so lugar.
-//Pois esse scirpt e criado asism que o jogo e criado/carregado e ao inves de ser destruido a cada Cena carregado este se mantem.
+//Pois esse script e criado asism que o jogo e criado/carregado e ao inves de ser destruido a cada Cena carregado este se mantem.
 
 public class ControladorGeral : MonoBehaviour {
 
@@ -55,20 +55,9 @@ public class ControladorGeral : MonoBehaviour {
 	//Direçao do personagem Inicial - a fazer
 	public Vector2 posicaoObjetivo = new Vector2(99f,99f);
 
-
-
-	//Referencias aos objetos da Selecao de fases--------------------------
-	//Esses atributos podem ser encontrados na variavel Jogo Atual!! 
-//	public int idJogoAtual = 0;
-//	public int ultimaFaseLiberada = 1;
-//	public int capituloAtual;
-	
 	//Lista com os Botoes das fases
 	public List<GameObject> listaBotoesFases;
 	public List<Fase> listaFases;
-	
-	//UI
-
 
 	//Referencia para Tela de Carregar jogo
 	public List<Jogo> listaJogosSalvos;
@@ -83,33 +72,27 @@ public class ControladorGeral : MonoBehaviour {
 	private string tableName;
 	private ArrayList columnNames;
 	private ArrayList columnValues;
-	//private float tempo = 0f;
-	//private bool calculaTempo = true;
+
+	//Capitulo 2
+	public bool capituloDois;
+	public int limiteListaPrincipal;
+	public int limiteListaFuncao;
 	
 	//===================== INICIO ===============================
 	void Awake () 
 	{
 		musicaRolando = null;
-		//Check if instance already exists
 		if (referencia == null)	
-			//if not, set instance to this
 			referencia = this;		
-		//If instance already exists and it's not this:
 		else if (referencia != this)
-			//Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
 			Destroy(gameObject);  
 
-		//Sets this to not be destroyed when reloading scene
 		DontDestroyOnLoad(gameObject);
-		//Call the InitGame function to initialize the first level 
-		//IniciaJogo();
         jogoAtual = null;
 		perfilAtual = null;
 		listaJogosSalvos = new List<Jogo>(); //Lista para armazenar todos os jogos salvos de um dado perfil;
-        
 		//Option
 		resolucaoAtual = "1366x728";
-
 		//Inicializa o banco como null;
         banco = null;
     }
@@ -121,14 +104,6 @@ public class ControladorGeral : MonoBehaviour {
 		{
 				if (myPlayer.GetComponent<Player> ().posicaoTabuleiro == posicaoObjetivo)
 				{
-					//if(calculaTempo)
-					//{
-					//	tempo = Time.time;
-					//	calculaTempo = false;
-					//}
-					
-					//if(Time.time > tempo+2f)
-					//{
 					if (numeroRetries > 0)
 						pontuacao = 1;
 					else 
@@ -161,9 +136,6 @@ public class ControladorGeral : MonoBehaviour {
 
 					janelaFaseConcluida.SetActive (true);
 					janelaFaseConcluida.GetComponentInChildren<Animation>().Play();
-						//calculaTempo = true;
-						//toca animaçao
-				//}
 			}
 		} 
 	}
@@ -195,7 +167,7 @@ public class ControladorGeral : MonoBehaviour {
 		{
 			Debug.Log ("Nao foi possivel criar a tabela "+tableName+", devido a: "+e.ToString());
 		}
-		
+
 		//Criar/Verifica Existencia da tabela Jogo
 		tableName = "Jogo";
 		columnNames = null;
@@ -256,7 +228,6 @@ public class ControladorGeral : MonoBehaviour {
 		Jogo novoJogo = new Jogo();
 		novoJogo.dataJogoCriado = DateTime.Now.ToString("dd/MM/yyyy");
 		novoJogo.dataJogoSalvo = DateTime.Now.ToString("dd/MM/yyyy");
-		//novoJogo.idPerfilJogador = perfilJogador.idPerfil;
 		novoJogo.pontuacaoTotal = 0;
 		novoJogo.capituloAtual = 1;
 		novoJogo.numeroFaseLiberada = 1; //Fase 1 e a primeira fase;
@@ -264,9 +235,7 @@ public class ControladorGeral : MonoBehaviour {
 		//Inicia a COnexao com o Banco
 		banco = new ConexaoBanco();
 		banco.AbrirBanco("URI=file:" + Application.dataPath + "/MeuJogoSalvo.sqdb");
-
 		CriarTabelas();
-
 		//TUDO CRIADO!!
 
 		//Incluir Perfil e Jogo
@@ -314,8 +283,8 @@ public class ControladorGeral : MonoBehaviour {
 		ultimoPerfil = null;
 		ultimoPerfil = new ArrayList();
 		ultimoPerfil = banco.IncluirEspecificoRetornaId(tableName,"idJogo", columnNames, columnValues);
-		teste = (ArrayList)ultimoPerfil[0]; //lista dos Objetos com somente um Objeto que contem os registros do nosso ultimo registro
-		t = (int)teste[0];//(int)teste[0]; //o id e o primeiro registro de nosso Objeto, pois trata-se da primeira Coluna;
+		teste = (ArrayList)ultimoPerfil[0];
+		t = (int)teste[0];
 		novoJogo.idJogo = t;
 
 		Debug.Log ("Perfil cadastrado: "+perfilJogador.idPerfil.ToString()+", "+perfilJogador.nomeAluno);
@@ -478,11 +447,6 @@ public class ControladorGeral : MonoBehaviour {
 	}
 
 	//=========================================
-
-//	void IniciaJogo ()
-//	{
-//		//?
-//	}
 
 	IEnumerator Esperar(float segundos) {
 		print(Time.time);

@@ -69,33 +69,44 @@ public class CameraBtnEvents : MonoBehaviour {
 		jogador = ControladorGeral.referencia.myPlayer.GetComponent<Player> ();
 
 		int temp = 0;
+		float posX = 2.5f; //padrao
+		float posY = 0; //padrao
 
 		switch(cameraYAxisRotation)
 		{
 			case 0:
 				temp = 90;
-				
+				posX = 7.5f;
+				posY = -3.5f;
 				break;
 
 			case 90:
 				temp = 180;
+				posX = -6f;
+				posY = 2.5f;
 				break;
 
 			case 180:
 				temp = 270;
+				posX = -2f;
+				posY = 0;
 				break;
 
 			case 270:
 				temp = 0;
+				posX = 2.5f;
+				posY = 0;
 				break;
 		
 		}
 
 		cameraYAxisRotation = temp;
 		Quaternion novaRotation = Quaternion.Euler (0, cameraYAxisRotation, 0);
+		Vector3 novaPos = new Vector3(posX,posY,0);
 
 		//myCameraSuporte.transform.rotation = novaRotation;
-		StartCoroutine(rotateObject (myCameraSuporte.transform.rotation, novaRotation, rotationTime));
+		StartCoroutine(GiraEMoveObjeto (myCameraSuporte.transform.rotation, novaRotation, myCameraSuporte.transform.position, novaPos, rotationTime));
+
 		//toLeft
 		switch(jogador.direcaoCamera)
 		{
@@ -135,23 +146,30 @@ public class CameraBtnEvents : MonoBehaviour {
 		jogador = ControladorGeral.referencia.myPlayer.GetComponent<Player> ();
 
 		int temp = 0;
-		
+		float posX = 2.5f;
+		float posY = 0; 
+
 		switch(cameraYAxisRotation)
 		{
 		case 0:
 			temp = 270;
-			break;
-			
+			posX = -2f;
+			posY = 0;
+			break;		
 		case 90:
 			temp = 0;
-			break;
-			
+			posX = 2.5f;
+			posY = 0;
+			break;	
 		case 180:
 			temp = 90;
-			break;
-			
+			posX = 7.5f;
+			posY = -3.5f;
+			break;		
 		case 270:
 			temp = 180;
+			posX = -6f;
+			posY = 2.5f;
 			break;
 			
 		}
@@ -159,11 +177,10 @@ public class CameraBtnEvents : MonoBehaviour {
 		cameraYAxisRotation = temp;
 
 		Quaternion novaRotation = Quaternion.Euler (0, cameraYAxisRotation, 0);
+		Vector3 novaPos = new Vector3(posX,posY,0);
 
-		StartCoroutine(rotateObject (myCameraSuporte.transform.rotation, novaRotation, rotationTime));
-		//myCameraSuporte.transform.rotation = novaRotation;
-		//myCameraSuporte.transform.rotation = Quaternion.Lerp (myCameraSuporte.transform.rotation, novaRotation, Time.deltaTime);
-		//toRight
+		StartCoroutine(GiraEMoveObjeto (myCameraSuporte.transform.rotation, novaRotation, myCameraSuporte.transform.position, novaPos, rotationTime));
+
 		switch(jogador.direcaoCamera)
 		{
 		case Player.Direction.Frente:
@@ -179,7 +196,7 @@ public class CameraBtnEvents : MonoBehaviour {
 			jogador.direcaoCamera = Player.Direction.Frente;
 			break;
 		}
-		//
+
 		switch(jogador.direcaoCamera)
 		{
 		case Player.Direction.Frente:
@@ -222,45 +239,22 @@ public class CameraBtnEvents : MonoBehaviour {
 		//Debug.Log ("coroutine REALLY WORKS!!");
 	}
 
-	/*
-	 * public void GirarPersonagem(Player.Direction direcaoGiro)
+	IEnumerator GiraEMoveObjeto(Quaternion rotOrigem, Quaternion rotDestino, Vector3 posOrigem, Vector3 posDestino, float intervalo)
 	{
-		if (direcaoGiro == Player.Direction.Direita) 
-		{
-			switch(myPlayerStat.direcaoGlobal)
-			{
-			case Player.Direction.Frente:
-				myPlayerStat.direcaoGlobal = Player.Direction.Direita;
-				break;
-			case Player.Direction.Direita:
-				myPlayerStat.direcaoGlobal = Player.Direction.Tras;
-				break;
-			case Player.Direction.Tras:
-				myPlayerStat.direcaoGlobal = Player.Direction.Esquerda;
-				break;
-			case Player.Direction.Esquerda:
-				myPlayerStat.direcaoGlobal = Player.Direction.Frente;
-				break;
-			}
-		} 
-		if (direcaoGiro == Player.Direction.Esquerda) 
-		{
-			switch(myPlayerStat.direcaoGlobal)
-			{
-			case Player.Direction.Frente:
-				myPlayerStat.direcaoGlobal = Player.Direction.Esquerda;
-				break;
-			case Player.Direction.Esquerda:
-				myPlayerStat.direcaoGlobal = Player.Direction.Tras;
-				break;
-			case Player.Direction.Tras:
-				myPlayerStat.direcaoGlobal = Player.Direction.Direita;
-				break;
-			case Player.Direction.Direita:
-				myPlayerStat.direcaoGlobal = Player.Direction.Frente;
-				break;
-			}
-		}
-		*/
+		botaoRL.GetComponent<Button>().enabled = false;
+		botaoRR.GetComponent<Button>().enabled = false;
 
-}
+		float tempoInicio = Time.time;
+		while(Time.time < tempoInicio + intervalo)
+		{
+			myCameraSuporte.transform.position = Vector3.Lerp(posOrigem, posDestino, (Time.time - tempoInicio)/intervalo);
+			myCameraSuporte.transform.rotation = Quaternion.Lerp(rotOrigem, rotDestino, (Time.time - tempoInicio)/intervalo);
+			yield return null;
+		}
+		myCameraSuporte.transform.rotation = rotDestino;
+		myCameraSuporte.transform.position = posDestino;
+		botaoRL.GetComponent<Button>().enabled = true;
+		botaoRR.GetComponent<Button>().enabled = true;
+	}
+
+}//FIM

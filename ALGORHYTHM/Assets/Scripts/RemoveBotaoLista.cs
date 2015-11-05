@@ -18,7 +18,8 @@ public class RemoveBotaoLista : MonoBehaviour {
 		programListScript = CreateProgramList.referencia;
 	}
 
-	void buttonSetup(Button button) {
+	void buttonSetup(Button button) 
+	{
 		button.onClick.RemoveAllListeners();
 		//Add your new event
 		button.onClick.AddListener(() => DestroiBotao(button));
@@ -29,18 +30,68 @@ public class RemoveBotaoLista : MonoBehaviour {
 		//	foreach (CommandButton btn in programListScript.programList) 
 		if (!ControladorGeral.referencia.retry) 
 		{
-			if (!ControladorGeral.referencia.listaEmExecucao) {
-				foreach (Comando cmd in programListScript.listaPrograma) {
-					//if(btn.listNumber > esseBotaoCMD.listNumber)
-					if (cmd.numeroLista > esseCMD.numeroLista) {
-						//btn.listNumber--;
-						cmd.numeroLista--;
-						//btn.numberLabel.text = '#'+btn.listNumber.ToString();
+			if (!ControladorGeral.referencia.listaEmExecucao)
+			{
+				if(!ControladorGeral.referencia.capituloDois)
+				{
+					foreach (Comando cmd in programListScript.listaPrograma) 
+					{
+						//if(btn.listNumber > esseBotaoCMD.listNumber)
+						if (cmd.numeroLista > esseCMD.numeroLista) 
+						{
+							//btn.listNumber--;
+							cmd.numeroLista--;
+							//btn.numberLabel.text = '#'+btn.listNumber.ToString();
+						}
+					}
+				}
+				else
+				{
+					Debug.Log (b.transform.parent.name);
+					if(b.transform.parent == programListScript.contentPanel2)
+					{
+						foreach (Comando cmd in programListScript.listaFuncao) 
+						{
+							//if(btn.listNumber > esseBotaoCMD.listNumber)
+							if (cmd.numeroLista > esseCMD.numeroLista) 
+							{
+								//btn.listNumber--;
+								cmd.numeroLista--;
+								//btn.numberLabel.text = '#'+btn.listNumber.ToString();
+							}
+						}
+					}
+					else
+					{
+						foreach (Comando cmd in programListScript.listaPrograma) 
+						{
+							//if(btn.listNumber > esseBotaoCMD.listNumber)
+							if (cmd.numeroLista > esseCMD.numeroLista) 
+							{
+								//btn.listNumber--;
+								cmd.numeroLista--;
+								//btn.numberLabel.text = '#'+btn.listNumber.ToString();
+							}
+						}
 					}
 				}
 				//programListScript.programList.Remove (esseBotaoCMD);
-				programListScript.listaPrograma.Remove (esseCMD);
+				if(!ControladorGeral.referencia.capituloDois)
+					programListScript.listaPrograma.Remove (esseCMD);
+				else
+				{
+					Debug.Log (b.transform.parent.name);
+					if(b.transform.parent == programListScript.contentPanel2)
+					{
+						programListScript.listaFuncao.Remove (esseCMD);
+					}
+					else
+					{
+						programListScript.listaPrograma.Remove (esseCMD);
+					}
+				}
 				Destroy (esseBotao);
+				Debug.Log(programListScript.listaPrograma.Count.ToString()+" E "+programListScript.listaFuncao.Count.ToString());
 			} 
 			else 
 			{
