@@ -17,6 +17,7 @@ public class ExecuteProgramList : MonoBehaviour {
 
 	ControladorGeral cGeral;
 
+	//private RectTransform posicaoPadrao;
 	//Notas:
 	//Awake acontece quando um GameObject e criado.
 	//Start acontece quando um GameObject e iniciado.
@@ -24,11 +25,12 @@ public class ExecuteProgramList : MonoBehaviour {
 	//Acontece depois do Awake, dando tempo de a referencia do Player ser atribuida!
 	void Start()
 	{
+		//posicaoPadrao = CreateProgramList.referencia.destaqueComando.GetComponent<RectTransform> ();
+
 		cGeral = ControladorGeral.referencia;
 		myPlayer = cGeral.myPlayer;
 		myPlayerStat = myPlayer.GetComponent<Player> ();
 		myPlayAnim = myPlayer.GetComponentInChildren<Animator>();
-
 	}
 	
 	//Funçao para executar a Lista de Programa! Essa funçao e chamada pelo botao "Executar Programa" na UI do jogo.
@@ -837,6 +839,12 @@ public class ExecuteProgramList : MonoBehaviour {
 						//foreach (CommandButton comando in lista) {
 						foreach (Comando comando in lista)
 						{
+							if(!CreateProgramList.referencia.destaqueComando.activeInHierarchy)
+							{
+								CreateProgramList.referencia.destaqueComando.SetActive(true);
+							}
+							CreateProgramList.referencia.destaqueComando.transform.SetParent(comando.gameObject.transform);
+							CreateProgramList.referencia.destaqueComando.GetComponent<RectTransform>().anchoredPosition= new Vector2 (30f,-30f);
 							switch (comando.nome) 
 							{
 							case Comando.botaoNome.Andar: //NomeBotoes.andar:
@@ -923,12 +931,22 @@ public class ExecuteProgramList : MonoBehaviour {
 			EnviaCodigo ("\nErro: listaComando == null");
 			Debug.Log ("A Lista de Programa esta nula!");
 		}
+
+		CreateProgramList.referencia.destaqueComando.SetActive(false);
+		CreateProgramList.referencia.destaqueComando.transform.SetParent (CreateProgramList.referencia.destaqueComando.transform.parent.parent);
+
 	}//FIM Executa Lista
 
 	IEnumerator ExecutarListaFuncao(List<Comando> lista)
 	{
 		foreach (Comando comando in lista)
 		{
+			if(!CreateProgramList.referencia.destaqueComandoDois.activeInHierarchy)
+			{
+				CreateProgramList.referencia.destaqueComandoDois.SetActive(true);
+			}
+			CreateProgramList.referencia.destaqueComandoDois.transform.SetParent(comando.gameObject.transform);
+			CreateProgramList.referencia.destaqueComandoDois.GetComponent<RectTransform>().anchoredPosition= new Vector2 (30f,-30f);
 			switch (comando.nome) 
 			{
 			case Comando.botaoNome.Andar: //NomeBotoes.andar:
@@ -944,16 +962,16 @@ public class ExecuteProgramList : MonoBehaviour {
 			case Comando.botaoNome.Interagir: //NomeBotoes.interagir:
 				//ActInteract(myPlayer, myPlayerStat);
 				Interagir ();
-				yield return new WaitForSeconds (0.3f);
+				yield return new WaitForSeconds (0.8f);
 				//Debug.Log ("Interagiu");
 				break;
 			case Comando.botaoNome.GirarDireita: //NomeBotoes.girarDireita:
 				GirarPersonagem (Player.Direction.Direita);
-				yield return new WaitForSeconds (0.3f);
+				yield return new WaitForSeconds (0.8f);
 				break;
 			case Comando.botaoNome.GirarEsquerda: //NomeBotoes.girarEsquerda:
 				GirarPersonagem (Player.Direction.Esquerda);
-				yield return new WaitForSeconds (0.3f);
+				yield return new WaitForSeconds (0.8f);
 				break;
 			case Comando.botaoNome.Pular: //NomeBotoes.pular:
 				PularPersonagem ();
@@ -965,6 +983,8 @@ public class ExecuteProgramList : MonoBehaviour {
 //				break;
 			}
 		}
+		CreateProgramList.referencia.destaqueComandoDois.SetActive(false);
+		CreateProgramList.referencia.destaqueComandoDois.transform.SetParent (CreateProgramList.referencia.destaqueComandoDois.transform.parent.parent);
 	}//FIM Executa Lista 2
 
 

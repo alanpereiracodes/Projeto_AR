@@ -37,6 +37,8 @@ public class CreateProgramList : MonoBehaviour {
 	public int numLimiteFuncao;
 	public Toggle togPrincipal;
 	public Toggle togFuncao;
+	public GameObject destaqueComando;
+	public GameObject destaqueComandoDois;
 	
 	public List<Comando> listaPrograma = new List<Comando>();
 	public List<Comando> listaFuncao = new List<Comando>();
