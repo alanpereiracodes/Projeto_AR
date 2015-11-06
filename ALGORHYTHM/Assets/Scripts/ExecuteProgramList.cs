@@ -844,7 +844,10 @@ public class ExecuteProgramList : MonoBehaviour {
 								CreateProgramList.referencia.destaqueComando.SetActive(true);
 							}
 							CreateProgramList.referencia.destaqueComando.transform.SetParent(comando.gameObject.transform);
-							CreateProgramList.referencia.destaqueComando.GetComponent<RectTransform>().anchoredPosition= new Vector2 (30f,-30f);
+							if(cGeral.capituloDois)
+								CreateProgramList.referencia.destaqueComando.GetComponent<RectTransform>().anchoredPosition= new Vector2 (30f,-30f);
+							else
+								CreateProgramList.referencia.destaqueComando.GetComponent<RectTransform>().anchoredPosition= new Vector2 (25f,-25f);
 							switch (comando.nome) 
 							{
 							case Comando.botaoNome.Andar: //NomeBotoes.andar:

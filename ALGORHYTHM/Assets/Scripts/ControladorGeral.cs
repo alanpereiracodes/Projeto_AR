@@ -77,10 +77,17 @@ public class ControladorGeral : MonoBehaviour {
 	public bool capituloDois;
 	public int limiteListaPrincipal;
 	public int limiteListaFuncao;
+
+	//
+	private float tempoEspera;
+	private float tempo;
+	private bool espera;
 	
 	//===================== INICIO ===============================
 	void Awake () 
 	{
+		espera = false;
+		tempoEspera = 1.2f;
 		musicaRolando = null;
 		if (referencia == null)	
 			referencia = this;		
@@ -102,6 +109,13 @@ public class ControladorGeral : MonoBehaviour {
 
 		if (tabuleiroAtual != null && myPlayer != null && posicaoObjetivo != new Vector2(99f,99f) && !janelaFaseConcluida.activeInHierarchy) 
 		{
+			if(!espera)
+			{
+				espera = true;
+				tempo = Time.time + tempoEspera;
+			}
+			if(Time.time > tempo)
+			{
 				if (myPlayer.GetComponent<Player> ().posicaoTabuleiro == posicaoObjetivo)
 				{
 					if (numeroRetries > 0)
@@ -133,11 +147,12 @@ public class ControladorGeral : MonoBehaviour {
 						aSalvar = !aSalvar;
 						SalvarJogo (capituloAtual, faseAtual); //Salva o Jogo Atual se nao existir um registro dessa Fase ainda ou se a pontuaçao for maior
 					}
-
 					janelaFaseConcluida.SetActive (true);
 					janelaFaseConcluida.GetComponentInChildren<Animation>().Play();
+				}
+				espera = false;
 			}
-		} 
+		}
 	}
 
 
@@ -312,9 +327,9 @@ public class ControladorGeral : MonoBehaviour {
 		novaFase.pontuacaoCubinhoDigital = pontuacao;
 		
 		List<Fase> fasesSelect = new List<Fase> ();
-
+		
 		ArrayList minhasFasesSelecionadas = banco.LerTabelaToda ("Fase");//banco.SelecionaUnicoWhere ("Fase", "*", "idJogo", "=", novaFase.idJogo.ToString ());
-		if (minhasFasesSelecionadas != null || minhasFasesSelecionadas.Count > 0) 
+		if (minhasFasesSelecionadas != null || minhasFasesSelecionadas.Count > 0)
 		{
 			foreach(ArrayList faseSelecioanda in minhasFasesSelecionadas)
 			{
@@ -379,20 +394,26 @@ public class ControladorGeral : MonoBehaviour {
 		//FASE SALVA
 		//SALVAR  O JOGO AGORA
 			Jogo salvaJogo = jogoAtual;
-			if(faseAtual >= 10)
+			int faseS = faseAtual;
+			int capS = capituloAtual;
+			Debug.Log ("faseAtual: "+faseS);
+			Debug.Log ("CapituloAtual: "+capS);
+			if(faseAtual >= 10 && salvaJogo.capituloAtual < capS+1)
 			{
-				salvaJogo.capituloAtual = capituloAtual++;
-				faseAtual = 0;
+				salvaJogo.capituloAtual = capS+1;
+				faseS = 0;
+				Debug.Log ("CapituloNovo: "+salvaJogo.capituloAtual);
 			}
 			else
 			{
 				salvaJogo.capituloAtual = capituloAtual;
 			}
-			if(jogoAtual.numeroFaseLiberada < (((capituloAtual-1) * 10) + faseAtual + 1))
+			if(jogoAtual.numeroFaseLiberada < (((capS-1) * 10) + faseS + 1))
 			{
-				salvaJogo.numeroFaseLiberada = (((capituloAtual-1) * 10) + faseAtual + 1); 
+				salvaJogo.numeroFaseLiberada = (((capS-1) * 10) + faseS + 1); 
 				Debug.Log ("Fase Liberada: "+salvaJogo.numeroFaseLiberada);
 			}
+
 			salvaJogo.dataJogoSalvo = DateTime.Now.ToString("dd/MM/yyyy");
 			salvaJogo.pontuacaoTotal += somaPontuacao;
 

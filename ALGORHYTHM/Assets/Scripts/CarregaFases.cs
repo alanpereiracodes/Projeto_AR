@@ -15,6 +15,7 @@ public class CarregaFases : MonoBehaviour {
 
 	private float intervaloEspera = 0.2f;
 	private float tempo;
+	public int capituloMostrando;
 
 	void Awake () 
 	{
@@ -67,9 +68,11 @@ public class CarregaFases : MonoBehaviour {
 	public void CarregarFases()
 	{
 		capituloTitulo.text = "Capítulo " + ControladorGeral.referencia.jogoAtual.capituloAtual;
+		capituloMostrando = ControladorGeral.referencia.jogoAtual.capituloAtual;
 
 		int numeroFase = ControladorGeral.referencia.jogoAtual.numeroFaseLiberada;
 		numeroFase = numeroFase - (ControladorGeral.referencia.jogoAtual.capituloAtual-1) * 10;
+		Debug.Log ("NumeroFase: "+numeroFase);
 
 		foreach (GameObject obj in listaBotoesFases) 
 		{
@@ -102,7 +105,7 @@ public class CarregaFases : MonoBehaviour {
 			obj.transform.FindChild("ImagemFase").gameObject.GetComponent<Image>().sprite = listaImagensFases[n];
 
 			btn.onClick.AddListener(() => CarregaFase("Fase "+n.ToString()));
-			Debug.Log (n);
+			//Debug.Log (n);
 		}
 
 		//Debug.Log ("O Capitulo e: " + ControladorGeral.referencia.jogoAtual.capituloAtual + " e a Fase e: " + numeroFase);
@@ -129,11 +132,11 @@ public class CarregaFases : MonoBehaviour {
 				abcFase.idJogo = (int)faseSelecioanda[3];
 				
 				fasesSelect.Add (abcFase);
-				Debug.Log ("\n"+abcFase.numeroFase+abcFase.capitulo+abcFase.pontuacaoCubinhoDigital+abcFase.idJogo);
+				//Debug.Log ("\n"+abcFase.numeroFase+abcFase.capitulo+abcFase.pontuacaoCubinhoDigital+abcFase.idJogo);
 			}
 		}
 
-		Debug.Log (fasesSelect.Count);
+		//Debug.Log (fasesSelect.Count);
 		foreach(Fase fs in fasesSelect)
 		{
 			if(fs.numeroFase == n && fs.idJogo == ControladorGeral.referencia.jogoAtual.idJogo)
@@ -151,6 +154,69 @@ public class CarregaFases : MonoBehaviour {
 	{
 		Application.LoadLevel(fase);
 	}
+
+	public void ProximoCapitulo()
+	{
+		if(ControladorGeral.referencia.jogoAtual.capituloAtual > capituloMostrando)
+		{
+			CarregaCapitulo(capituloMostrando+1);
+		}
+	}
+
+	public void AnteriorCapitulo()
+	{
+		if(capituloMostrando >= 2)
+		{
+			CarregaCapitulo(capituloMostrando-1);
+		}
+	}
+
+	public void CarregaCapitulo(int numeroCapitulo)
+	{
+		capituloTitulo.text = "Capítulo " + numeroCapitulo.ToString ();
+		capituloMostrando = numeroCapitulo;
+		int numeroFase = ControladorGeral.referencia.jogoAtual.numeroFaseLiberada;
+		numeroFase = numeroFase - (numeroCapitulo-1) * 10;
+		Debug.Log ("NumeroFase: "+numeroFase);
+		
+		foreach (GameObject obj in listaBotoesFases) 
+		{
+			if(obj.GetComponent<BotaoFase>().numero > numeroFase)
+			{
+				obj.SetActive(false);
+			}
+			else
+			{
+				obj.SetActive(true);
+			}
+			Button btn = obj.GetComponent<Button>();
+			btn.onClick.RemoveAllListeners();
+			int n = (numeroCapitulo-1)*10+obj.GetComponent<BotaoFase>().numero;
+			int pontuacao = ProcuraPontuacaoFase(n);
+			Debug.Log ("Jogo "+ControladorGeral.referencia.jogoAtual.idJogo+" pontuacao Fase "+n+" es:"+pontuacao);
+			Transform painelImagens = obj.transform.FindChild("Panel");
+			switch(pontuacao)
+			{
+			case 1:
+				painelImagens.FindChild("Image").gameObject.GetComponent<Image>().color = Color.white;
+				break;
+			case 2:
+				painelImagens.FindChild("Image").gameObject.GetComponent<Image>().color = Color.white;
+				painelImagens.FindChild("Image 2").gameObject.GetComponent<Image>().color = Color.white;
+				break;
+			case 3:
+				Debug.Log ("tentou 3");
+				painelImagens.FindChild("Image").gameObject.GetComponent<Image>().color = Color.white;
+				painelImagens.FindChild("Image 2").gameObject.GetComponent<Image>().color = Color.white;
+				painelImagens.FindChild("Image 3").gameObject.GetComponent<Image>().color = Color.white;
+				break;
+			}
+			obj.transform.FindChild("ImagemFase").gameObject.GetComponent<Image>().sprite = listaImagensFases[n];
+			
+			btn.onClick.AddListener(() => CarregaFase("Fase "+n.ToString()));
+		}
+		Debug.Log ("Capitulo Carregado: "+capituloMostrando.ToString());
+	}//Fim Carrega Capitulo
 
 
 }
