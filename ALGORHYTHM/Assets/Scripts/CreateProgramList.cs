@@ -39,6 +39,7 @@ public class CreateProgramList : MonoBehaviour {
 	public Toggle togFuncao;
 	public GameObject destaqueComando;
 	public GameObject destaqueComandoDois;
+	public Material materialCristal;
 	
 	public List<Comando> listaPrograma = new List<Comando>();
 	public List<Comando> listaFuncao = new List<Comando>();

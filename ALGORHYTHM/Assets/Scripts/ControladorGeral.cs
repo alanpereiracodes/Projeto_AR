@@ -78,6 +78,7 @@ public class ControladorGeral : MonoBehaviour {
 	public int limiteListaPrincipal;
 	public int limiteListaFuncao;
 
+
 	//
 	private float tempoEspera;
 	private float tempo;

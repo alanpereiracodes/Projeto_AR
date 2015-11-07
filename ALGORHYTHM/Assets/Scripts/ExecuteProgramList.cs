@@ -630,6 +630,23 @@ public class ExecuteProgramList : MonoBehaviour {
 		{
 			switch (objetoFrente.tipo) 
 			{
+			case Objeto.Tipo.Cristal:
+				EnviaMensagem("\n<b>Algo</b>, ativou o " + objetoFrente.nome.ToString());
+				EnviaCodigo("\nCristal.Active() = " + objetoFrente.nome.ToString()+";");
+				objetoFrente.ativado = true;
+				objetoFrente.gameObject.transform.FindChild("Cristal").gameObject.GetComponent<Renderer>().material = CreateProgramList.referencia.materialCristal;
+				if(cGeral.tabuleiroAtual.QuebraCorrente())
+				{
+					Tile tilePortalCorrente = cGeral.tabuleiroAtual.ProcuraTile(cGeral.posicaoObjetivo);
+					Objeto portalCorrente = tilePortalCorrente.objetosEmCima[0].GetComponent<Objeto>();
+					portalCorrente.ativado = true;
+					portalCorrente.bloqueiaCaminho = false;
+					portalCorrente.GetComponentInChildren<Animator>().SetBool("quebrou",true);
+					EnviaMensagem("\nAs correntes no portal foram quebradas!");
+					EnviaCodigo("\nPortal.Desbloqueia();");
+				}
+				break;
+
 			case Objeto.Tipo.ItemPegavel:
 				myPlayerStat.objetoEmMaos = objetoFrente.gameObject;
 				EnviaMensagem("\n<b>Algo</b>, pegou um " + objetoFrente.nome.ToString());

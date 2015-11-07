@@ -21,7 +21,8 @@ public class Objeto : MonoBehaviour {
 		Interativo,
 		ItemPegavel,
 		Altar,
-		Estatico
+		Estatico,
+		Cristal
 	};
 	
 	public bool ativado;
