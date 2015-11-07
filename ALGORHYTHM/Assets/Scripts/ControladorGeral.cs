@@ -398,19 +398,19 @@ public class ControladorGeral : MonoBehaviour {
 			int capS = capituloAtual;
 			Debug.Log ("faseAtual: "+faseS);
 			Debug.Log ("CapituloAtual: "+capS);
-			if(faseAtual >= 10 && salvaJogo.capituloAtual < capS+1)
+			if(faseAtual-((cap-1)*10) >= 10 && salvaJogo.capituloAtual < capS+1)
 			{
 				salvaJogo.capituloAtual = capS+1;
-				faseS = 0;
+				//faseS = 0;
 				Debug.Log ("CapituloNovo: "+salvaJogo.capituloAtual);
 			}
 			else
 			{
 				salvaJogo.capituloAtual = capituloAtual;
 			}
-			if(jogoAtual.numeroFaseLiberada < (((capS-1) * 10) + faseS + 1))
+			if(jogoAtual.numeroFaseLiberada < (faseAtual+1))
 			{
-				salvaJogo.numeroFaseLiberada = (((capS-1) * 10) + faseS + 1); 
+				salvaJogo.numeroFaseLiberada = (faseAtual+1); 
 				Debug.Log ("Fase Liberada: "+salvaJogo.numeroFaseLiberada);
 			}
 
@@ -442,22 +442,23 @@ public class ControladorGeral : MonoBehaviour {
 
 	public void PassaFase(int cap, int fase)
 	{
+		//2 e 11
 		aSalvar = false;
-		if(fase >= 11)
-		{
-			cap++;
-			fase = 1;
-		}
-		int contaFase = ((cap-1) * 10) + fase;
-		Debug.Log (contaFase);
+		//if(fase-((cap-1)*10) >= 10)
+		//{
+		//	cap++;
+		//	fase = 1;
+		//}
+		//int contaFase = ((cap-1) * 10) + (fase-((cap-1)*10));
+		//Debug.Log (contaFase);
 
-		if(cap == 2 && fase == 1) //Fase 2 - 1 e a ultima
+		if(fase == 13) //Fase 2 - 1 e a ultima
 		{
 			Application.LoadLevel (3);
 		}
 		else
 		{
-			Application.LoadLevel ("Fase " + contaFase);
+			Application.LoadLevel ("Fase " + fase); //contaFase
 		}
 
 	}
