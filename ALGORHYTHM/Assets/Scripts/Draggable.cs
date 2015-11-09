@@ -69,8 +69,10 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 		}
 	}
 	
-	public void OnEndDrag(PointerEventData eventData) {
-		if (!ControladorGeral.referencia.listaEmExecucao) {
+	public void OnEndDrag(PointerEventData eventData) 
+	{
+		if (!ControladorGeral.referencia.listaEmExecucao) 
+		{
 			Debug.Log ("OnEndDrag");
 			this.transform.SetParent (parentToReturnTo);
 			this.transform.SetSiblingIndex (placeholder.transform.GetSiblingIndex ());
@@ -80,19 +82,37 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
 			//Soltou	
 			CreateProgramList.referencia.listaPrograma.Clear ();
-		
-			for (int i=0; i<this.transform.parent.childCount; i++) {
-				if (this.transform.parent.GetChild (i).gameObject.GetComponent<Comando> () != null) {
-					CreateProgramList.referencia.listaPrograma.Add (this.transform.parent.GetChild (i).gameObject.GetComponent<Comando> ());
-					//	Debug.Log ("Comando: "+this.transform.parent.GetChild(i).gameObject.GetComponent<Comando>().nome + " adicionado!");
+			Transform caixaListaPrograma = CreateProgramList.referencia.contentPanel.transform;
+			for (int i=0; i<caixaListaPrograma.childCount; i++)
+			{
+				Comando cmd = caixaListaPrograma.GetChild (i).gameObject.GetComponent<Comando>();
+				if (cmd != null) 
+				{
+					if(!cmd.listaFuncao)
+						CreateProgramList.referencia.listaPrograma.Add (cmd);
+					else
+						CreateProgramList.referencia.listaFuncao.Add (cmd);
 				}
+			}
 
-				//foreach(Comando cmd in CreateProgramList.referencia.listaPrograma)
-				//Debug.Log("Comando: "+cmd.nome+", ");
+			if(ControladorGeral.referencia.capituloDois)
+			{
+				CreateProgramList.referencia.listaFuncao.Clear ();
+				Transform caixaListaFuncao = CreateProgramList.referencia.contentPanel2.transform;
+				for (int i=0; i<caixaListaFuncao.childCount; i++)
+				{
+					Comando cmd = caixaListaFuncao.GetChild (i).gameObject.GetComponent<Comando>();
+					if (cmd != null) 
+					{
+						if(!cmd.listaFuncao)
+							CreateProgramList.referencia.listaPrograma.Add (cmd);
+						else
+							CreateProgramList.referencia.listaFuncao.Add (cmd);
+					}
+				}
 			}
 		}
-	}
-	
-	
-	
-}
+	}//fim EndDrag
+
+
+}//FIM

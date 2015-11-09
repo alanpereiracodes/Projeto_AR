@@ -399,20 +399,20 @@ public class ControladorGeral : MonoBehaviour {
 			int capS = capituloAtual;
 			Debug.Log ("faseAtual: "+faseS);
 			Debug.Log ("CapituloAtual: "+capS);
-			if(faseAtual-((cap-1)*10) >= 10 && salvaJogo.capituloAtual < capS+1)
+			if(faseAtual-((capS-1)*10) >= 10 && salvaJogo.capituloAtual < capS+1)
 			{
 				salvaJogo.capituloAtual = capS+1;
 				//faseS = 0;
 				Debug.Log ("CapituloNovo: "+salvaJogo.capituloAtual);
-			}
-			else
-			{
-				salvaJogo.capituloAtual = capituloAtual;
+//				if(salvaJogo.capituloAtual == 4)
+//					salvaJogo.capituloAtual = 3; //Nao tem capitulo 4 ainda
 			}
 			if(jogoAtual.numeroFaseLiberada < (faseAtual+1))
 			{
 				salvaJogo.numeroFaseLiberada = (faseAtual+1); 
 				Debug.Log ("Fase Liberada: "+salvaJogo.numeroFaseLiberada);
+//				if(salvaJogo.numeroFaseLiberada == 31)
+//					salvaJogo.numeroFaseLiberada = 30; //Nao tem fase 31 ainda
 			}
 
 			salvaJogo.dataJogoSalvo = DateTime.Now.ToString("dd/MM/yyyy");
@@ -453,9 +453,9 @@ public class ControladorGeral : MonoBehaviour {
 		//int contaFase = ((cap-1) * 10) + (fase-((cap-1)*10));
 		//Debug.Log (contaFase);
 
-		if(fase == 13) //Fase 2 - 1 e a ultima
+		if(fase == 31) //Fase 2 - 1 e a ultima
 		{
-			Application.LoadLevel (3);
+			Application.LoadLevel (3); //Carregar tela de Agradecimentos com os Creditos e Botao para Voltar ao Menu de Seleçao de Fases, Tela de Titulo ou Sair
 		}
 		else
 		{

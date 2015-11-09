@@ -126,6 +126,7 @@ public class CreateProgramList : MonoBehaviour {
 					newButton.transform.SetParent (contentPanel);
 				}
 				meuComando.numeroLista = listaPrograma.Count + 1;
+				meuComando.listaFuncao = false;
 				listaPrograma.Add (meuComando);
 			}
 			else
@@ -141,6 +142,7 @@ public class CreateProgramList : MonoBehaviour {
 							newButton.transform.SetParent (contentPanel);
 						}
 						meuComando.numeroLista = listaPrograma.Count + 1;
+						meuComando.listaFuncao = false;
 						listaPrograma.Add (meuComando);
 					}
 				}
@@ -155,6 +157,7 @@ public class CreateProgramList : MonoBehaviour {
 							newButton.transform.SetParent (contentPanel2);
 						}
 						meuComando.numeroLista = listaFuncao.Count + 1;
+						meuComando.listaFuncao = true;
 						listaFuncao.Add (meuComando);
 					}
 				}

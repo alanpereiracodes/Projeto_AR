@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class ExecuteProgramList : MonoBehaviour {
 	
-	public float tempoMover = 0.6f; //Tempo que o personagem leva para ir de um Tile ao outro.
+	public float tempoMover = 0.5f; //Tempo que o personagem leva para ir de um Tile ao outro.
 	//public List<CommandButton> programList = new List<CommandButton>(); //Variavel para referenciar a Lista de Programa Gerada
 	public List<Comando> listaPrograma = new List<Comando>();
 	public List<Comando> listaFuncao = new List<Comando>();
@@ -897,10 +897,11 @@ public class ExecuteProgramList : MonoBehaviour {
 								break;
 							case Comando.botaoNome.Funcao: //NomeBotoes.pular:
 							StartCoroutine(ExecutarListaFuncao(listaFuncao));
-								yield return new WaitForSeconds (0.8f*listaFuncao.Count);
+								yield return new WaitForSeconds (0.82f*listaFuncao.Count);
 								break;
 							}
 						}
+						yield return new WaitForSeconds (0.8f);
 						cGeral.retry = true;
 						cGeral.myBtnExecutarImage.sprite = cGeral.myBtnRetry;
 						cGeral.listaEmExecucao = false;

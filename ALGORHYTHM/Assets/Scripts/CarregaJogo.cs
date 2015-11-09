@@ -90,11 +90,11 @@ public class CarregaJogo : MonoBehaviour {
 		CreateProgramList.referencia.imagemFase.sprite = imagemObjetivo;
 		CreateProgramList.referencia.imagemFase2.sprite = imagemObjetivo2;
 		CreateProgramList.referencia.imagemFase2.enabled = imgObjetivoHablita;
+		ControladorGeral.referencia.capituloDois = capituloDois;
 		//Capitulo 2
 		if(capituloDois)
 		{
 			Debug.Log ("Capitulo 2!");
-			ControladorGeral.referencia.capituloDois = capituloDois;
 			ControladorGeral.referencia.limiteListaPrincipal = limiteListaPrincipal;
 			ControladorGeral.referencia.limiteListaFuncao = limiteListaFuncao;
 			CreateProgramList.referencia.numLimitePrincipal = limiteListaPrincipal;

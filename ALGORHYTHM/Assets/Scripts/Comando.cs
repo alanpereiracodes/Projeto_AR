@@ -19,6 +19,7 @@ public class Comando : MonoBehaviour {
 		public botaoNome nome;
 		public Image icone;
 		public int numeroLista; 
+		public bool listaFuncao;
 	//teste - atributo para reorganizar a lista caso um elemento seja removido 
 	//e tambem para ajudar na ordem de leitura dos comandos na hora de execuçao.
 		//public Text methodLabel;

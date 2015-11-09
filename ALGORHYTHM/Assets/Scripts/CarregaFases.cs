@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class CarregaFases : MonoBehaviour {
 
+	//A FASE 31 e a Tela de Creditos!!
+
 	public GameObject gameManager;
 	public Text capituloTitulo;
 	public AudioSource musicaMenu;
@@ -74,7 +76,7 @@ public class CarregaFases : MonoBehaviour {
 		numeroFase = numeroFase - (ControladorGeral.referencia.jogoAtual.capituloAtual-1) * 10;
 		Debug.Log ("NumeroFase: "+numeroFase);
 
-		foreach (GameObject obj in listaBotoesFases) 
+		foreach (GameObject obj in listaBotoesFases)
 		{
 			if(obj.GetComponent<BotaoFase>().numero > numeroFase)
 			{
@@ -88,15 +90,22 @@ public class CarregaFases : MonoBehaviour {
 			Transform painelImagens = obj.transform.FindChild("Panel");
 			switch(pontuacao)
 			{
+			case 0:
+				painelImagens.FindChild("Image").gameObject.GetComponent<Image>().color = Color.gray;
+				painelImagens.FindChild("Image 2").gameObject.GetComponent<Image>().color = Color.gray;
+				painelImagens.FindChild("Image 3").gameObject.GetComponent<Image>().color = Color.gray;
+				break;
 			case 1:
 				painelImagens.FindChild("Image").gameObject.GetComponent<Image>().color = Color.white;
+				painelImagens.FindChild("Image 2").gameObject.GetComponent<Image>().color = Color.gray;
+				painelImagens.FindChild("Image 3").gameObject.GetComponent<Image>().color = Color.gray;
 				break;
 			case 2:
 				painelImagens.FindChild("Image").gameObject.GetComponent<Image>().color = Color.white;
 				painelImagens.FindChild("Image 2").gameObject.GetComponent<Image>().color = Color.white;
+				painelImagens.FindChild("Image 3").gameObject.GetComponent<Image>().color = Color.gray;
 				break;
 			case 3:
-				Debug.Log ("tentou 3");
 				painelImagens.FindChild("Image").gameObject.GetComponent<Image>().color = Color.white;
 				painelImagens.FindChild("Image 2").gameObject.GetComponent<Image>().color = Color.white;
 				painelImagens.FindChild("Image 3").gameObject.GetComponent<Image>().color = Color.white;
@@ -197,15 +206,22 @@ public class CarregaFases : MonoBehaviour {
 			Transform painelImagens = obj.transform.FindChild("Panel");
 			switch(pontuacao)
 			{
+			case 0:
+				painelImagens.FindChild("Image").gameObject.GetComponent<Image>().color = Color.gray;
+				painelImagens.FindChild("Image 2").gameObject.GetComponent<Image>().color = Color.gray;
+				painelImagens.FindChild("Image 3").gameObject.GetComponent<Image>().color = Color.gray;
+				break;
 			case 1:
 				painelImagens.FindChild("Image").gameObject.GetComponent<Image>().color = Color.white;
+				painelImagens.FindChild("Image 2").gameObject.GetComponent<Image>().color = Color.gray;
+				painelImagens.FindChild("Image 3").gameObject.GetComponent<Image>().color = Color.gray;
 				break;
 			case 2:
 				painelImagens.FindChild("Image").gameObject.GetComponent<Image>().color = Color.white;
 				painelImagens.FindChild("Image 2").gameObject.GetComponent<Image>().color = Color.white;
+				painelImagens.FindChild("Image 3").gameObject.GetComponent<Image>().color = Color.gray;
 				break;
 			case 3:
-				Debug.Log ("tentou 3");
 				painelImagens.FindChild("Image").gameObject.GetComponent<Image>().color = Color.white;
 				painelImagens.FindChild("Image 2").gameObject.GetComponent<Image>().color = Color.white;
 				painelImagens.FindChild("Image 3").gameObject.GetComponent<Image>().color = Color.white;
