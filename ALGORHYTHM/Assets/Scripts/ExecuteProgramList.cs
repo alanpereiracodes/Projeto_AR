@@ -628,6 +628,7 @@ public class ExecuteProgramList : MonoBehaviour {
 
 		if (objetoFrente != null) 
 		{
+			myPlayAnim.SetBool("pegando",true);
 			switch (objetoFrente.tipo) 
 			{
 			case Objeto.Tipo.Cristal:
@@ -688,7 +689,7 @@ public class ExecuteProgramList : MonoBehaviour {
 				}
 				break;
 			}
-		} 
+		}
 		else 
 		{
 			EnviaMensagem("\n<b>Algo</b> não encontrou um objeto para interagir");
@@ -880,7 +881,8 @@ public class ExecuteProgramList : MonoBehaviour {
 							case Comando.botaoNome.Interagir: //NomeBotoes.interagir:
 							//ActInteract(myPlayer, myPlayerStat);
 								Interagir ();
-								yield return new WaitForSeconds (0.3f);
+								yield return new WaitForSeconds (0.8f);
+								myPlayAnim.SetBool("pegando",false);
 							//Debug.Log ("Interagiu");
 								break;
 							case Comando.botaoNome.GirarDireita: //NomeBotoes.girarDireita:
@@ -984,6 +986,7 @@ public class ExecuteProgramList : MonoBehaviour {
 				//ActInteract(myPlayer, myPlayerStat);
 				Interagir ();
 				yield return new WaitForSeconds (0.8f);
+				myPlayAnim.SetBool("pegando",false);
 				//Debug.Log ("Interagiu");
 				break;
 			case Comando.botaoNome.GirarDireita: //NomeBotoes.girarDireita:

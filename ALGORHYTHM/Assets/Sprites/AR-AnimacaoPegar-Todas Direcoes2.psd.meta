@@ -1,0 +1,143 @@
+fileFormatVersion: 2
+guid: 25e611356f536b747a8666b21deb7cff
+timeCreated: 1447101096
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: AR-AnimacaoPegar-Todas Direcoes2_0
+    21300002: AR-AnimacaoPegar-Todas Direcoes2_1
+    21300004: AR-AnimacaoPegar-Todas Direcoes2_2
+    21300006: AR-AnimacaoPegar-Todas Direcoes2_3
+    21300008: AR-AnimacaoPegar-Todas Direcoes2_4
+    21300010: AR-AnimacaoPegar-Todas Direcoes2_5
+    21300012: AR-AnimacaoPegar-Todas Direcoes2_6
+    21300014: AR-AnimacaoPegar-Todas Direcoes2_7
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 60
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: AR-AnimacaoPegar-Todas Direcoes2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 344
+        width: 102
+        height: 172
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AR-AnimacaoPegar-Todas Direcoes2_1
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 343
+        width: 102
+        height: 172
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AR-AnimacaoPegar-Todas Direcoes2_2
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 344
+        width: 102
+        height: 172
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AR-AnimacaoPegar-Todas Direcoes2_3
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 344
+        width: 102
+        height: 172
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AR-AnimacaoPegar-Todas Direcoes2_4
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 173
+        width: 96
+        height: 172
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AR-AnimacaoPegar-Todas Direcoes2_5
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 171
+        width: 102
+        height: 172
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AR-AnimacaoPegar-Todas Direcoes2_6
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 173
+        width: 102
+        height: 172
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AR-AnimacaoPegar-Todas Direcoes2_7
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 172
+        width: 102
+        height: 172
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
