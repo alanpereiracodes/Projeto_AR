@@ -10,6 +10,7 @@ public class CreateProgramList : MonoBehaviour {
 
 	public Transform contentPanel;
 	public Transform contentPanel2; //Comandos Funçao
+	public Text numeroRepetir;
 
 	//Capitulo 1 UI
 	public Text refLog;

@@ -23,6 +23,7 @@ public class CarregaJogo : MonoBehaviour {
 	private CriaTabuleiro tabuleiroScript;
 
 	public bool capituloDois;
+	public bool capituloTres;
 	public int limiteListaPrincipal;
 	public int limiteListaFuncao;
 
@@ -94,7 +95,9 @@ public class CarregaJogo : MonoBehaviour {
 		//Capitulo 2
 		if(capituloDois)
 		{
-			Debug.Log ("Capitulo 2!");
+			if(!capituloTres)
+				Debug.Log ("Capitulo 2!");
+
 			ControladorGeral.referencia.limiteListaPrincipal = limiteListaPrincipal;
 			ControladorGeral.referencia.limiteListaFuncao = limiteListaFuncao;
 			CreateProgramList.referencia.numLimitePrincipal = limiteListaPrincipal;
@@ -102,6 +105,13 @@ public class CarregaJogo : MonoBehaviour {
 			CreateProgramList.referencia.limitePrincipal.text = "Principal\t\t\tLimite de Comandos: "+limiteListaPrincipal.ToString();
 			CreateProgramList.referencia.limiteFuncao.text = "Funçao\t\t\tLimite de Comandos: "+limiteListaFuncao.ToString();
 		}
+		ControladorGeral.referencia.capituloTres = capituloTres;
+		//Capitulo 3
+		if(capituloTres)
+		{
+			Debug.Log ("Capitulo 3!");
+		}
+
 		Debug.Log ("carregou");
 
     }

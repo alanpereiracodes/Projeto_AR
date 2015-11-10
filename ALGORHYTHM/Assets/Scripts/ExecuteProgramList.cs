@@ -844,6 +844,7 @@ public class ExecuteProgramList : MonoBehaviour {
 	//IEnumerator ExecutarLista(List<CommandButton> lista)
 	IEnumerator ExecutarLista(List<Comando> lista)
 	{
+		int qtdRepete;
 		cGeral.numeroComandos = lista.Count;
 		Debug.Log ("numero comandos: "+cGeral.numeroComandos);
 		Debug.Log ("numero retries: "+cGeral.numeroRetries);
@@ -855,6 +856,8 @@ public class ExecuteProgramList : MonoBehaviour {
 				{
 					cGeral.listaEmExecucao = true;
 						//foreach (CommandButton comando in lista) {
+					if(!cGeral.capituloTres)
+					{
 						foreach (Comando comando in lista)
 						{
 							if(!CreateProgramList.referencia.destaqueComando.activeInHierarchy)
@@ -903,10 +906,73 @@ public class ExecuteProgramList : MonoBehaviour {
 								break;
 							}
 						}
-						yield return new WaitForSeconds (0.8f);
-						cGeral.retry = true;
-						cGeral.myBtnExecutarImage.sprite = cGeral.myBtnRetry;
-						cGeral.listaEmExecucao = false;
+					}
+					else
+					{
+						//CAPITULO 3 LOOP
+						if(int.TryParse(CreateProgramList.referencia.numeroRepetir.text, out qtdRepete))
+						{
+							for(int a=1; a <= qtdRepete; a++)
+							{
+								foreach (Comando comando in lista)
+								{
+									if(!CreateProgramList.referencia.destaqueComando.activeInHierarchy)
+									{
+										CreateProgramList.referencia.destaqueComando.SetActive(true);
+									}
+									CreateProgramList.referencia.destaqueComando.transform.SetParent(comando.gameObject.transform);
+									if(cGeral.capituloDois)
+										CreateProgramList.referencia.destaqueComando.GetComponent<RectTransform>().anchoredPosition= new Vector2 (30f,-30f);
+									else
+										CreateProgramList.referencia.destaqueComando.GetComponent<RectTransform>().anchoredPosition= new Vector2 (25f,-25f);
+									switch (comando.nome) 
+									{
+									case Comando.botaoNome.Andar: //NomeBotoes.andar:
+										//MoveGo(myPlayer, myPlayerStat);
+										MoverPersonagem ();
+										yield return new WaitForSeconds (0.8f);
+										break;
+									case Comando.botaoNome.Falar://NomeBotoes.falar:
+										//ActTalk(string comando.parametro1.text, myPlayer, myPlayerStat);
+										//Debug.Log ("Falou " + comando.parametro1.text);
+										//Debug.Log ("Falou");
+										break;
+									case Comando.botaoNome.Interagir: //NomeBotoes.interagir:
+										//ActInteract(myPlayer, myPlayerStat);
+										Interagir ();
+										yield return new WaitForSeconds (0.8f);
+										myPlayAnim.SetBool("pegando",false);
+										//Debug.Log ("Interagiu");
+										break;
+									case Comando.botaoNome.GirarDireita: //NomeBotoes.girarDireita:
+										GirarPersonagem (Player.Direction.Direita);
+										yield return new WaitForSeconds (0.3f);
+										break;
+									case Comando.botaoNome.GirarEsquerda: //NomeBotoes.girarEsquerda:
+										GirarPersonagem (Player.Direction.Esquerda);
+										yield return new WaitForSeconds (0.3f);
+										break;
+									case Comando.botaoNome.Pular: //NomeBotoes.pular:
+										PularPersonagem ();
+										yield return new WaitForSeconds (0.8f);
+										break;
+									case Comando.botaoNome.Funcao: //NomeBotoes.pular:
+										StartCoroutine(ExecutarListaFuncao(listaFuncao));
+										yield return new WaitForSeconds (0.82f*listaFuncao.Count);
+										break;
+									}
+								}	
+							}
+						}
+						else
+						{
+							Debug.Log ("Nao foi inserido um numero valido no campo de quantas vezes o comando deve ser repetido.");
+						}
+					}
+					yield return new WaitForSeconds (0.8f);
+					cGeral.retry = true;
+					cGeral.myBtnExecutarImage.sprite = cGeral.myBtnRetry;
+					cGeral.listaEmExecucao = false;
 					yield return null;
 				}
 				else {
