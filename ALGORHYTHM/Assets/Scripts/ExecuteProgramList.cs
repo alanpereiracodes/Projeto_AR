@@ -624,9 +624,37 @@ public class ExecuteProgramList : MonoBehaviour {
 	void Interagir ()
 	{
 		Objeto objetoFrente = null;
+		Objeto objetoAbaixo = null;
 		objetoFrente = VerificaBlocoQueVaiInteragir(myPlayerStat.direcaoGlobal, myPlayerStat.posicaoTabuleiro);
+		objetoAbaixo = cGeral.tabuleiroAtual.AtivaBotaoChao(myPlayerStat.posicaoTabuleiro);
 
-		if (objetoFrente != null) 
+		if(objetoAbaixo != null)
+		{
+			if(objetoAbaixo.nome == Objeto.Nome.BotaoChao)
+			{
+				//Como Ja foi Ativado e Diminuido a Altura na Funçao que retorna o Objeto abaixo,
+				//Falta So arrumar a altura de nosso personagem;
+				alturaPulo = -0.5f;
+				Vector3 newPos = new Vector3(myPlayer.transform.position.x,myPlayerStat.transform.position.y+alturaPulo,myPlayer.transform.position.z);
+				myPlayAnim.SetBool("ativando",true);
+				objetoAbaixo.transform.GetComponentInChildren<Animator>().SetBool("ativado",true);
+				objetoAbaixo.transform.GetComponentInChildren<SpriteRenderer>().sortingLayerName = "Objeto";
+				StartCoroutine(MoverObjeto(myPlayer,myPlayer.transform.position, newPos, tempoMover));
+				//Ativa a Funçao
+				if(cGeral.tabuleiroAtual.QuebraCorrenteBotao())
+				{
+					Tile tilePortalCorrente = cGeral.tabuleiroAtual.ProcuraTile(cGeral.posicaoObjetivo);
+					Objeto portalCorrente = tilePortalCorrente.objetosEmCima[0].GetComponent<Objeto>();
+					portalCorrente.ativado = true;
+					portalCorrente.bloqueiaCaminho = false;
+					portalCorrente.GetComponentInChildren<Animator>().SetBool("quebrou",true);
+					EnviaMensagem("\nAs correntes no portal foram quebradas!");
+					EnviaCodigo("\nPortal.Desbloqueia();");
+				}
+			}
+		}
+
+		if (objetoFrente != null && objetoAbaixo == null) 
 		{
 			myPlayAnim.SetBool("pegando",true);
 			switch (objetoFrente.tipo) 
@@ -683,6 +711,7 @@ public class ExecuteProgramList : MonoBehaviour {
 				}
 				else
 				{
+			
 					EnviaMensagem("\n<b>Algo</b>, interagiu com um " + objetoFrente.nome.ToString());
 					EnviaCodigo("\n<b>Algo</b>.colocarNoAltar(" + objetoFrente.nome.ToString() + ",null);");
 					Debug.Log ("Algo, interagiu com um " + objetoFrente.nome.ToString());
@@ -692,10 +721,14 @@ public class ExecuteProgramList : MonoBehaviour {
 		}
 		else 
 		{
-			EnviaMensagem("\n<b>Algo</b> não encontrou um objeto para interagir");
-			EnviaCodigo("\n<b>Algo</b>.posicaoAFrente.objeto = null;");
-			Debug.Log ("Algo não encontrou um objeto para interagir.");
+			if(objetoAbaixo == null)
+			{
+				EnviaMensagem("\n<b>Algo</b> não encontrou um objeto para interagir");
+				EnviaCodigo("\n<b>Algo</b>.posicaoAFrente.objeto = null;");
+				Debug.Log ("Algo não encontrou um objeto para interagir.");
+			}
 		}
+
 	}
 
 	
@@ -846,6 +879,7 @@ public class ExecuteProgramList : MonoBehaviour {
 	{
 		int qtdRepete;
 		cGeral.numeroComandos = lista.Count;
+
 		Debug.Log ("numero comandos: "+cGeral.numeroComandos);
 		Debug.Log ("numero retries: "+cGeral.numeroRetries);
 		if (CreateProgramList.referencia.listaPrograma != null && CreateProgramList.referencia.listaPrograma.Count > 0) 
@@ -858,6 +892,12 @@ public class ExecuteProgramList : MonoBehaviour {
 						//foreach (CommandButton comando in lista) {
 					if(!cGeral.capituloTres)
 					{
+						if(cGeral.capituloDois)
+						{
+							cGeral.numeroComandos = lista.Count + CreateProgramList.referencia.listaFuncao.Count;
+							Debug.Log ("numero comandos Cap2: "+cGeral.numeroComandos);
+						}
+
 						foreach (Comando comando in lista)
 						{
 							if(!CreateProgramList.referencia.destaqueComando.activeInHierarchy)
@@ -886,6 +926,7 @@ public class ExecuteProgramList : MonoBehaviour {
 								Interagir ();
 								yield return new WaitForSeconds (0.8f);
 								myPlayAnim.SetBool("pegando",false);
+								myPlayAnim.SetBool("ativando",false);
 							//Debug.Log ("Interagiu");
 								break;
 							case Comando.botaoNome.GirarDireita: //NomeBotoes.girarDireita:
@@ -912,6 +953,13 @@ public class ExecuteProgramList : MonoBehaviour {
 						//CAPITULO 3 LOOP
 						if(int.TryParse(CreateProgramList.referencia.numeroRepetir.text, out qtdRepete))
 						{
+
+							if(cGeral.capituloTres)
+							{
+								cGeral.numeroComandos = (lista.Count + CreateProgramList.referencia.listaFuncao.Count) * qtdRepete;
+								Debug.Log ("numero comandos Cap3: "+cGeral.numeroComandos);
+							}
+
 							for(int a=1; a <= qtdRepete; a++)
 							{
 								foreach (Comando comando in lista)
@@ -1105,6 +1153,14 @@ public class ExecuteProgramList : MonoBehaviour {
 			EnviaMensagem("\n<b>Algo</b> Pulou!");
 			EnviaCodigo("\n<b>Algo</b>.posicao = x,y; <b>Algo</b>.altura = z;");
 			Debug.Log (player.name + " Pulou!");
+		}
+
+		if(myPlayAnim.GetBool("ativando"))
+		{
+			myPlayAnim.SetBool("ativando",false);
+			//EnviaMensagem("\n<b>Algo</b> Pulou!");
+			//EnviaCodigo("\n<b>Algo</b>.posicao = x,y; <b>Algo</b>.altura = z;");
+			//Debug.Log (player.name + " Pulou!");
 		}
 	}
 	#endregion

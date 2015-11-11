@@ -13,7 +13,8 @@ public class Objeto : MonoBehaviour {
 		Cubo,
 		Cristal,
 		Altar,
-		Barreira
+		Barreira,
+		BotaoChao
 	};
 	
 	public enum Tipo

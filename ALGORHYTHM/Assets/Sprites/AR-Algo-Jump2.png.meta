@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 5cda02468d692ef4f9d63fe12297a15c
-timeCreated: 1440544100
+timeCreated: 1447275766
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -62,32 +62,32 @@ TextureImporter:
     - name: AR-Algo-Jump2_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 17
         y: 172
-        width: 102
+        width: 68
         height: 172
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AR-Algo-Jump2_1
       rect:
         serializedVersion: 2
-        x: 102
+        x: 111
         y: 172
-        width: 102
+        width: 70
         height: 172
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 1, w: 0}
     - name: AR-Algo-Jump2_2
       rect:
         serializedVersion: 2
-        x: 204
+        x: 209
         y: 172
         width: 102
         height: 172
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AR-Algo-Jump2_3
       rect:
@@ -97,7 +97,7 @@ TextureImporter:
         width: 102
         height: 172
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AR-Algo-Jump2_4
       rect:
@@ -107,27 +107,27 @@ TextureImporter:
         width: 102
         height: 172
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AR-Algo-Jump2_5
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 102
+        width: 90
         height: 172
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 2, w: 0}
     - name: AR-Algo-Jump2_6
       rect:
         serializedVersion: 2
-        x: 102
+        x: 93
         y: 0
         width: 102
         height: 172
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AR-Algo-Jump2_7
       rect:
@@ -137,7 +137,7 @@ TextureImporter:
         width: 102
         height: 172
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AR-Algo-Jump2_8
       rect:
@@ -147,7 +147,7 @@ TextureImporter:
         width: 102
         height: 172
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: AR-Algo-Jump2_9
       rect:
@@ -157,7 +157,7 @@ TextureImporter:
         width: 102
         height: 172
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

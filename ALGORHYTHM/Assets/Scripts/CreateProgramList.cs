@@ -51,6 +51,7 @@ public class CreateProgramList : MonoBehaviour {
 			referencia = this;	
 		else if (referencia != this)
 			Destroy(gameObject);
+		//numeroRepetir.transform.parent.gameObject.GetComponent<InputField>().text = "1";
 	}
 
 	public void RecarregaUI()
