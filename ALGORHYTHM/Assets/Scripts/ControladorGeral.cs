@@ -139,7 +139,8 @@ public class ControladorGeral : MonoBehaviour {
 					listaEmExecucao = false;
 
 					JanelaPassouFase jan = janelaFaseConcluida.GetComponent<JanelaPassouFase> ();
-					jan.PreencheCubos (pontuacao, capituloAtual.ToString () + " - " + faseAtual.ToString ()); //Apagado 303030FF Ligado FFFFFFFF
+					int contaFaseX = faseAtual - ((capituloAtual-1)*10);
+					jan.PreencheCubos (pontuacao, capituloAtual.ToString () + " - " + contaFaseX.ToString ()); //Apagado 303030FF Ligado FFFFFFFF
 					jan.btnOk.onClick.RemoveAllListeners ();
 					jan.btnAgain.onClick.RemoveAllListeners ();
 

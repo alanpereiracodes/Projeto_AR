@@ -193,7 +193,7 @@ public class CreateProgramList : MonoBehaviour {
 		else 
 		{
 			EnviaMensagem("\nReinicie a Fase antes de Limpar a Lista!");
-			EnviaCodigo ("\nErro: if(!fase.reiniciada){ retorno false;}");
+			EnviaCodigo ("\n<color=#00ffffff>Erro: if(!fase.reiniciada){ retorno false;}</color>");
 		}
 	}
 

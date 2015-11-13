@@ -96,13 +96,13 @@ public class RemoveBotaoLista : MonoBehaviour {
 			else 
 			{
 				EnviaMensagem ("\nNão foi possível remover o Comando porque a lista esta em execução.");
-				EnviaCodigo ("\nErro: if(lista.execucao){ retorno false;}");
+				EnviaCodigo ("\n<color=#00ffffff>Erro: if(lista.execucao){ retorno false;}</color>");
 			}
 		}
 		else 
 		{
 			EnviaMensagem ("\nReinicie a Fase antes de remover o Comando.");
-			EnviaCodigo ("\nErro: if(!fase.reiniciada){ retorno false;}");
+			EnviaCodigo ("\n<color=#00ffffff>Erro: if(!fase.reiniciada){ retorno false;}</color>");
 		}
 	}
 

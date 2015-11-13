@@ -14,6 +14,7 @@ public class ExecuteProgramList : MonoBehaviour {
 	private Player myPlayerStat;
 	private Animator myPlayAnim;
 	private float alturaPulo;
+	private Vector2 posicaoLog;
 
 	ControladorGeral cGeral;
 
@@ -31,6 +32,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		myPlayer = cGeral.myPlayer;
 		myPlayerStat = myPlayer.GetComponent<Player> ();
 		myPlayAnim = myPlayer.GetComponentInChildren<Animator>();
+		posicaoLog = Vector2.zero;
 	}
 	
 	//Funçao para executar a Lista de Programa! Essa funçao e chamada pelo botao "Executar Programa" na UI do jogo.
@@ -124,6 +126,7 @@ public class ExecuteProgramList : MonoBehaviour {
 
 		if(direcao == Player.Direction.Frente)
 		{
+			posicaoLog = new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y+1);
 			Tile novoTile = cGeral.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y+1));
 			if(novoTile != null)
 			{
@@ -161,6 +164,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		}
 		if(direcao == Player.Direction.Tras)
 		{
+			posicaoLog = new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y-1);
 			Tile novoTile = cGeral.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y-1));
 			if(novoTile != null)
 			{
@@ -198,6 +202,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		}
 		if(direcao == Player.Direction.Direita)
 		{
+			posicaoLog = new Vector2(myPlayerStat.posicaoTabuleiro.x-1, myPlayerStat.posicaoTabuleiro.y);
 			Tile novoTile = cGeral.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x-1, myPlayerStat.posicaoTabuleiro.y));
 			if(novoTile != null)
 			{
@@ -236,6 +241,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		}
 		if(direcao == Player.Direction.Esquerda)
 		{
+			posicaoLog = new Vector2(myPlayerStat.posicaoTabuleiro.x+1, myPlayerStat.posicaoTabuleiro.y);
 			Tile novoTile = cGeral.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x+1, myPlayerStat.posicaoTabuleiro.y));
 			if(novoTile != null)
 			{
@@ -272,7 +278,7 @@ public class ExecuteProgramList : MonoBehaviour {
 			}
 		}
 		EnviaMensagem("\n<b>Algo</b> não andou!");
-		EnviaCodigo("\nErro: if(casa.posicao(x,y).naoAndavel || casa.posicao(x,y) == null){ retorno false;}");
+		EnviaCodigo("\n<color=#00ffffff>Erro: Casa.posicao("+posicaoLog.x+","+posicaoLog.y+").andavel = false || Casa.posicao("+posicaoLog.x+","+posicaoLog.y+") = null</color>");
 		if (cGeral.myScroll != null)
 		{
 			//Debug.Log (cGeral.myScroll.value.ToString ());
@@ -389,6 +395,7 @@ public class ExecuteProgramList : MonoBehaviour {
 
 		if(direcao == Player.Direction.Frente)
 		{
+			posicaoLog = new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y+1);
 			Tile novoTile = cGeral.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y+1));
 			if(novoTile != null)
 			{
@@ -415,6 +422,7 @@ public class ExecuteProgramList : MonoBehaviour {
 
 				if(novoTile.andavel && passavel)
 				{
+
 					Tile velhoTile = cGeral.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro);
 					if(velhoTile != null && (velhoTile.altura == novoTile.altura+1 || velhoTile.altura == novoTile.altura-1))
 					{
@@ -432,6 +440,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		}
 		if(direcao == Player.Direction.Tras)
 		{
+			posicaoLog = new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y-1);
 			Tile novoTile = cGeral.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x, myPlayerStat.posicaoTabuleiro.y-1));
 			if(novoTile != null)
 			{
@@ -475,6 +484,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		}
 		if(direcao == Player.Direction.Direita)
 		{
+			posicaoLog = new Vector2(myPlayerStat.posicaoTabuleiro.x-1, myPlayerStat.posicaoTabuleiro.y);
 			Tile novoTile = cGeral.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x-1, myPlayerStat.posicaoTabuleiro.y));
 			if(novoTile != null)
 			{
@@ -518,6 +528,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		}
 		if(direcao == Player.Direction.Esquerda)
 		{
+			posicaoLog = new Vector2(myPlayerStat.posicaoTabuleiro.x+1, myPlayerStat.posicaoTabuleiro.y);
 			Tile novoTile = cGeral.tabuleiroAtual.ProcuraTile(new Vector2(myPlayerStat.posicaoTabuleiro.x+1, myPlayerStat.posicaoTabuleiro.y));
 			if(novoTile != null)
 			{
@@ -560,7 +571,7 @@ public class ExecuteProgramList : MonoBehaviour {
 			}
 		}
 		EnviaMensagem("\n<b>Algo</b> não Pulou!");
-		EnviaCodigo("\nErro: posicao(x,y).naoAndavel = true;");
+		EnviaCodigo("\n<color=#00ffffff>Erro: Casa.posicao("+posicaoLog.x+","+posicaoLog.y+").andavel = false || Casa.posicao("+posicaoLog.x+","+posicaoLog.y+").diferencaAltura > 1;</color>");
 		Debug.Log ("não Pulou!");
 		return false;
 	}
@@ -639,6 +650,8 @@ public class ExecuteProgramList : MonoBehaviour {
 				myPlayAnim.SetBool("ativando",true);
 				objetoAbaixo.transform.GetComponentInChildren<Animator>().SetBool("ativado",true);
 				objetoAbaixo.transform.GetComponentInChildren<SpriteRenderer>().sortingLayerName = "Objeto";
+				EnviaMensagem("\nAlgo ativou o botão!");
+				EnviaCodigo("\nBotao.setAtivado(true);");
 				StartCoroutine(MoverObjeto(myPlayer,myPlayer.transform.position, newPos, tempoMover));
 				//Ativa a Funçao
 				if(cGeral.tabuleiroAtual.QuebraCorrenteBotao())
@@ -856,7 +869,9 @@ public class ExecuteProgramList : MonoBehaviour {
 		if (cGeral.myScroll != null)
 		{
 			//Debug.Log (cGeral.myScroll.value.ToString ());
+			Canvas.ForceUpdateCanvases();
 			cGeral.myScroll.value = 0;
+			Canvas.ForceUpdateCanvases();
 		}
 	}
 
@@ -866,7 +881,9 @@ public class ExecuteProgramList : MonoBehaviour {
 		if (cGeral.myScrollAvanc != null)
 		{
 			//Debug.Log (cGeral.myScroll.value.ToString ());
+			Canvas.ForceUpdateCanvases();
 			cGeral.myScrollAvanc.value = 0;
+			Canvas.ForceUpdateCanvases();
 		}
 	}
 
@@ -1025,7 +1042,7 @@ public class ExecuteProgramList : MonoBehaviour {
 				}
 				else {
 					EnviaMensagem ("\nA lista de programa ja esta em execuçao!");
-					EnviaCodigo ("\nErro: listaComando.executando();");
+					EnviaCodigo ("\n<color=#00ffffff>Erro: listaComando.executando();</color>");
 					Debug.Log ("A Lista de Programa ja esta em execuçao!!");
 				}
 			}
@@ -1065,10 +1082,14 @@ public class ExecuteProgramList : MonoBehaviour {
 		else 
 		{
 			EnviaMensagem ("\nA lista de programa esta vazia.");
-			EnviaCodigo ("\nErro: listaComando == null");
+			EnviaCodigo ("\n<color=#00ffffff>Erro: listaComando == null</color>");
 			Debug.Log ("A Lista de Programa esta nula!");
 		}
 
+		Canvas.ForceUpdateCanvases();
+		cGeral.myScroll.value = 0;
+		Canvas.ForceUpdateCanvases();
+		cGeral.myScrollAvanc.value = 0;
 		CreateProgramList.referencia.destaqueComando.SetActive(false);
 		CreateProgramList.referencia.destaqueComando.transform.SetParent (CreateProgramList.referencia.destaqueComando.transform.parent.parent);
 
@@ -1150,7 +1171,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		{
 			myPlayAnim.SetBool("andando",false);
 			EnviaMensagem("\n<b>Algo</b> Andou!");
-			EnviaCodigo("\n<b>Algo</b>.posicao = x,y; <b>Algo</b>.altura = 0;");
+			EnviaCodigo("\n<b>Algo</b>.posicao = "+posicaoLog.x+","+posicaoLog.y+"; <b>Algo</b>.altura = "+cGeral.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro).altura+";");
 			Debug.Log (player.name + " Andou!");
 		}
 			
@@ -1159,7 +1180,7 @@ public class ExecuteProgramList : MonoBehaviour {
 		{
 			myPlayAnim.SetBool("pulando",false);
 			EnviaMensagem("\n<b>Algo</b> Pulou!");
-			EnviaCodigo("\n<b>Algo</b>.posicao = x,y; <b>Algo</b>.altura = z;");
+			EnviaCodigo("\n<b>Algo</b>.posicao = "+posicaoLog.x+","+posicaoLog.y+"; <b>Algo</b>.altura = "+cGeral.tabuleiroAtual.ProcuraTile(myPlayerStat.posicaoTabuleiro).altura+";");
 			Debug.Log (player.name + " Pulou!");
 		}
 
