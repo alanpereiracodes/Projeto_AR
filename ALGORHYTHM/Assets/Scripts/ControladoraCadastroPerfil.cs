@@ -177,7 +177,8 @@ public class ControladoraCadastroPerfil : MonoBehaviour {
 
 	public void btnEntendiPassaFase_OnClick()
 	{
-		Application.LoadLevel("Fase 1");
+		Application.LoadLevel("Historia");
+		ControladorGeral.referencia.musicaRolando.Stop();
 	}
 
 }
