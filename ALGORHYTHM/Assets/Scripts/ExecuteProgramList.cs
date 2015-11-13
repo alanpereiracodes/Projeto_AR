@@ -1078,6 +1078,14 @@ public class ExecuteProgramList : MonoBehaviour {
 	{
 		foreach (Comando comando in lista)
 		{
+			if(cGeral.capituloTres)
+			{
+				if(myPlayerStat.posicaoTabuleiro == cGeral.posicaoObjetivo)
+				{
+					break;
+				}
+			}
+
 			if(!CreateProgramList.referencia.destaqueComandoDois.activeInHierarchy)
 			{
 				CreateProgramList.referencia.destaqueComandoDois.SetActive(true);
