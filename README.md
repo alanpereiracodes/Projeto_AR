@@ -44,7 +44,6 @@ Referências:
 
 As maiores referências para o projeto são os jogos Lightbot, Final Fantasy Tactics e Disgaea.
 
-==================================================================================
 COMO ABRIR O PROJETO:
 --------------------------
 
