@@ -5,16 +5,6 @@ Repositório dedicado para o Projeto AlgoRhythm
 Contribuidores:
 Alan Pereira - http://alanprince.deviantart.com
 
-==========================
-    ___    __            ____  __          __  __            
-   /   |  / /___ _____  / __ \/ /_  __  __/ /_/ /_  ____ ___ 
-  / /| | / / __ `/ __ \/ /_/ / __ \/ / / / __/ __ \/ __ `__ \
- / ___ |/ / /_/ / /_/ / _, _/ / / / /_/ / /_/ / / / / / / / /
-/_/  |_/_/\__, /\____/_/ |_/_/ /_/\__, /\__/_/ /_/_/ /_/ /_/ 
-	         /____/                  /____/                      
-
-===========================
-
 AlgoRhythm é um jogo educacional com o objetivo de ensinar Conceitos Básicos de Programação tais como: 
 
 Algoritmo; 
