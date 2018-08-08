@@ -14,9 +14,9 @@ If & Else para crianças e jovens do Ensino Fundamental e do Ensino Médio, alé
 
 Tudo isso contando com o ambiente lúdico dos jogos, atraindo o interesse do jogador para aprender.
 
-=================================================
+
 FUNCIONAMENTO DO JOGO 
-=================================================
+--------------------------
 
 Resumo:
 
